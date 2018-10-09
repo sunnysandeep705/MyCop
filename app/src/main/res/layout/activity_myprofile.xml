@@ -158,8 +158,8 @@
                         android:background="@drawable/rounded_white_transparent"
                         android:orientation="horizontal">
 
-                        <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView25"
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/ed_email_myprofile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"

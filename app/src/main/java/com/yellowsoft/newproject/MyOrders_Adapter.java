@@ -38,7 +38,10 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		holder.order_ids.setText(items.get(position).order_id);
 		holder.price_tv_myorders.setText(items.get(position).price);
 		holder.quantity_tv_myorders.setText(items.get(position).quantity);
+
+		if(!items.get(position).images.equals(""))
 		Picasso.get().load(items.get(position).images).into(holder.order_img);
+
 		holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

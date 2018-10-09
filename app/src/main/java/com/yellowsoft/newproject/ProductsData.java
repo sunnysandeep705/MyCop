@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ProductsData  implements Serializable{
 	String originalprice,discountprice,product_images,product_title,description,product_id;
 	public  ArrayList<RequestImages> images;
-
+	public  Integer cartquantity;
 
 	public ProductsData(String originalprice,String discountprice,String product_images,String product_title,String description,String product_id){
 		this.discountprice=discountprice;
@@ -37,7 +37,7 @@ public class ProductsData  implements Serializable{
 			images = new ArrayList<>();
 
 
-				for (int i=0;i<=jsonObject.getJSONArray("images").length();i++){
+				for (int i=0;i<jsonObject.getJSONArray("images").length();i++){
 					String image  = jsonObject.getJSONArray("images").getString(i);
 					Log.e("images",""+image);
 					images.add(new RequestImages(image));
@@ -50,4 +50,5 @@ public class ProductsData  implements Serializable{
 		}
 
 	}
-}
+
+	}

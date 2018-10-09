@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,18 +10,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyreferalsActivity extends AppCompatActivity {
 	RecyclerView myreferals;
+
 	MyReferals_Adapter myReferals_adapter;
+
 	ArrayList<MyReferalsData> myOrdersData=new ArrayList<MyReferalsData>();
+
 	TextView page_title;
 	ImageView back;
 	LinearLayout back_btn,menu_btn;
@@ -39,24 +55,6 @@ public class MyreferalsActivity extends AppCompatActivity {
 		setContentView(R.layout.activtiy_myreferals);
 		myreferals =(RecyclerView)findViewById(R.id.referals_recycler);
 
-		myOrdersData.add(new MyReferalsData("45734454","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("05693465","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("23452346","Deposited","849562342349"));
-		myOrdersData.add(new MyReferalsData("23452345","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("13461646","Deposited","23452345443"));
-		myOrdersData.add(new MyReferalsData("13613466","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("15763457","Deposited","23459782334"));
-		myOrdersData.add(new MyReferalsData("45734454","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("34573457","Deposited","25678346584"));
-		myOrdersData.add(new MyReferalsData("43574577","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("13461646","Deposited","23452345443"));
-		myOrdersData.add(new MyReferalsData("13613466","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("05693465","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("23452346","Deposited","849562342349"));
-		myOrdersData.add(new MyReferalsData("23452345","Processing","05677772348"));
-		myOrdersData.add(new MyReferalsData("45734454","Processing","05677772348"));
-
-
 		myReferals_adapter = new MyReferals_Adapter(MyreferalsActivity.this,myOrdersData);
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -69,7 +67,12 @@ public class MyreferalsActivity extends AppCompatActivity {
 		setupActionBar();
 		setupHeader();
 
+		CallReferaldetails();
+
+
 	}
+
+
 	private void setupActionBar() {
 //set action bar
 		getSupportActionBar().setHomeButtonEnabled(false);
@@ -103,10 +106,107 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 
 	}
+
 	private void setupHeader(){
 		page_title.setText("MY REFERRALS");
 		//btn_edit.setVisibility(View.VISIBLE);
 		//btn_edit.setText("Search");
 		//page_title.setText("Home");
 	}
+
+
+
+
+	public void CallReferaldetails(){
+
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/members_referrals.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null&& progressDialog.isShowing()) {
+					progressDialog.dismiss();
+				}
+				try {
+
+					JSONArray jsonArray = new JSONArray(response);
+					Log.e("jsonArray",""+jsonArray.toString());
+
+
+					myOrdersData.clear();
+
+					myReferals_adapter.notifyDataSetChanged();
+
+
+					for (int i = 0;i<jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+						Log.e("jsonobject",""+jsonObject);
+						Log.e("jsonobjectLength",""+jsonObject.length());
+
+						MyReferalsData temp = new MyReferalsData(jsonObject);
+
+						myOrdersData.add(temp);
+
+					}
+					myReferals_adapter.notifyDataSetChanged();
+
+					//Log.e("jsonobject",""+jsonArray.getJSONObject())
+
+					//JSONObject jsonObject = new JSONObject(jsonArray.getJSONObject(0));
+
+
+					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
+
+					/*if (jsonArray1.length()>1){
+						Log.e("length","length");
+						for (int j=0;j<=jsonArray1.length();j++){
+							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
+							String s = jsonArray1.getString(j);
+							Log.e("s",""+s);
+							slidingImage_data.add(new SlidingImage_Data(s));
+							Log.e("imagessssss",""+jsonArray1.getString(j));
+
+						}
+
+					}*/
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				//	slidingPageAdapter.notifyDataSetChanged();
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e("error",""+error);
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+				//parameters.put("email",u_name.getText().toString());
+				//	parameters.put("password",password.getText().toString());
+
+				//parameters.put("member_code",Session.getMemberCode(MyreferalsActivity.this));
+
+				parameters.put("member_code","MYC18100001");
+
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+//		slidingPageAdapter.notifyDataSetChanged();
+	}
+
 }

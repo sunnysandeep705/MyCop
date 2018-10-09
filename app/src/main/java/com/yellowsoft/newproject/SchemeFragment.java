@@ -34,6 +34,7 @@ public class SchemeFragment extends Fragment {
 		super.onStart();
 		String memberid = Session.getUserid(getActivity());
 		String membercode = Session.getMemberCode(getActivity());
+
 		if (memberid.equals("0")){
 
 			((HomeActivity)getActivity()).schemeSelected();
@@ -41,8 +42,7 @@ public class SchemeFragment extends Fragment {
 		else {
 			if (membercode.equals("0")){
 				((HomeActivity)getActivity()).schemeSelected();
-			}
-			else {
+			} else {
 			Intent intent = new Intent(getActivity(),MyreferalsActivity.class);
 			startActivity(intent);
 			getActivity().finish();

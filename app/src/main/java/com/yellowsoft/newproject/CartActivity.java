@@ -35,6 +35,7 @@ import java.util.Map;
 
 
 public class CartActivity extends AppCompatActivity {
+
 	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv,shippingcharge_tv;
 	TextView productTitle,productPrice,totalProductPrice;
 	LinearLayout prdcheckout_btn,apply_ll_btn;
@@ -47,7 +48,11 @@ public class CartActivity extends AppCompatActivity {
 	EditText coupon_code;
 	int subtotal;
 	int totalss,addShippingCharges;
+	int totals;
+	int discount_int = 0;
+	int  shippingcharges_int;
 
+	String coupon_code_str = "";
 
 	@Override
 	public void onBackPressed() {
@@ -83,6 +88,7 @@ public class CartActivity extends AppCompatActivity {
 		product = (ProductsData)getIntent().getSerializableExtra("product");
 
 		cartquantity = Integer.parseInt(getIntent().getStringExtra("quantity"));
+
 		quantity.setText(cartquantity.toString());
 
 		if (product.images.size()>1){
@@ -139,7 +145,7 @@ public class CartActivity extends AppCompatActivity {
         /*
             getting shipping charges
          */
-		String shippingcharges;
+		final String shippingcharges;
 		try {
 
 			shippingcharges = ApplicationController.getInstance().settings.getString("shipping_charges");
@@ -147,8 +153,9 @@ public class CartActivity extends AppCompatActivity {
 			Log.e("shippingcharges",""+shippingcharges);
 			shippingcharge_tv.setText(""+shippingcharges);
 
-
+			shippingcharges_int = Integer.parseInt(shippingcharges);
 			addShippingCharges = subtotal+Integer.parseInt(shippingcharges);
+			totals = addShippingCharges;
 			total_tv.setText(""+addShippingCharges);
 
 
@@ -169,9 +176,14 @@ public class CartActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent1  = new Intent(CartActivity.this,CheckoutActivity.class);
+				intent1.putExtra("product",product);
+				intent1.putExtra("total_price",totals);
+				intent1.putExtra("price",subtotal);
+				intent1.putExtra("delivery_charges",shippingcharges_int);
+				intent1.putExtra("discount_amount",discount_int);
+				intent1.putExtra("coupon_code",coupon_code_str);
+
 				startActivity(intent1);
-
-
 			}
 		});
 
@@ -247,7 +259,9 @@ public class CartActivity extends AppCompatActivity {
 						discount_tv.setText("-"+discount);
 
 						Log.e("totalss",""+totalss);
-						int totals = addShippingCharges-Integer.parseInt(discount);
+
+						discount_int = Integer.parseInt(discount);
+						totals = addShippingCharges-Integer.parseInt(discount);
 
 						Log.e("subtotal",""+subtotal);
 
@@ -256,6 +270,10 @@ public class CartActivity extends AppCompatActivity {
 						Log.e("total",""+totals);
 
 						Session.setTotalPrice(CartActivity.this,""+totals);
+
+
+						coupon_code_str = coupen;
+
 					}
 					else {
 						Snackbar.make(discount_tv,"Invalid Coupon Code",Snackbar.LENGTH_SHORT).show();

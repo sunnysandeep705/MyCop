@@ -105,9 +105,27 @@ public class CheckoutActivity extends AppCompatActivity {
 				}
 				else {
 					Intent intent = new Intent(CheckoutActivity.this,PaymentActivity.class);
+
+
+					intent.putExtra("product",getIntent().getSerializableExtra("product"));
+					intent.putExtra("total_price",getIntent().getIntExtra("total_price",0)) ;
+					intent.putExtra("price",getIntent().getIntExtra("price",0));
+					intent.putExtra("delivery_charges",getIntent().getIntExtra("delivery_charges",0));
+					intent.putExtra("discount_amount",getIntent().getIntExtra("discount_amount",0));
+
+					intent.putExtra("firstname",firstname.getText().toString());
+					intent.putExtra("lastname",lastname.getText().toString());
+					intent.putExtra("email",email.getText().toString());
+					intent.putExtra("address",address.getText().toString());
+					intent.putExtra("phone",phone.getText().toString());
+					intent.putExtra("city",city.getText().toString());
+					intent.putExtra("pincode",pincode.getText().toString());
+					intent.putExtra("state",state.getText().toString());
+
 					startActivity(intent);
 					finish();
-					sendShippingAddress();
+
+					//sendShippingAddress();
 				}
 
 				//CallAddAddressService(member,name,address.getText().toString(),city.getText().toString(),state.getText().toString(),country.getText().toString(),pincode.getText().toString(),phone.getText().toString());

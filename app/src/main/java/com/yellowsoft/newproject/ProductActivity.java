@@ -128,8 +128,10 @@ public class ProductActivity extends AppCompatActivity {
 
 				String q;
 				q=quantity.getText().toString();
+				product.cartquantity = Integer.parseInt(q);
 				intent.putExtra("quantity",q);
 				intent.putExtra("product",product);
+
 				startActivity(intent);
 				//getActivity().finish();
 

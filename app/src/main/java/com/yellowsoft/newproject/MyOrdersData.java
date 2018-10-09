@@ -1,5 +1,7 @@
 package com.yellowsoft.newproject;
 
+import android.util.JsonReader;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,7 +10,7 @@ import org.json.JSONObject;
  */
 
 public class MyOrdersData {
-   String images;
+   String images = "";
     String price,order_id,quantity,address;
 
    // Context context;
@@ -19,6 +21,36 @@ public class MyOrdersData {
         this.quantity = quantity;
         this.address = address;
         // this.context=context;
+    }
+
+
+    public MyOrdersData(JSONObject jsonObject){
+
+
+        try {
+            this.price=jsonObject.getString("price");
+            this.order_id = jsonObject.getString("id");
+            this.quantity = jsonObject.getString("price");
+            this.address = jsonObject.getString("address")+", "+jsonObject.getString("city")+", "+jsonObject.getString("state");
+
+            if(jsonObject.getJSONArray("products").length()>0) {
+
+                this.images = jsonObject.getJSONArray("products").getJSONObject(0).getString("images");
+                this.quantity = jsonObject.getJSONArray("products").getJSONObject(0).getString("quantity");
+
+            }
+
+
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 }

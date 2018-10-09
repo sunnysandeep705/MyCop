@@ -532,6 +532,25 @@ public class HomeActivity extends AppCompatActivity {
 	//google signout
 	public void signout(){
 		Session.setUserid(HomeActivity.this,"0","MYCOP USER");
+		Session.setMemberCode(HomeActivity.this,"0");
+
+	}
+
+
+int resume_count = 0;
+	@Override
+	public void onResume(){
+		super.onResume();
+		// put your code here...
+		if(resume_count>0){
+
+			if(mViewPager.getCurrentItem()==3)
+			home.performClick();
+
+		}
+
+		resume_count++;
+
 
 	}
 

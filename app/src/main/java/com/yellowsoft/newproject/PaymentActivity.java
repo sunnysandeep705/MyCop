@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,6 +35,8 @@ public class PaymentActivity extends AppCompatActivity {
 	TextView totalpayable_amt;
 	LinearLayout menu_btn,back_btn,submit_btn,payconfirm_ll_btn,cod_ll,card_ll,wallet_ll;
 	ImageView back,checkoff_cash,checkon_cash,checkoff_card,checkon_card,checkoff_wallet,checkon_wallet,cashimg,walletimg,cardimg;
+
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -137,10 +141,10 @@ public class PaymentActivity extends AppCompatActivity {
 		payconfirm_ll_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(PaymentActivity.this,ThankyouActivity.class);
-				startActivity(intent);
-				finish();
-			}
+
+				CallAddAddressService();
+
+							}
 		});
 		setSupportActionBar(toolbar);
 		setupActionBar();
@@ -216,14 +220,14 @@ public class PaymentActivity extends AppCompatActivity {
 	}
 
 
-	public void CallAddAddressService(final String memberid, final String alias,final String address,final String city,final String state,final String country,final String pincode,final String phone){
+	public void CallAddAddressService(){
 
 
 		final ProgressDialog progressDialog = new ProgressDialog(PaymentActivity.this);
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/add-address.php";
+		String URL = Session.BASE_URL+"api/place-order.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
@@ -238,16 +242,12 @@ public class PaymentActivity extends AppCompatActivity {
 					Log.e("status",""+reply);
 					if(reply.equals("Success")) {
 
-						/*//Snackbar.make(discount_tv,"Coupon code applied successfully",Snackbar.LENGTH_SHORT).show();
-						String discount = jsonObject.getString("discount_value");
-						Log.e("discount",""+discount);
-						discount_tv.setText(discount);
-						int total = subtotal-Integer.parseInt(discount);
-						Log.e("subtotal",""+subtotal);
-						total_tv.setText(""+total);
-						Log.e("total",""+total);
 
-						Session.setTotalPrice(CheckoutActivity.this,""+total);*/
+
+						Intent intent = new Intent(PaymentActivity.this,ThankyouActivity.class);
+						startActivity(intent);
+						finish();
+
 					}
 
 
@@ -266,20 +266,87 @@ public class PaymentActivity extends AppCompatActivity {
 				}){
 			@Override
 			protected Map<String,String> getParams(){
-				Map<String,String> parameters = new HashMap<String, String>();
 
-				parameters.put("member_id",memberid);
-				parameters.put("alias",alias);
-				parameters.put("address",address);
-				parameters.put("city",city);
-				parameters.put("state",state);
-				parameters.put("country",country);
-				parameters.put("pincode",pincode);
-				parameters.put("phone",phone);
+
+				JSONObject jsonObject_to_send = new JSONObject();
+
+
+
+
+
+
+
+				JSONObject address = new JSONObject();
+
+				try {
+
+					address.put("firstname",getIntent().getStringExtra("firstname"));
+					address.put("lastname",getIntent().getStringExtra("lastname"));
+					address.put("address",getIntent().getStringExtra("address"));
+					address.put("city",getIntent().getStringExtra("city"));
+					address.put("state",getIntent().getStringExtra("state"));
+					address.put("pincode",getIntent().getStringExtra("pincode"));
+					address.put("phone",getIntent().getStringExtra("phone"));
+					address.put("email",getIntent().getStringExtra("email"));
+
+
+
+				jsonObject_to_send.put("address",address);
+				jsonObject_to_send.put("products",getProductasJson((ProductsData) getIntent().getSerializableExtra("product")));
+				jsonObject_to_send.put("total_price",String.valueOf(getIntent().getIntExtra("total_price",0)));
+				jsonObject_to_send.put("coupon_code",getIntent().getStringExtra("coupon_code"));
+				jsonObject_to_send.put("payment_method","Cash");
+				jsonObject_to_send.put("discount_amount",String.valueOf(getIntent().getIntExtra("discount_amount",0)));
+				jsonObject_to_send.put("price",String.valueOf(getIntent().getIntExtra("price",0)));
+				jsonObject_to_send.put("delivery_charges",String.valueOf(getIntent().getIntExtra("delivery_charges",0)));
+				jsonObject_to_send.put("member_id",Session.getUserid(PaymentActivity.this));
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+
+
+
+
+				Map<String,String> parameters = new HashMap<String, String>();
+				parameters.put("content",jsonObject_to_send.toString());
+
+				for (Map.Entry<String,String> entry : parameters.entrySet()) {
+					String key = entry.getKey();
+					String value = entry.getValue();
+					// do stuff
+					Log.e(key,value);
+				}
+
 				return parameters;
 			}
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 	}
+
+
+
+	public  JSONArray getProductasJson(ProductsData productsData){
+
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("product_id",productsData.product_id);
+			jsonObject.put("quantity",productsData.cartquantity);
+			jsonObject.put("price",productsData.originalprice);
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		JSONArray temp = new JSONArray();
+		temp.put(jsonObject);
+
+		return temp;
+
+	};
+
 
 }

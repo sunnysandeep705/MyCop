@@ -9,5 +9,7 @@ public class CartData  implements Serializable{
 		this.price = price;
 		this.id=id;
 		this.quantity = quantity;
+
+
 	}
 }

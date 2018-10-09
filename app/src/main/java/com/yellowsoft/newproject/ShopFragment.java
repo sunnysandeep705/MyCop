@@ -41,18 +41,19 @@ import java.util.TimerTask;
 
 public class ShopFragment extends Fragment {
 	ViewPager viewPager;
-	TextView striketext,quantity,title,discount_price,originalprice_tv,description_tv;
+	TextView striketext, quantity, title, discount_price, originalprice_tv, description_tv;
 	TabLayout indicator_tab;
 
 	SlidingImageAdapter slidingPageAdapter;
 	Integer i;
 
 	ArrayList<SlidingImage_Data> slidingImage_data = new ArrayList<SlidingImage_Data>();
-	int showdes=1;
-	RelativeLayout decrease_btn,increase_btn;
+	int showdes = 1;
+	RelativeLayout decrease_btn, increase_btn;
 
-	LinearLayout itemdesc_btn,itemdesc_text,cart_btn;
-	ImageView up_img,down_img;
+	LinearLayout itemdesc_btn, itemdesc_text, cart_btn;
+	ImageView up_img, down_img;
+
 	public static ShopFragment newInstance(int someInt) {
 		ShopFragment myFragment = new ShopFragment();
 
@@ -62,29 +63,30 @@ public class ShopFragment extends Fragment {
 
 		return myFragment;
 	}
+
 	@Nullable
 	@Override
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_product, container, false);
-		Log.e("shopfragment","shopfragment");
+		Log.e("shopfragment", "shopfragment");
 		//
 		CallProductdetails();
 
-		title = (TextView)view.findViewById(R.id.mycop_title_tv);
-		striketext = (TextView)view.findViewById(R.id.strike_tv);
+		title = (TextView) view.findViewById(R.id.mycop_title_tv);
+		striketext = (TextView) view.findViewById(R.id.strike_tv);
 		//striketext.setPaintFlags(striketext.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-		quantity = (TextView)view.findViewById(R.id.quantity_tv);
-		discount_price = (TextView)view.findViewById(R.id.discounted_price);
-		originalprice_tv = (TextView)view.findViewById(R.id.originalprice_tv);
-		description_tv = (TextView)view.findViewById(R.id.description_tv);
+		quantity = (TextView) view.findViewById(R.id.quantity_tv);
+		discount_price = (TextView) view.findViewById(R.id.discounted_price);
+		originalprice_tv = (TextView) view.findViewById(R.id.originalprice_tv);
+		description_tv = (TextView) view.findViewById(R.id.description_tv);
 
-		viewPager=(ViewPager)view.findViewById(R.id.image_slider);
+		viewPager = (ViewPager) view.findViewById(R.id.image_slider);
 
-		indicator_tab=(TabLayout)view.findViewById(R.id.indicator);
+		indicator_tab = (TabLayout) view.findViewById(R.id.indicator);
 
 
-		increase_btn = (RelativeLayout)view.findViewById(R.id.rl_increase);
-		decrease_btn = (RelativeLayout)view.findViewById(R.id.rl_decrease);
+		increase_btn = (RelativeLayout) view.findViewById(R.id.rl_increase);
+		decrease_btn = (RelativeLayout) view.findViewById(R.id.rl_decrease);
 		i = Integer.parseInt(quantity.getText().toString());
 		decrease_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -110,39 +112,39 @@ public class ShopFragment extends Fragment {
 				quantity.setText(_stringVal);
 			}
 		});
-		final Intent intent = new Intent(getContext(),CartActivity.class);
+		final Intent intent = new Intent(getContext(), CartActivity.class);
 
-		cart_btn = (LinearLayout)view.findViewById(R.id.addtocart_ll_btn);
+		cart_btn = (LinearLayout) view.findViewById(R.id.addtocart_ll_btn);
 		cart_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//
 				// Toast.makeText(getContext(),"go to cart",Toast.LENGTH_LONG).show();
 
-				String q,p;
-				q=quantity.getText().toString();
-				intent.putExtra("quantity",q);
+				String q, p;
+				q = quantity.getText().toString();
+				intent.putExtra("quantity", q);
 
-				intent.putExtra("discountedPrice",discount_price.toString());
+				intent.putExtra("discountedPrice", discount_price.toString());
 				startActivity(intent);
 				//getActivity().finish();
 
 			}
 		});
 
-		itemdesc_btn = (LinearLayout)view.findViewById(R.id.itemdesc_ll_btn);
-		itemdesc_text = (LinearLayout)view.findViewById(R.id.itemdesc_ll);
+		itemdesc_btn = (LinearLayout) view.findViewById(R.id.itemdesc_ll_btn);
+		itemdesc_text = (LinearLayout) view.findViewById(R.id.itemdesc_ll);
 
 
 	/*	slidingImage_data.add(new SlidingImage_Data(R.drawable.product1));
 		slidingImage_data.add(new SlidingImage_Data(R.drawable.product2));
 		slidingImage_data.add(new SlidingImage_Data(R.drawable.product3));*/
 
-		slidingPageAdapter = new SlidingImageAdapter(getActivity(),slidingImage_data);
+		slidingPageAdapter = new SlidingImageAdapter(getActivity(), slidingImage_data);
 
 		viewPager.setAdapter(slidingPageAdapter);
 
-		indicator_tab.setupWithViewPager(viewPager,true);
+		indicator_tab.setupWithViewPager(viewPager, true);
 /*
 		final Handler handler = new Handler();
 
@@ -170,81 +172,82 @@ public class ShopFragment extends Fragment {
 		//Snackbar.make(quantity,"shop fragment selected",Snackbar.LENGTH_SHORT).show();
 		return view;
 	}
-	public void showDescription(){
+
+	public void showDescription() {
 		itemdesc_text.setVisibility(View.VISIBLE);
 		up_img.setVisibility(View.GONE);
 		down_img.setVisibility(View.VISIBLE);
 	}
-	public void closeDescription(){
+
+	public void closeDescription() {
 		itemdesc_text.setVisibility(View.GONE);
 		down_img.setVisibility(View.GONE);
 		up_img.setVisibility(View.VISIBLE);
 	}
 
 	//product request
-	public void CallProductdetails(){
+	public void CallProductdetails() {
 
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/products.php";
+		String URL = Session.BASE_URL + "api/products.php";
 
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("res",response);
-				if(progressDialog!=null&& progressDialog.isShowing()) {
+				Log.e("res", response);
+				if (progressDialog != null && progressDialog.isShowing()) {
 					progressDialog.dismiss();
 				}
 				try {
 
 					JSONArray jsonArray = new JSONArray(response);
-					Log.e("jsonArray",""+jsonArray.toString());
+					Log.e("jsonArray", "" + jsonArray.toString());
 
-					String producttitle=jsonArray.getJSONObject(0).getString("title");
-					Log.e("pagetitletitle",""+producttitle);
+					String producttitle = jsonArray.getJSONObject(0).getString("title");
+					Log.e("pagetitletitle", "" + producttitle);
 					title.setText(producttitle);
 
 
-					String price=jsonArray.getJSONObject(0).getString("price");
-					Log.e("price",""+price);
+					String price = jsonArray.getJSONObject(0).getString("price");
+					Log.e("price", "" + price);
 					discount_price.setText(price);
-					Session.setPrice(getContext(),price);
+					Session.setPrice(getContext(), price);
 
 
+					String discount = jsonArray.getJSONObject(0).getString("discount");
+					Log.e("discount", "" + discount);
+					String givenprice = discount + price;
+					int i = Integer.parseInt(discount) + Integer.parseInt(price);
+					originalprice_tv.setText("" + i);
 
-					String discount=jsonArray.getJSONObject(0).getString("discount");
-					Log.e("discount",""+discount);
-					String givenprice = discount+price;
-					int i = Integer.parseInt(discount)+Integer.parseInt(price);
-					originalprice_tv.setText(""+i);
-
-					String quantitys=jsonArray.getJSONObject(0).getString("quantity");
-					Log.e("quantity",""+quantitys);
+					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
+					Log.e("quantity", "" + quantitys);
 					quantity.setText(quantitys);
 
 
-					String description=jsonArray.getJSONObject(0).getString("description");
-					Log.e("description",""+description);
-					description_tv.setText(Html.fromHtml("<p>"+description+"</p>"));
+					String description = jsonArray.getJSONObject(0).getString("description");
+					Log.e("description", "" + description);
+					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
 
-					String images=jsonArray.getJSONObject(0).getString("images");
-					Log.e("images",""+images);
+					String images = jsonArray.getJSONObject(0).getString("images");
+					Log.e("images", "" + images);
 
 					JSONArray jsonArray1 = new JSONArray(images);
-					Log.e("jsonarray1",""+jsonArray1);
-					Log.e("jsonarray1length",""+jsonArray1.length());
-				//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
+					Log.e("jsonarray1", "" + jsonArray1);
+					Log.e("jsonarray1length", "" + jsonArray1.length());
+					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
 
-					if (jsonArray1.length()>1){
-						Log.e("length","length");
-						for (int j=0;j<=jsonArray1.length();j++){
+					if (jsonArray1.length() > 1) {
+						Log.e("length", "length");
+						for (int j = 0; j <= jsonArray1.length(); j++) {
 							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
 							String s = jsonArray1.getString(j);
-							Log.e("s",""+s);
+							Log.e("s", "" + s);
 							slidingImage_data.add(new SlidingImage_Data(s));
-							Log.e("imagessssss",""+jsonArray1.getString(j));
+							Log.e("imagessssss", "" + jsonArray1.getString(j));
 
 						}
 
@@ -260,20 +263,21 @@ public class ShopFragment extends Fragment {
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.e("error",""+error);
-						if(progressDialog!=null)
+						Log.e("error", "" + error);
+						if (progressDialog != null)
 							progressDialog.dismiss();
 						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
-				}){
+				}) {
 			@Override
-			protected Map<String,String> getParams(){
-				Map<String,String> parameters = new HashMap<String, String>();
+			protected Map<String, String> getParams() {
+				Map<String, String> parameters = new HashMap<String, String>();
 				//parameters.put("email",u_name.getText().toString());
-			//	parameters.put("password",password.getText().toString());
+				//	parameters.put("password",password.getText().toString());
 				return parameters;
 			}
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 //		slidingPageAdapter.notifyDataSetChanged();
 	}
+}

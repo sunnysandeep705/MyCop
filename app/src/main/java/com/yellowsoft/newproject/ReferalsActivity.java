@@ -40,6 +40,14 @@ public class ReferalsActivity extends AppCompatActivity {
 	LinearLayout popup,confirm,cancel;
 	EditText referalcode_referal;
 
+	String referal_code_global = "";
+
+	EditText upi_id_et;
+
+	EditText ed_bank_name;
+	EditText ed_bank_ac;
+	EditText ed_ifsc_code;
+
 
 	@Override
 	public void onBackPressed() {
@@ -57,16 +65,40 @@ public class ReferalsActivity extends AppCompatActivity {
 		referalcode_referal.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 		referedby_tv = (TextView)findViewById(R.id.referedby_tv);
 
+		upi_id_et = (EditText) findViewById(R.id.ed_upi_id);
+
+		ed_bank_name = (EditText) findViewById(R.id.ed_bank_name);
+		ed_bank_ac = (EditText) findViewById(R.id.ed_ac_number);
+		ed_ifsc_code = (EditText) findViewById(R.id.ed_ifcs_code);
+
+
 		popup = (LinearLayout)findViewById(R.id.popup_referal);
 
 		paynow_ll_referal = (LinearLayout) findViewById(R.id.paynow_ll_referal);
 		paynow_ll_referal.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				popup.setVisibility(View.VISIBLE);
-				referedby_tv.setText(referalcode_referal.getText().toString());
-				//Intent intent = new Intent(ReferalsActivity.this,HomeActivity.class);
-				//startActivity(intent);
+
+				if(referal_code_global.equals("")){
+
+					Snackbar.make(paynow_ll_referal,"Enter referal code",Snackbar.LENGTH_SHORT).show();
+
+				}  else if(  upi_id_et.getText().toString().equals("")  &&  (ed_bank_ac.getText().toString().equals("") || ed_bank_name.getText().toString().equals("") || ed_ifsc_code.getText().toString().equals("")) ){
+
+					Snackbar.make(paynow_ll_referal,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+
+				} else {
+
+					popup.setVisibility(View.VISIBLE);
+					referedby_tv.setText(referalcode_referal.getText().toString());
+
+					//Intent intent = new Intent(ReferalsActivity.this,HomeActivity.class);
+					//startActivity(intent);
+
+				}
+
+
+
 			}
 		});
 		cancel = (LinearLayout)findViewById(R.id.cancel_ll_referal);
@@ -75,13 +107,25 @@ public class ReferalsActivity extends AppCompatActivity {
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
+
 				popup.setVisibility(View.GONE);
+
+
 			}
 		});
 		confirm.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				popup.setVisibility(View.GONE);
+
+				final String memberid =  Session.getUserid(ReferalsActivity.this);
+				Log.e("memberid",""+memberid);
+				final String referalcode = referalcode_referal.getText().toString();
+				Log.e("referalcode",""+referalcode);
+
+				addUserIntoSchem(memberid,referalcode);
+
 			}
 		});
 
@@ -116,11 +160,17 @@ public class ReferalsActivity extends AppCompatActivity {
 		apply_ll_btn_referal.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final String memberid =  Session.getUserid(ReferalsActivity.this);
-				Log.e("memberid",""+memberid);
-				final String referalcode = referalcode_referal.getText().toString();
-				Log.e("referalcode",""+referalcode);
-				callReferalService(memberid,referalcode);
+
+				if(!referalcode_referal.getText().equals("")) {
+
+					final String memberid = Session.getUserid(ReferalsActivity.this);
+					Log.e("memberid", "" + memberid);
+					final String referalcode = referalcode_referal.getText().toString();
+					Log.e("referalcode", "" + referalcode);
+					callReferalService(memberid, referalcode);
+				}
+
+
 			}
 		});
 	}
@@ -170,7 +220,7 @@ public class ReferalsActivity extends AppCompatActivity {
         progressDialog.setMessage("Please Wait....");
         progressDialog.show();
         progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/join_scheme.php";
+		String URL = Session.BASE_URL+"api/code_check.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
@@ -186,6 +236,7 @@ public class ReferalsActivity extends AppCompatActivity {
 					if(reply.equals("Success")) {
 						String message = jsonObject.getString("message");
 						Snackbar.make(apply_ll_btn_referal,""+message,Snackbar.LENGTH_SHORT).show();
+						referal_code_global = referal_code;
 					}
 					else
 					{
@@ -217,4 +268,83 @@ public class ReferalsActivity extends AppCompatActivity {
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 
 	}
+
+
+	public void addUserIntoSchem(final String member_id,final String referal_code){
+
+		Log.e("memberidreferalcode","id="+member_id+" , code = "+referal_code);
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/join_scheme.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONObject jsonObject=new JSONObject(response);
+					String reply=jsonObject.getString("status");
+					Log.e("status",""+reply);
+					if(reply.equals("Success")) {
+
+						Session.setMemberCode(ReferalsActivity.this,jsonObject.getString("member_code"));
+
+						String message = jsonObject.getString("message");
+						Snackbar.make(apply_ll_btn_referal,""+message,Snackbar.LENGTH_SHORT).show();
+
+
+					}
+					else
+					{
+						String errorMessage =jsonObject.getString("message");
+						Snackbar.make(apply_ll_btn_referal,""+errorMessage,Snackbar.LENGTH_SHORT).show();
+					}
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+						//  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+				parameters.put("member_id",member_id);
+				parameters.put("code",referal_code);
+
+               if(upi_id_et.getText().toString().equals("")){
+				   parameters.put("type","1");
+				   parameters.put("bank",ed_bank_name.getText().toString());
+				   parameters.put("acno",ed_bank_ac.getText().toString());
+				   parameters.put("ifsc",ed_ifsc_code.getText().toString());
+
+
+			   }else{
+				   parameters.put("type","2");
+				   parameters.put("upid",upi_id_et.getText().toString());
+
+
+			   }
+
+
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
+	}
+
 }
