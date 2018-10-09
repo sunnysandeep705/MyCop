@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/payment_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow" />
+
+    <com.yellowsoft.newproject.CustomTextView
+        android:id="@+id/customTextView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Payment"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/corners_grey"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/cod_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/cash_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="false"
+                    android:src="@drawable/cash"
+                    android:tint="@color/colorlightGrey" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/cod_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Cash on delivery"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="25dp">
+
+                    <ImageView
+                        android:id="@+id/checkoff_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/checkoff" />
+
+                    <ImageView
+                        android:id="@+id/checkon_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/checkon" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wallet_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/wallet_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="false"
+                    android:src="@drawable/wallet"
+                    android:tint="@color/colorlightGrey" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/wallet_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="E wallet"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="25dp">
+
+                    <ImageView
+                        android:id="@+id/checkoff_wallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/checkoff" />
+
+                    <ImageView
+                        android:id="@+id/checkon_wallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/checkon" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/card_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="false"
+                    android:src="@drawable/creditcard"
+                    android:tint="@color/themeDarkColor" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Credit card"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="25dp">
+
+                    <ImageView
+                        android:id="@+id/checkoff_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/checkoff" />
+
+                    <ImageView
+                        android:id="@+id/checkon_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/checkon" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/corners_grey"
+            android:divider="@drawable/divider_grey"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Total"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"></LinearLayout>
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/rupeesymbolone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rupee_symbol"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/total_tv_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="4,000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    app:font_name="Gothambook" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/usereferal_money_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="use my referal money"
+                        app:font_name="Gothammedium" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee_symbol"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="16sp"
+                        app:font_name="Gothambook" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/referalmoney_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="16sp"
+                        app:font_name="Gothambook" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/corners_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/totalpayabletitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Total Payable"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:font_name="Gothambook" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/rupeesymboltwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rupee_symbol"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:font_name="Gothambook" />
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/totalpayable_tv_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="4,000"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:font_name="Gothambook" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/payconfirm_ll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="PAYMENT CONFIRMATION"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

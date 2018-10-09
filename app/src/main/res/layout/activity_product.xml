@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/product_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <LinearLayout
+        android:id="@+id/shop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/product_toolbar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/image_slider"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true" />
+
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:layout_alignBottom="@+id/image_slider"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="visible"
+                            app:tabBackground="@drawable/tab"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp">
+
+
+                        </android.support.design.widget.TabLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/mycop_title_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="15dp"
+                            android:text="My Cop GPS Tracker"
+                            android:textColor="@android:color/black"
+                            android:textSize="20sp"
+                            app:font_name="Gothambook" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="end">
+
+                                <RelativeLayout
+                                    android:id="@+id/discount_ll"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_centerVertical="false"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="1dp"
+                                        android:layout_centerInParent="true"
+                                        android:background="#000000"
+                                        android:orientation="vertical"></LinearLayout>
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/strike_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="false"
+                                        android:text="@string/final_price"
+                                        android:textSize="10sp" />
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/originalprice_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@+id/strike_tv"
+                                        android:text="5,640"
+                                        android:textSize="10sp" />
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/customTextView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="@string/Rs"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="16sp" />
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/discounted_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4,000"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:divider="@drawable/divider_grey"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:showDividers="beginning|middle">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/customTextView8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="Quantity"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:id="@+id/space"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_decrease"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:background="@android:color/darker_gray"
+                                        android:orientation="horizontal"></LinearLayout>
+
+                                    <ImageView
+                                        android:id="@+id/imageView9"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_centerInParent="true"
+                                        android:padding="5dp"
+                                        android:src="@drawable/minus" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:background="@drawable/corners_grey"
+                                    android:orientation="vertical">
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/quantity_tv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:paddingLeft="30dp"
+                                        android:paddingRight="30dp"
+                                        android:text="1"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_increase"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:background="@android:color/darker_gray"
+                                        android:orientation="horizontal"></LinearLayout>
+
+                                    <ImageView
+                                        android:id="@+id/imageView9"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_centerInParent="true"
+                                        android:padding="5dp"
+                                        android:src="@drawable/plus" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/itemdesc_ll_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/customTextView10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Item Description"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:id="@+id/space2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"></LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/downarrow_img"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:adjustViewBounds="false"
+                                        android:padding="5dp"
+                                        android:src="@drawable/downarrow"
+                                        android:visibility="visible" />
+
+                                    <ImageView
+                                        android:id="@+id/uparrow_img"
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_margin="5dp"
+                                        android:src="@drawable/uparrow"
+                                        android:tint="@android:color/darker_gray"
+                                        android:visibility="gone" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/itemdesc_ll"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="10dp"
+                                android:background="#f6f6f6"
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/description_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:text="@string/SOMETHINGTEXT"
+                                    android:textSize="13sp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addtocart_ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="ADD TO CART"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignTop="@+id/shop"
+        android:background="@drawable/shadow" />
+
+</RelativeLayout>

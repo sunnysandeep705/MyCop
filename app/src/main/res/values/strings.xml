@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">MY COP</string>
+    <string name="referals"><![CDATA[Returns & Referals]]></string>
+    <string name="terms"><![CDATA[Terms & Conditions]]></string>
+    <string name="tracksolidmainframestring"><u>http://tracksolid.com/mainFrame</u></string>
+    <string name="www_tracksolid_com"><u>www.tracksolid.com</u></string>
+    <string name="Rs">\u20B9</string>
+    <string name="final_price">\u20B9</string>
+    <string name="rupee_symbol">\u20B9 </string>
+    <string name="facebook_app_id">2138014079772868</string>
+    <string name="fb_login_protocol_scheme">fb2138014079772868</string>
+    <string name="TermsandConditions">I agree all <u>terms and conditions</u></string>
+
+    <string name="SOMETHINGTEXT">A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations.
+        </string>
+    <string name="address_title"><u>Address</u></string>
+    <string name="trackinglink"><u>https://www.mycopdelhivery.com/</u></string>
+    <string name="invstment_refunds"><u>Investment Refunds</u></string>
+    <string name="referalsString">You are almost done! Refer one more member and get cash directly to your account or Buy GPS Tracker.</string>
+    <string name="office_location"><u>Office Location</u></string>
+    <string name="contact_details"><u>Contact Details</u></string>
+    <string name="bank_a_c_details"><u>Bank A/C Details</u></string>
+    <string-array name="topicListItems">
+        <item >My Orders</item>
+        <item >My Profile</item>
+        <item >My Referrals</item>
+        <item >My Referral Commission</item>
+        <item >Investment Refund</item>
+        <item>General</item>
+
+    </string-array>
+</resources>

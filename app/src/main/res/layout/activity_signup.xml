@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/signup_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="5dp"
+        android:outlineProvider="bounds"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="25dp"
+                        android:text="MY COP"
+                        android:textSize="20sp"
+                        android:visibility="gone"
+                        app:font_name="Gothambook" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginTop="50dp"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/logo" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_fname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:gravity="center"
+                            android:hint="First Name"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Last Name"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_emailid"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_emailid"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Email id"
+                            android:inputType="textEmailAddress"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_phonenumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Phone Number"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Password"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_confirm_pd"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corners_transparent"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/et_confirm_pd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Confirm Password"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp"
+                            app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_submit_signup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_corners"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/tv_submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="12dp"
+                            android:text="SUBMIT"
+                            android:textColor="@android:color/white"
+                            app:font_name="Gothammedium" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/tv_account_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Already have an account?"
+                            android:textSize="13sp"
+                            app:font_name="Gothammedium" />
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/tv_login_signup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:text="Login"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="15sp"
+                            app:font_name="Gothambook" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:background="#dcdcdc"
+                            android:orientation="vertical"></LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="or"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            app:font_name="Gothammedium" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:background="#dcdcdc"
+                            android:orientation="vertical"></LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="Signup using"
+                            app:font_name="Gothambook" />
+
+                        <ImageView
+                            android:id="@+id/fb_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="15dp"
+                            android:src="@drawable/fblog" />
+
+                        <ImageView
+                            android:id="@+id/gm_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            app:srcCompat="@drawable/gmlog" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" />
+                </LinearLayout>
+                
+            </ScrollView>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

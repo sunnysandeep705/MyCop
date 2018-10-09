@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.yellowsoft.newproject.CustomTextView
+        android:id="@+id/customTextView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="THANKYOU"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32sp"
+        app:font_name="Gothambook" />
+
+    <com.yellowsoft.newproject.CustomTextView
+        android:id="@+id/customTextView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="FOR YOUR ORDER"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:font_name="Gothambook" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Order number: "
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:font_name="Gothambook" />
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="#MC12311"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:font_name="Gothambook" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/order_scuccess" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/rounded_corners_lack"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="TRACK YOUR ORDER HERE"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            app:font_name="Gothambook" />
+    </LinearLayout>
+
+    <com.yellowsoft.newproject.CustomTextView
+        android:id="@+id/customTextView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="or"
+        android:textSize="17sp"
+        app:font_name="Gothambook" />
+
+    <LinearLayout
+        android:id="@+id/backtohome_ll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="BACK TO HOME"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

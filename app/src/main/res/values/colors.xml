@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#047c7b</color>
+    <color name="colorPrimaryDark">#047c7b</color>
+    <color name="colorAccent">#00777d</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorlightGrey">#939393</color>
+    <color name="tabtransparentcolor">#67a3a2</color>
+    <color name="themeDarkColor">#00777d</color>
+</resources>
