@@ -47,7 +47,7 @@ Context context;
 
 		//	textView.setText(colorName.get(position));
 
-		Picasso.get().load(images.get(position).image_url).into(imageView);
+		Picasso.get().load(images.get(position).image_url).placeholder(R.drawable.place_holder).into(imageView);
 
 		//	linearLayout.setBackgroundColor(color.get(position));
 

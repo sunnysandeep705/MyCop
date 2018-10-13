@@ -40,6 +40,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 	TextView page_title;
 	ImageView back;
 	LinearLayout back_btn,menu_btn;
+	TextView tv_ref_code;
 
 	@Override
 	public void onBackPressed() {
@@ -66,6 +67,10 @@ public class MyreferalsActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 		setupActionBar();
 		setupHeader();
+
+
+		tv_ref_code = (TextView) findViewById(R.id.tv_myreferalcode);
+		tv_ref_code.setText(Session.getMemberCode(this));
 
 		CallReferaldetails();
 
@@ -197,9 +202,9 @@ public class MyreferalsActivity extends AppCompatActivity {
 				//parameters.put("email",u_name.getText().toString());
 				//	parameters.put("password",password.getText().toString());
 
-				//parameters.put("member_code",Session.getMemberCode(MyreferalsActivity.this));
+				parameters.put("member_code",Session.getMemberCode(MyreferalsActivity.this));
 
-				parameters.put("member_code","MYC18100001");
+				//parameters.put("member_code","MYC18100001");
 
 
 				return parameters;

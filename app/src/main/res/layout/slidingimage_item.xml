@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <com.yellowsoft.newproject.SquareImageView
         android:id="@+id/viewpagerimage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="false"
-        android:scaleType="fitXY"
+
         android:src="@drawable/product1" />
 </LinearLayout>

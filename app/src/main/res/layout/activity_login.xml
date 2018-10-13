@@ -99,7 +99,7 @@
                             android:background="#00000000"
                             android:gravity="center"
                             android:hint="password"
-                            android:inputType="textPersonName"
+                            android:inputType="textPassword"
                             android:textSize="14sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
@@ -123,6 +123,7 @@
                             android:textColor="@android:color/white"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
+
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/tv_forget"
                         android:layout_width="wrap_content"

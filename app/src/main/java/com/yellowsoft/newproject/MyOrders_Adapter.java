@@ -34,10 +34,13 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
+		holder.product_tittle.setText(items.get(position).tittle);
 		holder.address_myorders_tv.setText(items.get(position).address);
 		holder.order_ids.setText(items.get(position).order_id);
 		holder.price_tv_myorders.setText(items.get(position).price);
 		holder.quantity_tv_myorders.setText(items.get(position).quantity);
+
+		holder.myorders_status.setText(items.get(position).status);
 
 		if(!items.get(position).images.equals(""))
 		Picasso.get().load(items.get(position).images).into(holder.order_img);
@@ -64,15 +67,17 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 	{
 
 		ImageView order_img;
-		TextView address_myorders_tv,order_ids,quantity_tv_myorders,price_tv_myorders;
+		TextView address_myorders_tv,order_ids,quantity_tv_myorders,price_tv_myorders,product_tittle,myorders_status;
 		public MyViewHolder(View itemView){
 			super(itemView);
 
+			product_tittle = (TextView) itemView.findViewById(R.id.producttitle_tv);
 			order_ids = (TextView)itemView.findViewById(R.id.orderid_tv_myorders);
 			quantity_tv_myorders = (TextView)itemView.findViewById(R.id.quantity_tv_myorders);
 			price_tv_myorders = (TextView)itemView.findViewById(R.id.price_tv_myorders);
 			address_myorders_tv=(TextView)itemView.findViewById(R.id.address_myorders_tv);
 			order_img=(ImageView)itemView.findViewById(R.id.order_img);
+			myorders_status = (TextView) itemView.findViewById(R.id.ordersstatus_tv);
 		}
 	}
 }

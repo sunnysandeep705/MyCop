@@ -5,22 +5,33 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 public class MyAccountFragment extends Fragment {
 
 	ListView listView;
+	TextView tv_my_ref_code;
+
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_myaccount, container, false);
 		listView = (ListView)view.findViewById(R.id.lv_myaccount);
+
+		tv_my_ref_code = (TextView) view.findViewById(R.id.myreferalcode_tv);
+
+		tv_my_ref_code.setText(Session.getMemberCode(getContext()));
+		Log.e("membercode",""+Session.getMemberCode(getContext()));
 
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
 		menuItems.add(new MenuItem("My Orders","",R.drawable.myorders));
@@ -50,7 +61,7 @@ public class MyAccountFragment extends Fragment {
 				else
 				{
 					Intent intent = new Intent(getContext(),MyearningsActivity.class);
-					startActivity(intent);
+					startActivityForResult(intent,RESULT_OK);
 				}
 
 			}
@@ -66,4 +77,30 @@ public class MyAccountFragment extends Fragment {
 
 		return myFragment;
 	}
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+		Log.e("buygpsclicke","frag");
+
+        if(requestCode==888){
+            if(resultCode==RESULT_OK){
+				((HomeActivity) getActivity()).buyGPStracker();
+                //shop_btn.performClick();
+                Log.e("buygpsclick","frag");
+
+                try {
+
+					((HomeActivity) getActivity()).shop_btn.performClick();
+				}catch (Exception ex){
+                	ex.printStackTrace();
+				}
+
+            }
+        }
+
+    }
+
 }

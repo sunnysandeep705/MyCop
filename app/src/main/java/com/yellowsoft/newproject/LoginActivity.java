@@ -16,6 +16,7 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
@@ -70,8 +71,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
+
 public class LoginActivity extends AppCompatActivity {
-	TextView page_title,btn_edit,logout,signup_btn;
+	TextView page_title,btn_edit,logout,signup_btn,tv_forget;
 	LinearLayout menu_btn,back_btn,submit_btn;
 	private GoogleSignInClient mGoogleSignInClient;
 	private static final int RC_SIGN_IN = 9001;
@@ -93,8 +97,9 @@ public class LoginActivity extends AppCompatActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-		startActivity(intent);
+
+//		Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+//		startActivity(intent);
 		finish();
 	}
 
@@ -124,6 +129,16 @@ public class LoginActivity extends AppCompatActivity {
 		fb_btn = (RelativeLayout)findViewById(R.id.rr_fb);
 		submit_btn = (LinearLayout)findViewById(R.id.ll_submit_login);
 		signup_btn = (TextView) findViewById(R.id.tv_signup_login);
+
+		tv_forget = (TextView)findViewById(R.id.tv_forget);
+		tv_forget.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//forgetPassword();
+				Intent intent  = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+				startActivity(intent);
+			}
+		});
 
 		FacebookSdk.sdkInitialize(getApplicationContext());
 		AppEventsLogger.activateApp(this);
@@ -503,10 +518,19 @@ public class LoginActivity extends AppCompatActivity {
 
 						Log.e("membercode",""+membercode);
 
-						Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-						startActivity(intent);
-						Log.e("memberid",""+memberid);
-						finish();
+						if(!getIntent().hasExtra("sendResult")) {
+
+							Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+							startActivity(intent);
+							Log.e("memberid", "" + memberid);
+							finish();
+
+						}else{
+
+							setResult(RESULT_OK);
+							finish();
+
+						}
 
 					}
 
@@ -586,10 +610,19 @@ public class LoginActivity extends AppCompatActivity {
 
 						Log.e("membercode",""+membercode);
 
-						Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-						startActivity(intent);
-						Log.e("memberid",""+memberid);
-						finish();
+						if(!getIntent().hasExtra("sendResult")) {
+
+							Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+							startActivity(intent);
+							Log.e("memberid", "" + memberid);
+							finish();
+
+						}else{
+
+							setResult(RESULT_OK);
+							finish();
+
+						}
 
 					}
 
@@ -660,10 +693,19 @@ public class LoginActivity extends AppCompatActivity {
 						Log.e("membercode",""+membercode);
 
 						Session.setUserid(LoginActivity.this,""+memberid,""+name);
-						Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-						startActivity(intent);
-						Log.e("memberid",""+memberid);
-						finish();
+						if(!getIntent().hasExtra("sendResult")) {
+
+							Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+							startActivity(intent);
+							Log.e("memberid", "" + memberid);
+							finish();
+
+						}else{
+
+							setResult(RESULT_OK);
+							finish();
+
+						}
 
 					}
 

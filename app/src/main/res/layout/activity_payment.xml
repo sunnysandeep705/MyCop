@@ -52,7 +52,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/cash_img"
@@ -99,7 +100,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/wallet_img"
@@ -163,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Credit card"
+                    android:text="Online Payment"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     app:font_name="Gothambook" />

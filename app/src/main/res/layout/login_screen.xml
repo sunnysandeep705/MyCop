@@ -71,7 +71,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="  Password"
-            android:inputType="number" />
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/forgot_pssword"

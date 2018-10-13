@@ -143,11 +143,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
-                            android:singleLine="true"
                             android:hint="Email id*"
+                            android:imeOptions="actionDone"
+                            android:inputType="textEmailAddress"
                             android:maxLines="1"
                             android:padding="7dp"
-                            android:imeOptions="actionDone"
+                            android:singleLine="true"
                             android:textSize="14sp" />
                     </LinearLayout>
 

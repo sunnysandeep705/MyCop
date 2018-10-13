@@ -78,10 +78,10 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.yellowsoft.newproject.SquareImageView
                 android:id="@+id/order_img"
-                android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/product1" />
 

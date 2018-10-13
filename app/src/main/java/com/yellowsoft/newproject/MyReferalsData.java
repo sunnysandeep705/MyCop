@@ -19,7 +19,7 @@ String referalid,status,transdetails;
 
 
 		try {
-			this.referalid = jsonObject.getString("member_code");
+			this.referalid = jsonObject.getString("id");
 			this.status = jsonObject.getString("status");
 			this.transdetails = jsonObject.getString("transaction");
 

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yellowsoft.newproject">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
 
     <application
         android:allowBackup="true"
@@ -13,6 +15,11 @@
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_YkLFs7bxxbMl9I"
+            />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 
@@ -53,6 +60,10 @@
         <activity android:name=".ContactusActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ReferalsActivity" />
         <activity android:name=".ProductActivity" />
+        <activity android:name=".SchemeSuccessActivity" />
+        <activity android:name=".ContentActivity" />
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".ChangePasswordActivity" />
     </application>
 
 </manifest>

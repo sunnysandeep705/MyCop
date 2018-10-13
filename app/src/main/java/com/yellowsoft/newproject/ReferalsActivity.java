@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -19,11 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,9 +35,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReferalsActivity extends AppCompatActivity {
+public class ReferalsActivity extends AppCompatActivity implements PaymentResultListener {
 
-	TextView page_title,referedby_tv;
+	TextView page_title,referedby_tv,schemeamt;
 	ImageView back;
 	LinearLayout back_btn,menu_btn,apply_ll_btn_referal,paynow_ll_referal;
 
@@ -66,6 +70,15 @@ public class ReferalsActivity extends AppCompatActivity {
 		referedby_tv = (TextView)findViewById(R.id.referedby_tv);
 
 		upi_id_et = (EditText) findViewById(R.id.ed_upi_id);
+
+		schemeamt = (TextView)findViewById(R.id.moneytopay_tv);
+		try {
+			schemeamt.setText(ApplicationController.getInstance().settings.getString("scheme_amount"));
+			Log.e("schemeamt",""+schemeamt.getText().toString());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		ed_bank_name = (EditText) findViewById(R.id.ed_bank_name);
 		ed_bank_ac = (EditText) findViewById(R.id.ed_ac_number);
@@ -119,12 +132,9 @@ public class ReferalsActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				popup.setVisibility(View.GONE);
 
-				final String memberid =  Session.getUserid(ReferalsActivity.this);
-				Log.e("memberid",""+memberid);
-				final String referalcode = referalcode_referal.getText().toString();
-				Log.e("referalcode",""+referalcode);
 
-				addUserIntoSchem(memberid,referalcode);
+
+				startPayment();
 
 			}
 		});
@@ -214,6 +224,71 @@ public class ReferalsActivity extends AppCompatActivity {
 		//page_title.setText("Home");
 	}
 
+	public void startPayment() {
+		/**
+		 * You need to pass current activity in order to let Razorpay create CheckoutActivity
+		 */
+		final Activity activity = this;
+
+		final Checkout co = new Checkout();
+
+		try {
+			JSONObject options = new JSONObject();
+			options.put("name", "MyCop");
+			options.put("description", "Scheme joining ");
+			//You can omit the image option to fetch the image from dashboard
+			options.put("image", "https://rzp-mobile.s3.amazonaws.com/images/rzp.png");
+			options.put("currency", "INR");
+
+			String payment = ApplicationController.getInstance().settings.getString("scheme_amount");
+
+			double total = Double.parseDouble(payment);
+			total = total * 100;
+			options.put("amount", total);
+
+			JSONObject preFill = new JSONObject();
+			//String uname = Session.getUserName(ReferalsActivity.this);
+			//preFill.put("email", ""+uname);
+			//preFill.put("contact", "9680224241");
+
+			//options.put("prefill", preFill);
+
+			co.open(activity, options);
+		} catch (Exception e) {
+			Toast.makeText(ReferalsActivity.this, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
+
+	}
+	@Override
+	public void onPaymentSuccess(String s) {
+
+		final String memberid =  Session.getUserid(ReferalsActivity.this);
+		Log.e("memberid",""+memberid);
+		final String referalcode = referalcode_referal.getText().toString();
+		Log.e("referalcode",""+referalcode);
+		Log.e("payment_id",s);
+		addUserIntoSchem(memberid,referalcode,s);
+
+
+		/*Intent intent = new Intent(ReferalsActivity.this, SchemeSuccessActivity.class);
+		intent.putExtra("id", s);
+		startActivity(intent);*/
+		//finish();
+
+
+	}
+
+	@Override
+	public void onPaymentError(int i, String s) {
+
+		Log.e("payment_id",s);
+		Log.e("payment_error",String.valueOf(i));
+
+	}
+
+
+
 	public void callReferalService(final String member_id,final String referal_code){
 		Log.e("memberidreferalcode","id="+member_id+" , code = "+referal_code);
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -237,6 +312,7 @@ public class ReferalsActivity extends AppCompatActivity {
 						String message = jsonObject.getString("message");
 						Snackbar.make(apply_ll_btn_referal,""+message,Snackbar.LENGTH_SHORT).show();
 						referal_code_global = referal_code;
+
 					}
 					else
 					{
@@ -270,7 +346,7 @@ public class ReferalsActivity extends AppCompatActivity {
 	}
 
 
-	public void addUserIntoSchem(final String member_id,final String referal_code){
+	public void addUserIntoSchem(final String member_id,final String referal_code,final String payemt_id){
 
 		Log.e("memberidreferalcode","id="+member_id+" , code = "+referal_code);
 		final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -296,6 +372,14 @@ public class ReferalsActivity extends AppCompatActivity {
 
 						String message = jsonObject.getString("message");
 						Snackbar.make(apply_ll_btn_referal,""+message,Snackbar.LENGTH_SHORT).show();
+
+						Intent intent=new Intent(ReferalsActivity.this,SchemeSuccessActivity.class);
+						intent.putExtra("membercode",jsonObject.getString("member_code"));
+						intent.putExtra("paymentid",payemt_id);
+						startActivity(intent);
+
+						finish();
+
 
 
 					}
@@ -323,8 +407,10 @@ public class ReferalsActivity extends AppCompatActivity {
 				Map<String,String> parameters = new HashMap<String, String>();
 				parameters.put("member_id",member_id);
 				parameters.put("code",referal_code);
+				parameters.put("payment_id",payemt_id);
 
-               if(upi_id_et.getText().toString().equals("")){
+
+				if(upi_id_et.getText().toString().equals("")){
 				   parameters.put("type","1");
 				   parameters.put("bank",ed_bank_name.getText().toString());
 				   parameters.put("acno",ed_bank_ac.getText().toString());

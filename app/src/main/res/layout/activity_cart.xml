@@ -48,10 +48,10 @@
                         android:background="@color/colorWhite"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <com.yellowsoft.newproject.SquareImageView
                             android:id="@+id/product_img_item"
-                            android:layout_width="100dp"
-                            android:layout_height="65dp"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
                             android:layout_margin="10dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/product1" />
@@ -130,6 +130,7 @@
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:src="@drawable/delete"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/delete" />
 
                             <LinearLayout

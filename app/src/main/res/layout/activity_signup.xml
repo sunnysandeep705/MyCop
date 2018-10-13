@@ -174,7 +174,7 @@
                             android:ems="10"
                             android:gravity="center"
                             android:hint="Password"
-                            android:inputType="textPersonName"
+                            android:inputType="textPassword"
                             android:textSize="14sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
@@ -198,7 +198,7 @@
                             android:ems="10"
                             android:gravity="center"
                             android:hint="Confirm Password"
-                            android:inputType="textPersonName"
+                            android:inputType="textPassword"
                             android:textSize="14sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>

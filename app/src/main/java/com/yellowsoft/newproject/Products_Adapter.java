@@ -44,7 +44,7 @@ public class Products_Adapter extends RecyclerView.Adapter<Products_Adapter.MyVi
 
 	//	holder.productimage.setImageResource(items.get(position).images);
 		if (items.get(position).images.size()>0) {
-			Picasso.get().load(items.get(position).images.get(0).image_url).into(holder.productimage);
+			Picasso.get().load(items.get(position).images.get(0).image_url).placeholder(R.drawable.place_holder).into(holder.productimage);
 		}
 		else holder.productimage.setImageResource(R.drawable.product1);
 

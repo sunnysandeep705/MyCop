@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,9 +11,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -91,8 +96,21 @@ public class HomeActivity extends AppCompatActivity {
 		tv_about.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
+				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
+				intent.putExtra("title","About us");
+				try {
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("about"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 				startActivity(intent);
+
+
+			/*	try {
+					showAlert(ApplicationController.getInstance().settings.getString("about"),"Scheme Details");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}*/
 			}
 		});
 
@@ -109,13 +127,31 @@ public class HomeActivity extends AppCompatActivity {
 		tv_scheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
+				/*resetAllColors();
 				changebg(scheme_btn,scheme_img);
 				mViewPager.setCurrentItem(3);
 				page_title_two.setVisibility(View.VISIBLE);
 				page_title_one.setText("REFERRAL");
 				mDrawerLayout.closeDrawer(GravityCompat.START);
 				page_title_two.setText("SCHEME");
+
+
+*/
+				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
+				intent.putExtra("title","Scheme Details");
+				try {
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("about"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				startActivity(intent);
+				/*try {
+					showAlert(ApplicationController.getInstance().settings.getString("scheme_details"),"Scheme Details");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}*/
+				//show alert
+
 			}
 		});
 
@@ -123,13 +159,26 @@ public class HomeActivity extends AppCompatActivity {
 		tv_terms.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
+				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
+				intent.putExtra("title","Terms & Conditions");
+				try {
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("terms"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				startActivity(intent);
+				/*resetAllColors();
 				changebg(scheme_btn,scheme_img);
 				mViewPager.setCurrentItem(3);
 				page_title_two.setVisibility(View.VISIBLE);
 				mDrawerLayout.closeDrawer(GravityCompat.START);
 				page_title_one.setText("REFERRAL");
-				page_title_two.setText("SCHEME");
+				page_title_two.setText("SCHEME");*/
+				/*try {
+					showAlert(ApplicationController.getInstance().settings.getString("terms"),"Terms & Conditions");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}*/
 			}
 		});
 
@@ -137,13 +186,26 @@ public class HomeActivity extends AppCompatActivity {
 		tv_faq.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
+				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
+				intent.putExtra("title","FAQ's");
+				try {
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("faq"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				startActivity(intent);
+			/*	resetAllColors();
 				changebg(scheme_btn,scheme_img);
 				mViewPager.setCurrentItem(3);
 				page_title_two.setVisibility(View.VISIBLE);
 				mDrawerLayout.closeDrawer(GravityCompat.START);
 				page_title_one.setText("REFERRAL");
-				page_title_two.setText("SCHEME");
+				page_title_two.setText("SCHEME");*/
+				/*try {
+					showAlert(ApplicationController.getInstance().settings.getString("faq"),"FAQ's");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}*/
 			}
 		});
 
@@ -289,12 +351,24 @@ public class HomeActivity extends AppCompatActivity {
 		account.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
-				changebg(account_btn,account_img);
-				mViewPager.setCurrentItem(4);
-				page_title_two.setVisibility(View.VISIBLE);
-				page_title_one.setText("MY");
-				page_title_two.setText("ACCOUNT");
+
+				if(Session.getUserid(HomeActivity.this).equals("0")){
+
+					Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+					startActivity(intent);
+
+
+				}else {
+					resetAllColors();
+					changebg(account_btn, account_img);
+					mViewPager.setCurrentItem(4);
+					page_title_two.setVisibility(View.VISIBLE);
+					page_title_one.setText("MY");
+					page_title_two.setText("ACCOUNT");
+				}
+
+
+
 			}
 		});
 
@@ -325,7 +399,7 @@ public class HomeActivity extends AppCompatActivity {
 				Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
 				startActivity(intent);
 
-				finish();
+				//finish();
 				hideLoginLayout();
 			}
 		});
@@ -337,7 +411,7 @@ public class HomeActivity extends AppCompatActivity {
 				Intent intent = new Intent(HomeActivity.this,SignupActivity.class);
 				startActivity(intent);
 
-				finish();
+				//finish();
 				hideLoginLayout();
 			}
 		});
@@ -547,11 +621,63 @@ int resume_count = 0;
 			if(mViewPager.getCurrentItem()==3)
 			home.performClick();
 
+			if(Session.getUserid(HomeActivity.this).equals("0")) {
+				showLoginLayout();
+				Log.e("memberid","0");
+
+			}
+			else {
+
+				hideLoginLayout();
+
+			}
+
+
 		}
 
 		resume_count++;
 
 
+	}
+
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		Log.e("buygpsclicke","act");
+
+		if(requestCode==888){
+
+			if(resultCode==RESULT_OK){
+
+				buyGPStracker();
+				//shop_btn.performClick();
+				Log.e("buygpsclicke","frag");
+
+				try {
+
+					shop_btn.performClick();
+				}catch (Exception ex){
+					ex.printStackTrace();
+				}
+
+			}
+		}
+
+	}
+
+	public void showAlert(final String message,final String title){
+		final AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
+		alertDialog.setMessage(Html.fromHtml(message));
+		alertDialog.setTitle(title);
+		alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				alertDialog.setCancelable(true);
+			}
+		});
+		alertDialog.show();
 	}
 
 }

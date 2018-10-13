@@ -40,7 +40,7 @@ public class SchemeFragment extends Fragment {
 			((HomeActivity)getActivity()).schemeSelected();
 		}
 		else {
-			if (membercode.equals("0")){
+			if (membercode.equals("")){
 				((HomeActivity)getActivity()).schemeSelected();
 			} else {
 			Intent intent = new Intent(getActivity(),MyreferalsActivity.class);

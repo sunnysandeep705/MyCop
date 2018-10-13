@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,7 +32,7 @@ import java.util.Map;
 
 public class MyProfileActivity extends AppCompatActivity {
 	TextView page_title;
-	LinearLayout back_btn,menu_btn;
+	LinearLayout back_btn,menu_btn,changepassword_btn;
 	ImageView back;
 	CardView edit_btn;
 
@@ -72,6 +73,15 @@ public class MyProfileActivity extends AppCompatActivity {
 
 		getProfileDetails();
 
+		changepassword_btn = (LinearLayout)findViewById(R.id.changepassword_ll);
+
+		changepassword_btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyProfileActivity.this,ChangePasswordActivity.class);
+				startActivity(intent);
+			}
+		});
 		save_ll = (LinearLayout) findViewById(R.id.save_ll_btn);
 
 		save_ll.setOnClickListener(new View.OnClickListener() {

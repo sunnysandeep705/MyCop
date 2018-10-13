@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity {
+
 	RelativeLayout decrease_btn,increase_btn;
 	TextView quantity;
 	SlidingImageAdapter slidingImageAdapter;
@@ -57,7 +59,7 @@ public class ProductActivity extends AppCompatActivity {
 		title.setText(product.product_title);
 		originalprice_tv.setText(product.discountprice);
 		discount_price.setText(product.originalprice);
-		description_tv.setText(product.description);
+		description_tv.setText(Html.fromHtml(product.description));
 
 		for (int i =0;i<product.images.size();i++) {
 			Log.e("sliderimagers",""+product.images.get(i).image_url);
@@ -120,20 +122,36 @@ public class ProductActivity extends AppCompatActivity {
 
 		//add to cart button
 		cart_btn = (LinearLayout)findViewById(R.id.addtocart_ll_btn);
+
 		cart_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//
 				// Toast.makeText(getContext(),"go to cart",Toast.LENGTH_LONG).show();
 
-				String q;
-				q=quantity.getText().toString();
-				product.cartquantity = Integer.parseInt(q);
-				intent.putExtra("quantity",q);
-				intent.putExtra("product",product);
 
-				startActivity(intent);
-				//getActivity().finish();
+				if(Session.getUserid(ProductActivity.this).equals("0")){
+
+
+
+					Intent intent = new Intent(ProductActivity.this,LoginActivity.class);
+					intent.putExtra("sendResult",true);
+					startActivityForResult(intent,9999);
+
+
+
+				}
+				else {
+
+					String q;
+					q = quantity.getText().toString();
+					product.cartquantity = Integer.parseInt(q);
+					intent.putExtra("quantity", q);
+					intent.putExtra("product", product);
+					startActivity(intent);
+
+				}
+
 
 			}
 		});

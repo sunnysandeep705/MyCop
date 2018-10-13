@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Session {
 
     static String SESSION_ID="session_id";
-    public static final String BASE_URL = "https://www.clients.yellowsoft.in/mycop/";
+    public static final String BASE_URL = "http://projects.yellowsoft.in/mycop/";
     static String DEVICE_ID="device_id";
     static String USER_ID="user_id";
     static String USER_mobile="user_mobile";
@@ -49,7 +49,7 @@ public class Session {
 
     public static String getMemberCode(Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getString("membercode", "0");
+        return sharedPreferences.getString("membercode", "");
     }
 
     public static void setPrice(Context context, String price) {

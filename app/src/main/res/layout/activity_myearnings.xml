@@ -168,12 +168,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/colorWhite"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:layout_width="wrap_content"
@@ -242,24 +243,22 @@
                             android:textSize="14sp" />
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView50"
+                            android:id="@+id/tv_statud"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Processing"
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
                     </LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView51"
+                        android:id="@+id/tv_status_desc"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="2dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="(Now you can claim Cash /Buy GPS Tracker)"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -273,6 +272,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_buy_gps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -285,16 +285,17 @@
                         android:id="@+id/customTextView52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="7dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="7dp"
                         android:text="Buy GPS Tracker"
                         android:textColor="@color/colorWhite"
                         android:textSize="13sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_refund"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="15dp"
@@ -307,10 +308,10 @@
                         android:id="@+id/customTextView52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="7dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="7dp"
                         android:text="Refund To Bank"
                         android:textColor="@color/colorWhite"
                         android:textSize="13sp" />
@@ -339,7 +340,7 @@
                     android:textSize="16sp" />
 
                 <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/customTextView54"
+                    android:id="@+id/membercode_myearnings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -354,7 +355,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -385,8 +386,8 @@
                                 android:id="@+id/popup_title_tv_myer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="15dp"
+                                android:layout_marginBottom="5dp"
                                 android:text="Pending Referals "
                                 android:textColor="@color/colorBlack"
                                 android:textSize="18sp"
@@ -412,10 +413,10 @@
                                     android:id="@+id/customTextView56"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
                                     android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="15dp"
                                     android:layout_marginTop="5dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="5dp"
                                     android:text="REFER NOW"
                                     android:textColor="@color/colorWhite"
                                     android:textSize="15sp" />

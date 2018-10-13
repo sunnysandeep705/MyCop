@@ -37,16 +37,20 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
                         <android.support.v4.view.ViewPager
                             android:id="@+id/image_slider"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true" />
+                            android:layout_height="match_parent"
+                            android:layout_alignBottom="@+id/squareImageView"
+                            android:layout_alignLeft="@+id/squareImageView"
+                            android:layout_alignParentLeft="false"
+                            android:layout_alignParentStart="false"
+                            android:layout_alignParentTop="false"
+                            android:layout_alignRight="@+id/squareImageView"
+                            android:layout_alignTop="@+id/squareImageView" />
 
                         <android.support.design.widget.TabLayout
                             android:id="@+id/indicator"
@@ -62,6 +66,14 @@
 
 
                         </android.support.design.widget.TabLayout>
+
+                        <com.yellowsoft.newproject.SquareImageView
+                            android:id="@+id/squareImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="false"
+                            android:src="@drawable/place_holder"
+                            android:visibility="invisible" />
 
                     </RelativeLayout>
 

@@ -23,9 +23,11 @@
                 android:id="@+id/referalid_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
 
@@ -42,9 +44,11 @@
                 android:id="@+id/status_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
 
@@ -61,9 +65,11 @@
                 android:id="@+id/trans_details_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
     </LinearLayout>

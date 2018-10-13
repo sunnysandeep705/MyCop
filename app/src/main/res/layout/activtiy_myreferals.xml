@@ -139,7 +139,7 @@
                 android:text="My Referal Code : " />
 
             <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/customTextView41"
+                android:id="@+id/tv_myreferalcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MYCOP237234"

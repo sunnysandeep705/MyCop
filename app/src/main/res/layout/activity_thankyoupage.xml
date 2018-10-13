@@ -46,7 +46,7 @@
             app:font_name="Gothambook" />
 
         <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView36"
+            android:id="@+id/order_number_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
