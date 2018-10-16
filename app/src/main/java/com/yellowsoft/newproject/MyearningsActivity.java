@@ -56,6 +56,20 @@ public class MyearningsActivity extends AppCompatActivity {
 		membercode_myearnings = (TextView)findViewById(R.id.membercode_myearnings);
 		membercode_myearnings.setText(Session.getMemberCode(MyearningsActivity.this));
 
+		membercode_myearnings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(MyearningsActivity.this);
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+
+			}
+		});
+
 		popup.setVisibility(View.GONE);
 
 		close.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +78,16 @@ public class MyearningsActivity extends AppCompatActivity {
 				popup.setVisibility(View.GONE);
 			}
 		});
+
+		String membercode = Session.getMemberCode(MyearningsActivity.this);
+		if (membercode.equals("")){
+			//popup.setVisibility(View.VISIBLE);
+			/*tv_status.setText("Pending");
+			tv_status_des.setText("(You are almost done! Refer two more member and get cash directly to your account or Buy GPS Tracker.)");
+			ll_buy_gps.setVisibility(View.GONE);
+			ll_refund.setVisibility(View.GONE);*/
+		}
+
 		Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_myearnings);
 		setSupportActionBar(toolbar);
 		setupActionBar();
@@ -180,6 +204,7 @@ public class MyearningsActivity extends AppCompatActivity {
 
 						int total_ref = Integer.parseInt(jsonObject.getString("total_referrals"));
 						if(total_ref==0){
+
 							tv_status.setText("Pending");
 							tv_status_des.setText("(You are almost done! Refer two more member and get cash directly to your account or Buy GPS Tracker.)");
 							ll_buy_gps.setVisibility(View.GONE);
@@ -196,7 +221,7 @@ public class MyearningsActivity extends AppCompatActivity {
 							tv_status.setText("Processing");
 							tv_status_des.setText("(Now you can claim Cash /Buy GPS Tracker)");
 							ll_buy_gps.setVisibility(View.VISIBLE);
-							ll_refund.setVisibility(View.VISIBLE);
+							ll_refund.setVisibility(View.GONE);
 						}
 
 

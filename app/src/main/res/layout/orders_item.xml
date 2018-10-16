@@ -65,7 +65,6 @@
                     android:id="@+id/date_myorders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1 Jan 2018"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     app:font_name="Gothambook" />

@@ -34,7 +34,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 	MyOrders_Adapter recycler_adapter;
 	ArrayList<MyOrdersData> myOrdersData=new ArrayList<MyOrdersData>();
 	TextView page_title;
-	LinearLayout menu_btn,back_btn;
+	LinearLayout menu_btn,back_btn,no_orders_ll,shopnow_ll;
 	ImageView back;
 
 	@Override
@@ -42,6 +42,15 @@ public class MyOrdersActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myorders);
 		orders_rv = (RecyclerView)findViewById(R.id.myorders_recycler);
+
+		no_orders_ll = (LinearLayout)findViewById(R.id.no_orders_ll);
+		shopnow_ll = (LinearLayout)findViewById(R.id.shopnow_ll);
+		shopnow_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 
 //		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","45000","MYCOP5544663322","10","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
 //		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","30000","MYCOP5544661234","10","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
@@ -125,6 +134,14 @@ public class MyOrdersActivity extends AppCompatActivity {
 
 					JSONArray jsonArray = new JSONArray(response);
 					Log.e("jsonArray",""+jsonArray.toString());
+					if (jsonArray.length()<1){
+						no_orders_ll.setVisibility(View.VISIBLE);
+						orders_rv.setVisibility(View.GONE);
+					}
+					else {
+						no_orders_ll.setVisibility(View.GONE);
+						orders_rv.setVisibility(View.VISIBLE);
+					}
 
 
 					myOrdersData.clear();

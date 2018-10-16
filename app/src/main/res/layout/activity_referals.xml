@@ -98,9 +98,10 @@
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/customTextView18"
-                        android:layout_width="wrap_content"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:gravity="center"
                         android:text="APPLY"
                         android:textSize="18sp" />
                 </LinearLayout>

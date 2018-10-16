@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +21,9 @@ import static android.app.Activity.RESULT_OK;
 public class MyAccountFragment extends Fragment {
 
 	ListView listView;
-	TextView tv_my_ref_code;
+	TextView tv_my_ref_code,tv_username_myaccount;
+
+	LinearLayout referralcode_ll;
 
 	@Nullable
 	@Override
@@ -29,16 +32,41 @@ public class MyAccountFragment extends Fragment {
 		listView = (ListView)view.findViewById(R.id.lv_myaccount);
 
 		tv_my_ref_code = (TextView) view.findViewById(R.id.myreferalcode_tv);
+		tv_my_ref_code.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(getActivity());
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+			}
+		});
+
+
+		referralcode_ll = (LinearLayout)view.findViewById(R.id.referralcode_ll);
+
+		tv_username_myaccount = (TextView)view.findViewById(R.id.tv_username_myaccount);
+		String name = Session.getUserName(getContext());
+		tv_username_myaccount.setText(name);
+
 
 		tv_my_ref_code.setText(Session.getMemberCode(getContext()));
 		Log.e("membercode",""+Session.getMemberCode(getContext()));
 
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
-		menuItems.add(new MenuItem("My Orders","",R.drawable.myorders));
-		menuItems.add(new MenuItem("My Profile","",R.drawable.myprofile));
-		menuItems.add(new MenuItem("My Referals","",R.drawable.myreferals));
-		menuItems.add(new MenuItem("My Earnings","",R.drawable.myernings));
+		if(Session.getMemberCode(getContext()).equals("")){
+			menuItems.add(new MenuItem("My Orders","",R.drawable.myorders));
+			menuItems.add(new MenuItem("My Profile","",R.drawable.myprofile));
+			referralcode_ll.setVisibility(View.GONE);
 
+		}else {
+			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
+			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
+			menuItems.add(new MenuItem("My Referals", "", R.drawable.myreferals));
+			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
+		}
 
 		MenuAdapter_MyAccount menuAdapter_myAccount = new MenuAdapter_MyAccount(getContext(),menuItems);
 		listView.setAdapter(menuAdapter_myAccount);
@@ -61,7 +89,7 @@ public class MyAccountFragment extends Fragment {
 				else
 				{
 					Intent intent = new Intent(getContext(),MyearningsActivity.class);
-					startActivityForResult(intent,RESULT_OK);
+					startActivityForResult(intent,888);
 				}
 
 			}

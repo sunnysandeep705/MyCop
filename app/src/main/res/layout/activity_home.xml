@@ -361,28 +361,50 @@
                 <LinearLayout
                     android:id="@+id/ll_userdetails"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="wrap_content"
                     android:background="#e9e9e9"
+                    android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/img_usr"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/user_rounded" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/usr_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:text="MY COP USER"
-                        android:textSize="16sp"
-                        app:font_name="Gothammedium" />
+                        <ImageView
+                            android:id="@+id/img_usr"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/user_rounded" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/usr_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="MY COP USER"
+                                android:textSize="16sp"
+                                app:font_name="Gothammedium" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/membercode_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="my member code"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                app:font_name="Gothambook" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout

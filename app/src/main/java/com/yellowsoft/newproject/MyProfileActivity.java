@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyProfileActivity extends AppCompatActivity {
-	TextView page_title;
+	TextView page_title,tv_username_myprofile;
 	LinearLayout back_btn,menu_btn,changepassword_btn;
 	ImageView back;
 	CardView edit_btn;
@@ -50,6 +50,10 @@ public class MyProfileActivity extends AppCompatActivity {
 		member = Session.getUserid(MyProfileActivity.this);
 		Log.e("memberid",""+member);
 		//callAddressListService(member,"3");
+
+		tv_username_myprofile = (TextView)findViewById(R.id.tv_username_myprofile);
+		String name = Session.getUserName(MyProfileActivity.this);
+		tv_username_myprofile.setText(name);
 
 		edit_btn = (CardView)findViewById(R.id.edit_cardview);
 

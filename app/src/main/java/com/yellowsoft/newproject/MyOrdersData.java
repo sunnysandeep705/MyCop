@@ -44,6 +44,8 @@ public class MyOrdersData {
 
             this.date = jsonObject.getString("date");
 
+            this.date = getTimeStamp(this.date);
+
             if (jsonObject.getJSONArray("products").length() > 0) {
 
                 this.images = jsonObject.getJSONArray("products").getJSONObject(0).getString("images");

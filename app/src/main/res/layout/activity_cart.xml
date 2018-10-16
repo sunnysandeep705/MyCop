@@ -355,9 +355,10 @@
             android:id="@+id/customTextView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="PROCEED TO CHECKOUT"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

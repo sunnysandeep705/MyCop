@@ -70,12 +70,14 @@
         android:orientation="vertical"></LinearLayout>
 
     <LinearLayout
+        android:id="@+id/trackorder_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@drawable/rounded_corners_lack"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/customTextView37"
@@ -95,6 +97,7 @@
         android:layout_marginBottom="15dp"
         android:text="or"
         android:textSize="17sp"
+        android:visibility="gone"
         app:font_name="Gothambook" />
 
     <LinearLayout

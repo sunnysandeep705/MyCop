@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="21"
+                        android:text="0"
                         android:textColor="@color/colorPrimary"
                         android:textSize="22sp"
                         app:font_name="Gothambook" />
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="42000"
+                        android:text="0"
                         android:textColor="@color/colorPrimary"
                         android:textSize="22sp"
                         app:font_name="Gothambook" />
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="10"
+                        android:text="0"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="30000"
+                        android:text="0"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
             </LinearLayout>
@@ -269,6 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -285,10 +286,10 @@
                         android:id="@+id/customTextView52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="7dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="7dp"
                         android:text="Buy GPS Tracker"
                         android:textColor="@color/colorWhite"
                         android:textSize="13sp" />
@@ -308,10 +309,10 @@
                         android:id="@+id/customTextView52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="7dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="7dp"
                         android:text="Refund To Bank"
                         android:textColor="@color/colorWhite"
                         android:textSize="13sp" />

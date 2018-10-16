@@ -37,6 +37,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 	ArrayList<MyReferalsData> myOrdersData=new ArrayList<MyReferalsData>();
 
+	LinearLayout transaction_details_ll,no_referals_ll;
+
 	TextView page_title;
 	ImageView back;
 	LinearLayout back_btn,menu_btn;
@@ -46,8 +48,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-		startActivity(intent);
+		/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+		startActivity(intent);*/
 	}
 
 	@Override
@@ -55,6 +57,10 @@ public class MyreferalsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activtiy_myreferals);
 		myreferals =(RecyclerView)findViewById(R.id.referals_recycler);
+
+		transaction_details_ll = (LinearLayout)findViewById(R.id.transaction_details_ll);
+
+		no_referals_ll = (LinearLayout)findViewById(R.id.no_referrals_ll);
 
 		myReferals_adapter = new MyReferals_Adapter(MyreferalsActivity.this,myOrdersData);
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
@@ -71,6 +77,18 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 		tv_ref_code = (TextView) findViewById(R.id.tv_myreferalcode);
 		tv_ref_code.setText(Session.getMemberCode(this));
+
+		tv_ref_code.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(MyreferalsActivity.this);
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+			}
+		});
 
 		CallReferaldetails();
 
@@ -134,6 +152,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 			@Override
 			public void onResponse(String response) {
 				Log.e("res",response);
+				Log.e("responcelength",""+response.length());
 				if(progressDialog!=null&& progressDialog.isShowing()) {
 					progressDialog.dismiss();
 				}
@@ -141,6 +160,17 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 					JSONArray jsonArray = new JSONArray(response);
 					Log.e("jsonArray",""+jsonArray.toString());
+					Log.e("jsonarraylength",""+jsonArray.length());
+
+					if (jsonArray.length()<1){
+						transaction_details_ll.setVisibility(View.GONE);
+						no_referals_ll.setVisibility(View.VISIBLE);
+
+					}
+					else {
+						transaction_details_ll.setVisibility(View.VISIBLE);
+						no_referals_ll.setVisibility(View.GONE);
+					}
 
 
 					myOrdersData.clear();
@@ -152,6 +182,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
 						Log.e("jsonobject",""+jsonObject);
 						Log.e("jsonobjectLength",""+jsonObject.length());
+
 
 						MyReferalsData temp = new MyReferalsData(jsonObject);
 

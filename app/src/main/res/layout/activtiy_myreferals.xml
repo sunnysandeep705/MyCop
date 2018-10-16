@@ -31,9 +31,28 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/no_referrals_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="You were not referred anyone yet , refer someone to get details."
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/transaction_details_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
@@ -41,7 +60,8 @@
                         android:layout_marginTop="30dp"
                         android:layout_weight="1"
                         android:background="#ededed"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -142,7 +162,6 @@
                 android:id="@+id/tv_myreferalcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MYCOP237234"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 app:font_name="Gothambook" />

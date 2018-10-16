@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.yellowsoft.newproject"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,8 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:4.36.1'
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
     implementation 'com.android.support:design:27.1.1'
+    implementation 'com.razorpay:checkout:1.4.9'
+
 }
 apply plugin: 'com.google.gms.google-services'
 

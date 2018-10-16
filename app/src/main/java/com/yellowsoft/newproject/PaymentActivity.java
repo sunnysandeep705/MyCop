@@ -39,6 +39,7 @@ import java.util.Map;
 public class PaymentActivity extends AppCompatActivity  implements PaymentResultListener {
 	TextView quantity,page_title,cod_tv,wallet_tv,card_tv,total_tv_payment;
 	TextView totalpayable_amt,referalmoney_payment;
+	TextView discount_tv_payment;
 	LinearLayout menu_btn,back_btn,submit_btn,payconfirm_ll_btn,cod_ll,card_ll,wallet_ll;
 	ImageView back,checkoff_cash,checkon_cash,checkoff_card,checkon_card,checkoff_wallet,checkon_wallet,cashimg,walletimg,cardimg;
 
@@ -46,6 +47,8 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 	CheckBox checkBox;
 	boolean collect_payment = true;
+
+	boolean schemeAmtUsed;
 
 	@Override
 	public void onBackPressed() {
@@ -62,6 +65,8 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 		Toolbar toolbar = (Toolbar)findViewById(R.id.payment_toolBar);
 		payconfirm_ll_btn = (LinearLayout)findViewById(R.id.payconfirm_ll_btn);
 
+		discount_tv_payment = (TextView)findViewById(R.id.discount_tv_payment);
+
 		checkBox = (CheckBox)findViewById(R.id.checkBox);
 
 		callReferalMoney();
@@ -69,27 +74,37 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 		referalmoney_payment = (TextView)findViewById(R.id.referalmoney_payment);
 
 
-		checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked==true){
-					//callReferalMoney();
-				}
-			}
-		});
 
 		totalpayable_amt = (TextView)findViewById(R.id.totalpayable_tv_payment);
 
 		total_tv_payment = (TextView)findViewById(R.id.total_tv_payment);
 
-		String totalprices =String.valueOf(getIntent().getIntExtra("total_price",0));
+		final String totalprices =String.valueOf(getIntent().getIntExtra("total_price",0));
 		Log.e("totalprice",""+totalprices);
-		String total = String.valueOf(getIntent().getIntExtra("total_price",0));
+		//final String total = String.valueOf(getIntent().getIntExtra("total_price",0));
 
-		total_tv_payment.setText(total);
+		total_tv_payment.setText(totalprices);
 
-		int i = Integer.parseInt(totalprices)-0;
-		totalpayable_amt.setText(""+i);
+		totalpayable_amt.setText(totalprices);
+		checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked){
+
+					int i = Integer.parseInt(totalprices)-Integer.parseInt(referalmoney_payment.getText().toString());
+					totalpayable_amt.setText(""+i);
+					schemeAmtUsed=true;
+
+				}
+				else {
+
+					//int j = Integer.parseInt(totalprices)-Integer.parseInt(referalmoney_payment.getText().toString());
+					totalpayable_amt.setText(""+totalprices);
+					schemeAmtUsed  = false;
+
+				}
+			}
+		});
 
 
 		cod_ll = (LinearLayout)findViewById(R.id.cod_ll);
@@ -118,11 +133,14 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 		cod_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetColors();
-				check(checkoff_cash, checkon_cash,checkon_card,checkon_wallet);
+				/*
+
 				checkoff(checkoff_card,checkoff_wallet);
-				changecolor(cod_tv,cashimg);
-				collect_payment = false;
+				*/
+				//changecolor(cod_tv,cashimg);
+				//check(checkoff_cash, checkon_cash,checkon_card,checkon_wallet);
+				//resetColors();
+				collect_payment = true;
 
 			}
 		});
@@ -134,7 +152,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				check(checkoff_card,checkon_card,checkon_cash,checkon_wallet);
 				checkoff(checkoff_cash,checkoff_wallet);
 				changecolor(card_tv,cardimg);
-				collect_payment = true;
+				collect_payment = false;
 			}
 		});
 
@@ -145,7 +163,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				check(checkoff_wallet,checkon_wallet,checkon_card,checkon_cash);
 				checkoff(checkoff_card,checkoff_cash);
 				changecolor(wallet_tv,walletimg);
-				collect_payment = true;
+				collect_payment = false;
 			}
 		});
 
@@ -174,7 +192,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			@Override
 			public void onClick(View v) {
 
-				CallAddAddressService();
+				callPlaceOrderService();
 
 //				if(collect_payment)
 //				startPayment();
@@ -257,7 +275,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 	}
 
 
-	public void CallAddAddressService(){
+	public void callPlaceOrderService(){
 
 
 		final ProgressDialog progressDialog = new ProgressDialog(PaymentActivity.this);
@@ -282,9 +300,10 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 
 						if(collect_payment){
+							//intent.putExtra("id", jsonObject.getString("invoice_id"));
+							invoiceid = jsonObject.getString("invoice_id");
 
-
-							startPayment();
+							startPayment(invoiceid);
 
 						}else {
 
@@ -292,7 +311,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 							intent.putExtra("id", jsonObject.getString("invoice_id"));
 							invoiceid = jsonObject.getString("invoice_id");
 							startActivity(intent);
-							finish();
+							//finish();
 						}
 
 					}
@@ -354,6 +373,13 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				jsonObject_to_send.put("price",String.valueOf(getIntent().getIntExtra("price",0)));
 				jsonObject_to_send.put("delivery_charges",String.valueOf(getIntent().getIntExtra("delivery_charges",0)));
 				jsonObject_to_send.put("member_id",Session.getUserid(PaymentActivity.this));
+				if (schemeAmtUsed==true){
+						jsonObject_to_send.put("scheme_amount_use","1");
+				}
+				else {
+						jsonObject_to_send.put("scheme_amount_use","0");
+				}
+
 
 
 				} catch (JSONException e) {
@@ -405,7 +431,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 
 
-	public void startPayment() {
+	public void startPayment(final String invoice_id) {
 		/**
 		 * You need to pass current activity in order to let Razorpay create CheckoutActivity
 		 */
@@ -422,7 +448,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			options.put("image", "https://rzp-mobile.s3.amazonaws.com/images/rzp.png");
 			options.put("currency", "INR");
 
-			String payment = String.valueOf(getIntent().getIntExtra("total_price",0));
+			String payment = totalpayable_amt.getText().toString();
 
 			double total = Double.parseDouble(payment);
 
@@ -454,6 +480,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 
 		callOrderSuccess(s,invoiceid);
+		Log.e("invoiceid",""+invoiceid);
 		//finish();
 
 
@@ -472,7 +499,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			progressDialog.show();
 			progressDialog.setCancelable(false);
 			String URL = Session.BASE_URL+"api/order_success.php";
-
+			Log.e("URL",URL);
 			StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 				@Override
 				public void onResponse(String response) {
@@ -485,6 +512,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 						String reply=jsonObject.getString("status");
 						Log.e("status",""+reply);
 						if(reply.equals("Success")) {
+
 							Toast.makeText(PaymentActivity.this,""+reply.toString(),Toast.LENGTH_SHORT).show();
 							Intent intent = new Intent(PaymentActivity.this, ThankyouActivity.class);
 							intent.putExtra("id", paymentid);
@@ -511,6 +539,8 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 							if(progressDialog!=null)
 								progressDialog.dismiss();
 							//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+
+							error.printStackTrace();
 						}
 					}){
 				@Override
@@ -518,6 +548,8 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 					Map<String,String> parameters = new HashMap<String, String>();
 					parameters.put("invoice_id",paymentid);
 					parameters.put("payment_id",invoiceid);
+
+					Log.e("parameters",""+invoiceid+"payment id = "+paymentid);
 
 
 					return parameters;
@@ -537,24 +569,28 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			@Override
 			public void onResponse(String response) {
 				Log.e("referalmoney",response);
+
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
+					//scheme_amount
 				}
 				try {
 					JSONObject jsonObject=new JSONObject(response);
-					String reply=jsonObject.getString("status");
+					String reply=jsonObject.getString("scheme_amount");
 					Log.e("status",""+reply);
-					if(reply.equals("Success")) {
-						referalmoney_payment.setText("");
 
+					if (reply.equals("0")){
+						discount_tv_payment.setText("use my referal money");
 					}
-
 					else {
-
-						String msg = jsonObject.getString("message");
-						Log.e("message",""+msg);
-						//Snackbar.make(gmail_btn, msg, Snackbar.LENGTH_SHORT).show();
+						discount_tv_payment.setText("use my scheme amount");
 					}
+
+
+						referalmoney_payment.setText(reply);
+
+
+
 
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -573,6 +609,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
 				parameters.put("member_id",Session.getUserid(PaymentActivity.this));
+				Log.e("memberid",Session.getUserid(PaymentActivity.this));
 
 
 

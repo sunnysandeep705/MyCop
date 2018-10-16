@@ -2,6 +2,7 @@ package com.yellowsoft.newproject;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by sriven on 6/1/2018.
@@ -40,6 +44,10 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		holder.price_tv_myorders.setText(items.get(position).price);
 		holder.quantity_tv_myorders.setText(items.get(position).quantity);
 
+
+
+		holder.date_myorders.setText(items.get(position).date);
+
 		holder.myorders_status.setText(items.get(position).status);
 
 		if(!items.get(position).images.equals(""))
@@ -68,6 +76,7 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 
 		ImageView order_img;
 		TextView address_myorders_tv,order_ids,quantity_tv_myorders,price_tv_myorders,product_tittle,myorders_status;
+		TextView date_myorders;
 		public MyViewHolder(View itemView){
 			super(itemView);
 
@@ -78,6 +87,8 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 			address_myorders_tv=(TextView)itemView.findViewById(R.id.address_myorders_tv);
 			order_img=(ImageView)itemView.findViewById(R.id.order_img);
 			myorders_status = (TextView) itemView.findViewById(R.id.ordersstatus_tv);
+			date_myorders = (TextView)itemView.findViewById(R.id.date_myorders);
 		}
 	}
+
 }

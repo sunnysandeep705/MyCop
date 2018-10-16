@@ -22,12 +22,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_myorders"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/no_orders_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="You didn't placed any order yet."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/shopnow_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corners"
+                    android:orientation="vertical">
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView51"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="SHOP NOW"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/myorders_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
         </LinearLayout>
 
         <View

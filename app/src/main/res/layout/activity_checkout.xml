@@ -262,17 +262,18 @@
                         android:background="@drawable/rounded_corners_transparent"
                         android:orientation="vertical">
 
-                        <com.yellowsoft.newproject.CustomTextEdit
+                        <com.yellowsoft.newproject.CustomTextView
                             android:id="@+id/et_country_checkout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
                             android:hint="Country*"
-                            android:singleLine="true"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:padding="7dp"
+                            android:singleLine="true"
+                            android:text="INDIA"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -300,9 +301,10 @@
             android:id="@+id/customTextView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="PROCEED TO PAYMENT"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

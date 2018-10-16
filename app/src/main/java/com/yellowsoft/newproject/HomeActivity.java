@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
 	ListView lv_one,lv_two;
 	TextView page_title_one,page_title_two,btn_edit,logout,usr_name;
+	TextView membercode;
 	private static int SPLASH_TIME_OUT = 3000;
 
 	TextView contactus,tv_about,tv_returns,tv_scheme,tv_terms,tv_faq;
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 	private FirebaseAuth mAuth;
 
 	LinearLayout menu_btn,home_btn,home,track_btn,track,shop_btn,shop,scheme_btn,scheme,account_btn,account;
+	LinearLayout ll_userdetails;
 	private DrawerLayout mDrawerLayout;
 	LinearLayout ll_login_,ll_details_,login_btn,signup_btn;;
 	TabsAdapter tabsAdapter;
@@ -64,11 +66,35 @@ public class HomeActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+
+
 		lv_one = (ListView)findViewById(R.id.lv_menu);
 		ll_login_ = (LinearLayout)findViewById(R.id.login_ll_);
 		ll_details_ = (LinearLayout)findViewById(R.id.details_ll);
 		logout = (TextView)findViewById(R.id.tv_logout);
 		usr_name = (TextView)findViewById(R.id.usr_name);
+
+		membercode = (TextView)findViewById(R.id.membercode_tv);
+
+		if (Session.getMemberCode(HomeActivity.this).equals("")){
+			membercode.setVisibility(View.GONE);
+		}
+		else{
+			membercode.setText(Session.getMemberCode(HomeActivity.this));
+			membercode.setVisibility(View.VISIBLE);
+		}
+
+		membercode.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(HomeActivity.this);
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+			}
+		});
 
 
 		//menu two
@@ -641,7 +667,7 @@ int resume_count = 0;
 	}
 
 
-	@Override
+/*	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
@@ -665,7 +691,7 @@ int resume_count = 0;
 			}
 		}
 
-	}
+	}*/
 
 	public void showAlert(final String message,final String title){
 		final AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);

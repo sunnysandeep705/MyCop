@@ -48,12 +48,13 @@
                 android:id="@+id/cod_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/cash_img"
@@ -61,7 +62,7 @@
                     android:layout_height="40dp"
                     android:adjustViewBounds="false"
                     android:src="@drawable/cash"
-                    android:tint="@color/colorlightGrey" />
+                    android:tint="@color/colorPrimary" />
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/cod_tv"
@@ -69,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Cash on delivery"
+                    android:text="Online Payment"
+                    android:textColor="@color/colorBlack"
                     android:textSize="18sp"
                     app:font_name="Gothambook" />
 
@@ -81,7 +83,7 @@
                         android:id="@+id/checkoff_cash"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/checkoff" />
+                        android:src="@drawable/checkon" />
 
                     <ImageView
                         android:id="@+id/checkon_cash"
@@ -149,7 +151,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/card_img"
@@ -165,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Online Payment"
+                    android:text="Credit Card"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     app:font_name="Gothambook" />
@@ -238,7 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
-                    android:text="4,000"
+                    android:text="0"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     app:font_name="Gothambook" />
@@ -265,10 +268,10 @@
                         android:id="@+id/checkBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true" />
+                        android:checked="false" />
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView27"
+                        android:id="@+id/discount_tv_payment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -340,7 +343,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="4,000"
+                android:text="0"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:font_name="Gothambook" />
@@ -366,9 +369,10 @@
             android:id="@+id/customTextView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:text="PAYMENT CONFIRMATION"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

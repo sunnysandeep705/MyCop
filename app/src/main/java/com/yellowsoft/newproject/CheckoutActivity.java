@@ -34,7 +34,7 @@ public class CheckoutActivity extends AppCompatActivity {
 	LinearLayout prdcheckout_btn;
 	LinearLayout menu_btn,back_btn,submit_btn,proceedtopay_ll_btn;
 
-	EditText firstname,lastname,address,email,phone,city,pincode,state,country;
+	EditText firstname,lastname,address,email,phone,city,pincode,state;
 
 	String member,name;
 
@@ -64,7 +64,7 @@ public class CheckoutActivity extends AppCompatActivity {
 		phone = (EditText)findViewById(R.id.et_phone_checkout);
 		city = (EditText)findViewById(R.id.et_city_checkout);
 		pincode = (EditText)findViewById(R.id.et_pincode_checkout);
-		country = (EditText)findViewById(R.id.et_country_checkout);
+
 		state = (EditText)findViewById(R.id.et_state_checkout);
 
 
@@ -97,9 +97,9 @@ public class CheckoutActivity extends AppCompatActivity {
 				else if(pincode.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter pincode",Snackbar.LENGTH_SHORT).show();
 				}
-				else if(country.getText().toString().equals("")){
+				/*else if(country.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter countryname",Snackbar.LENGTH_SHORT).show();
-				}
+				}*/
 				else if(state.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter state",Snackbar.LENGTH_SHORT).show();
 				}
@@ -123,7 +123,7 @@ public class CheckoutActivity extends AppCompatActivity {
 					intent.putExtra("state",state.getText().toString());
 
 					startActivity(intent);
-					finish();
+					//finish();
 
 					//sendShippingAddress();
 				}
