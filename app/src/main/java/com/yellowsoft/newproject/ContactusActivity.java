@@ -34,6 +34,7 @@ import java.util.Map;
 
 public class ContactusActivity extends AppCompatActivity{
 	TextView page_title,topic_select_tv_dropdown;
+	TextView mycopphone_tv,mycop_email;
 	ImageView back,location_mycop,fbbtn,gmbtn,twbtn;
 	EditText et_phone_contactus,et_name_contactus,et_email_contactus,et_message_contactus;
 	LinearLayout back_btn,menu_btn;
@@ -50,7 +51,15 @@ public class ContactusActivity extends AppCompatActivity{
 		et_message_contactus = (EditText)findViewById(R.id.et_message_contactus);
 
 
+		mycopphone_tv = (TextView)findViewById(R.id.mycopphone_tv);
+		mycop_email = (TextView)findViewById(R.id.mycop_email_tv);
 
+		try {
+			mycop_email.setText(ApplicationController.getInstance().settings.getString("email"));
+			mycopphone_tv.setText(ApplicationController.getInstance().settings.getString("phone"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 
 

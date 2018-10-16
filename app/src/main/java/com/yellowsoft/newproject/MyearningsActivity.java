@@ -39,7 +39,9 @@ public class MyearningsActivity extends AppCompatActivity {
 	LinearLayout popup;
 	TextView page_title,membercode_myearnings;
 	ImageView back;
-	LinearLayout back_btn,menu_btn;
+	LinearLayout back_btn,menu_btn,notes_ll;
+
+	TextView notes_tv,schemeamt_myearnings;
 
 	TextView referal_sucess_tv_myer,referal_comm_tv_myer,inprogress_tv,deposited_amt_tv,tearnings_myer,tv_status,tv_status_des;
 	LinearLayout ll_buy_gps,ll_refund;
@@ -50,8 +52,18 @@ public class MyearningsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myearnings);
 
+		schemeamt_myearnings = (TextView)findViewById(R.id.schemeamt_myearnings);
+		try {
+			schemeamt_myearnings.setText(ApplicationController.getInstance().settings.getString("scheme_amount"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		close = (ImageView)findViewById(R.id.close_img_myer);
 		popup = (LinearLayout)findViewById(R.id.popup_myer);
+
+		notes_ll = (LinearLayout)findViewById(R.id.notes_ll);
+		notes_tv = (TextView) findViewById(R.id.notes_tv);
 
 		membercode_myearnings = (TextView)findViewById(R.id.membercode_myearnings);
 		membercode_myearnings.setText(Session.getMemberCode(MyearningsActivity.this));
@@ -216,14 +228,28 @@ public class MyearningsActivity extends AppCompatActivity {
 							ll_buy_gps.setVisibility(View.GONE);
 							ll_refund.setVisibility(View.GONE);
 
-						}else{
+						}else {
+							if (jsonObject.getString("scheme_amount_used").equals("1")) {
+								ll_buy_gps.setVisibility(View.GONE);
+								ll_refund.setVisibility(View.GONE);
+								//note2
+								notes_ll.setVisibility(View.VISIBLE);
+								notes_tv.setText(jsonObject.getString("note2"));
+								tv_status.setText("Completed");
+								tv_status_des.setText("(You have used your investment fund)");
 
-							tv_status.setText("Processing");
-							tv_status_des.setText("(Now you can claim Cash /Buy GPS Tracker)");
-							ll_buy_gps.setVisibility(View.VISIBLE);
-							ll_refund.setVisibility(View.GONE);
+							} else {
+
+								tv_status.setText("Processing");
+								tv_status_des.setText("(Now you can claim Cash /Buy GPS Tracker)");
+								ll_buy_gps.setVisibility(View.VISIBLE);
+
+								//note1
+								notes_ll.setVisibility(View.VISIBLE);
+								notes_tv.setText(jsonObject.getString("note1"));
+								ll_refund.setVisibility(View.VISIBLE);
+							}
 						}
-
 
 				} catch (JSONException e) {
 					e.printStackTrace();

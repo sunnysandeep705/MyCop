@@ -54,9 +54,9 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		Intent intent = new Intent(PaymentActivity.this,HomeActivity.class);
+		/*Intent intent = new Intent(PaymentActivity.this,HomeActivity.class);
 		startActivity(intent);
-
+*/
 	}
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {

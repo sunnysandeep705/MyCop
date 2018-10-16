@@ -69,7 +69,7 @@
                     android:orientation="horizontal">
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView44"
+                        android:id="@+id/totalreferalstitle"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -139,14 +139,14 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/space"
+                        android:id="@+id/space2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"></LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView46"
+                        android:id="@+id/deposittitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -219,6 +219,27 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/schemeamttitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scheme amount:"
+                        android:textColor="@android:color/black" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/schemeamt_myearnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
@@ -287,8 +308,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="7dp"
                         android:text="Buy GPS Tracker"
                         android:textColor="@color/colorWhite"
@@ -306,19 +325,48 @@
                     android:orientation="vertical">
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView52"
+                        android:id="@+id/refundtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="7dp"
                         android:text="Refund To Bank"
                         android:textColor="@color/colorWhite"
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/notes_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView54"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Notes : "
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/notes_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -345,7 +393,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="MYCOP544"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
             </LinearLayout>

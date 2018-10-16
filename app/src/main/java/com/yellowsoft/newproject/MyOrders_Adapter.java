@@ -43,7 +43,7 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		holder.order_ids.setText(items.get(position).order_id);
 		holder.price_tv_myorders.setText(items.get(position).price);
 		holder.quantity_tv_myorders.setText(items.get(position).quantity);
-
+		holder.track_link.setText(items.get(position).tracking_link);
 
 
 		holder.date_myorders.setText(items.get(position).date);
@@ -75,8 +75,8 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 	{
 
 		ImageView order_img;
-		TextView address_myorders_tv,order_ids,quantity_tv_myorders,price_tv_myorders,product_tittle,myorders_status;
-		TextView date_myorders;
+		TextView address_myorders_tv, order_ids, quantity_tv_myorders, price_tv_myorders, product_tittle, myorders_status;
+		TextView date_myorders, track_link;
 		public MyViewHolder(View itemView){
 			super(itemView);
 
@@ -85,9 +85,11 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 			quantity_tv_myorders = (TextView)itemView.findViewById(R.id.quantity_tv_myorders);
 			price_tv_myorders = (TextView)itemView.findViewById(R.id.price_tv_myorders);
 			address_myorders_tv=(TextView)itemView.findViewById(R.id.address_myorders_tv);
-			order_img=(ImageView)itemView.findViewById(R.id.order_img);
 			myorders_status = (TextView) itemView.findViewById(R.id.ordersstatus_tv);
 			date_myorders = (TextView)itemView.findViewById(R.id.date_myorders);
+			track_link = (TextView)itemView.findViewById(R.id.trackinglink_tv_orders);
+
+			order_img=(ImageView)itemView.findViewById(R.id.order_img);
 		}
 	}
 

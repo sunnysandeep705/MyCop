@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -48,6 +49,8 @@ public class MyOrdersActivity extends AppCompatActivity {
 		shopnow_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent(MyOrdersActivity.this,HomeActivity.class);
+				setResult(RESULT_OK,intent);
 				finish();
 			}
 		});

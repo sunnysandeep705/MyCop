@@ -280,11 +280,12 @@
                                             app:srcCompat="@drawable/phone" />
 
                                         <com.yellowsoft.newproject.CustomTextView
-                                            android:id="@+id/mycopmobilenumber"
+                                            android:id="@+id/mycopphone_tv"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_marginRight="3dp"
                                             android:layout_weight="1"
-                                            android:text="  +91 9848213384"
                                             android:textColor="@color/colorBlack" />
                                     </LinearLayout>
 
@@ -301,11 +302,12 @@
                                             android:src="@drawable/email" />
 
                                         <com.yellowsoft.newproject.CustomTextView
-                                            android:id="@+id/customTextView58"
+                                            android:id="@+id/mycop_email_tv"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_marginRight="3dp"
                                             android:layout_weight="1"
-                                            android:text="  info@mycop.in"
                                             android:textColor="@color/colorBlack" />
                                     </LinearLayout>
 

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class MyReferalsData {
 
-String referalid,status,transdetails;
+String referalid,status,transdetails,date;
 
 		public MyReferalsData(String referalid,String status,String transdetails){
 				this.referalid = referalid;
@@ -22,6 +22,8 @@ String referalid,status,transdetails;
 			this.referalid = jsonObject.getString("id");
 			this.status = jsonObject.getString("status");
 			this.transdetails = jsonObject.getString("transaction");
+			this.date = jsonObject.getString("date");
+
 
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -17,7 +17,7 @@ import java.util.TimeZone;
 
 public class MyOrdersData {
     String images = "";
-    String price, order_id, quantity, address, tittle, status, date;
+    String price, order_id, quantity, address, tittle, status, date, tracking_link;
 
 
     // Context context;
@@ -43,6 +43,8 @@ public class MyOrdersData {
 
 
             this.date = jsonObject.getString("date");
+
+            this.tracking_link = jsonObject.getString("track");
 
             this.date = getTimeStamp(this.date);
 

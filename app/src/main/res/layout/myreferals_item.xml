@@ -8,6 +8,84 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REFERAL ID"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:font_name="Gothammedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STATUS"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:font_name="Gothammedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TRANSACTION DETAILS"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:font_name="Gothammedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DATE"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:font_name="Gothammedium" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -23,11 +101,12 @@
                 android:id="@+id/referalid_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dp"
+                android:gravity="center"
                 android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
 
@@ -44,11 +123,11 @@
                 android:id="@+id/status_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dp"
                 android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
 
@@ -65,11 +144,11 @@
                 android:id="@+id/trans_details_myreferals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dp"
                 android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:text="123456"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
     </LinearLayout>

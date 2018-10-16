@@ -12,9 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,19 +24,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CheckoutActivity extends AppCompatActivity {
-	TextView quantity,page_title;
-	TextView btn_edit,logout,signup_btn;
+	TextView page_title;
+	TextView btn_edit,state;
 	LinearLayout prdcheckout_btn;
 	LinearLayout menu_btn,back_btn,submit_btn,proceedtopay_ll_btn;
+	LinearLayout popup_checkout;
 
-	EditText firstname,lastname,address,email,phone,city,pincode,state;
+	ArrayList<StatesData> statesData = new ArrayList<StatesData>();
+
+	StatesAdapter statesAdapter;
+
+	EditText firstname,lastname,address,email,phone,city,pincode;
+	ListView states_lv;
 
 	String member,name;
 
@@ -52,6 +62,30 @@ public class CheckoutActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_checkout);
 
+		//popup
+		popup_checkout = (LinearLayout)findViewById(R.id.popup_checkout);
+		popup_checkout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popup_checkout.setVisibility(View.GONE);
+			}
+		});
+
+		states_lv = (ListView)findViewById(R.id.lv_states);
+
+		statesAdapter = new StatesAdapter(CheckoutActivity.this,statesData);
+
+		states_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				popup_checkout.setVisibility(View.GONE);
+				state.setText(statesData.get(position).states_);
+			}
+		});
+
+		//stateslist
+		callStatesListService();
+
 		member = Session.getUserid(CheckoutActivity.this);
 		Log.e("memberid",""+member);
 		name = Session.getUserName(CheckoutActivity.this);
@@ -65,9 +99,36 @@ public class CheckoutActivity extends AppCompatActivity {
 		city = (EditText)findViewById(R.id.et_city_checkout);
 		pincode = (EditText)findViewById(R.id.et_pincode_checkout);
 
-		state = (EditText)findViewById(R.id.et_state_checkout);
+		state = (TextView)findViewById(R.id.tv_state_checkout);
 
+		state.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popup_checkout.setVisibility(View.VISIBLE);
+			}
+		});
 
+/*
+		statesData.add(new StatesData("app"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));
+		statesData.add(new StatesData("ap"));*/
+
+		states_lv.setAdapter(statesAdapter);
+		statesAdapter.notifyDataSetChanged();
 
 
 		Toolbar toolbar = (Toolbar)findViewById(R.id.checkout_toolBar);
@@ -181,38 +242,45 @@ public class CheckoutActivity extends AppCompatActivity {
 	}
 	//api/add-address.php
 
-	public void CallAddAddressService(final String memberid, final String alias,final String address,final String city,final String state,final String country,final String pincode,final String phone){
+	public void callStatesListService(){
 
 
 		final ProgressDialog progressDialog = new ProgressDialog(CheckoutActivity.this);
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/add-address.php";
+		String URL = Session.BASE_URL+"api/states.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("resCartActivity",response);
+				Log.e("resStatesList",response);
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
 				}
 				try {
-					JSONObject jsonObject=new JSONObject(response);
-					String reply=jsonObject.getString("status");
-					Log.e("status",""+reply);
-					if(reply.equals("Success")) {
+					JSONArray jsonArray=new JSONArray(response);
 
-						/*//Snackbar.make(discount_tv,"Coupon code applied successfully",Snackbar.LENGTH_SHORT).show();
-						String discount = jsonObject.getString("discount_value");
-						Log.e("discount",""+discount);
-						discount_tv.setText(discount);
-						int total = subtotal-Integer.parseInt(discount);
-						Log.e("subtotal",""+subtotal);
-						total_tv.setText(""+total);
-						Log.e("total",""+total);
+					Log.e("status",""+jsonArray.length());
+					if(jsonArray.length()>1) {
 
-						Session.setTotalPrice(CheckoutActivity.this,""+total);*/
+						for (int i = 0;i<jsonArray.length();i++){
+							JSONObject jsonObject = jsonArray.getJSONObject(i);
+							Log.e("jsonobject",""+jsonObject);
+							Log.e("jsonobjectLength",""+jsonObject.length());
+
+
+							Log.e("states",""+jsonObject.getString("title"));
+
+
+							StatesData temp = new StatesData(jsonObject);
+
+							statesData.add(temp);
+
+
+
+						}
+						statesAdapter.notifyDataSetChanged();
 					}
 
 
@@ -233,14 +301,6 @@ public class CheckoutActivity extends AppCompatActivity {
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
 
-				parameters.put("member_id",memberid);
-				parameters.put("alias",alias);
-				parameters.put("address",address);
-				parameters.put("city",city);
-				parameters.put("state",state);
-				parameters.put("country",country);
-				parameters.put("pincode",pincode);
-				parameters.put("phone",phone);
 				return parameters;
 			}
 		};

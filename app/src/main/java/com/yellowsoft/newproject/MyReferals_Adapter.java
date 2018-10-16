@@ -34,7 +34,7 @@ public class MyReferals_Adapter extends RecyclerView.Adapter<MyReferals_Adapter.
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
-		holder.referalids.setText(items.get(position).referalid);
+		holder.referalids.setText(items.get(position).date+" "+items.get(position).referalid);
 		holder.status.setText(items.get(position).status);
 		holder.transdetails.setText(items.get(position).transdetails);
 

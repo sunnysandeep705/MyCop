@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class MyProfileActivity extends AppCompatActivity {
 	TextView page_title,tv_username_myprofile;
+	TextView dojoining_tv,referedby_tv;
 	LinearLayout back_btn,menu_btn,changepassword_btn;
 	ImageView back;
 	CardView edit_btn;
@@ -54,6 +55,9 @@ public class MyProfileActivity extends AppCompatActivity {
 		tv_username_myprofile = (TextView)findViewById(R.id.tv_username_myprofile);
 		String name = Session.getUserName(MyProfileActivity.this);
 		tv_username_myprofile.setText(name);
+
+		referedby_tv = (TextView)findViewById(R.id.referedby_tv);
+		dojoining_tv = (TextView)findViewById(R.id.dojoining_tv);
 
 		edit_btn = (CardView)findViewById(R.id.edit_cardview);
 
@@ -203,9 +207,8 @@ public class MyProfileActivity extends AppCompatActivity {
 						ed_phone.setText(jsonObject.getString("phone"));
 						ed_email.setText(jsonObject.getString("email"));
 
-
-
-
+						dojoining_tv.setText(jsonObject.getString("scheme_amount_date"));
+						referedby_tv.setText(jsonObject.getString("referred_code"));
 
 						ed_acc_name.setText(jsonObject.getString("bank"));
 						ed_acc_number.setText(jsonObject.getString("acno"));

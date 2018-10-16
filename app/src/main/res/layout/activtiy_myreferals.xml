@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -55,72 +56,81 @@
                         android:id="@+id/transaction_details_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:background="#ededed"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
 
-                                <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView22"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="REFERAL ID"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="15sp"
-                                    app:font_name="Gothammedium" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView34"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="STATUS"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="15sp"
-                                    app:font_name="Gothammedium" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView23"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="TRANSACTION DETAILS"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="15sp"
-                                    app:font_name="Gothammedium" />
+                                    android:orientation="vertical">
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/customTextView22"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="REFERAL ID"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp"
+                                        app:font_name="Gothammedium" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/customTextView34"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="STATUS"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp"
+                                        app:font_name="Gothammedium" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <com.yellowsoft.newproject.CustomTextView
+                                        android:id="@+id/customTextView23"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="TRAN-DETAILS"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp"
+                                        app:font_name="Gothammedium" />
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
+
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/referals_recycler"

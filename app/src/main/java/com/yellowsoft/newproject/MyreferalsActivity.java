@@ -63,7 +63,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 		no_referals_ll = (LinearLayout)findViewById(R.id.no_referrals_ll);
 
 		myReferals_adapter = new MyReferals_Adapter(MyreferalsActivity.this,myOrdersData);
-		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MyreferalsActivity.this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
 		myreferals.setLayoutManager(linearLayoutManager);

@@ -154,7 +154,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/address_title"
                     android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/address_myorders_tv"
@@ -173,7 +173,14 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
                     android:text="com.yellowsoft.newproject.CustomTextView"
-                    android:textSize="9sp" />
+                    android:textSize="12sp" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView72"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Expected deliviery: within 10-15 days from date of placed order"
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -224,7 +231,7 @@
                     android:textSize="10sp" />
 
                 <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/trackinglink_tv"
+                    android:id="@+id/trackinglink_tv_orders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/trackinglink"
