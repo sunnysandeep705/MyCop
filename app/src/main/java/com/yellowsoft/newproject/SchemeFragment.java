@@ -35,19 +35,7 @@ public class SchemeFragment extends Fragment {
 		String memberid = Session.getUserid(getActivity());
 		String membercode = Session.getMemberCode(getActivity());
 
-		if (memberid.equals("0")){
 
-			((HomeActivity)getActivity()).schemeSelected();
-		}
-		else {
-			if (membercode.equals("")){
-				((HomeActivity)getActivity()).schemeSelected();
-			} else {
-			Intent intent = new Intent(getActivity(),MyreferalsActivity.class);
-			startActivity(intent);
-			//getActivity().finish();
-			}
-		}
 
 	}
 

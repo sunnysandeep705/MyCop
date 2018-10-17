@@ -35,7 +35,7 @@ public class MyAccountFragment extends Fragment {
 		tv_my_ref_code.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(getActivity());
+				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

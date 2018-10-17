@@ -40,6 +40,7 @@ public class MyProfileActivity extends AppCompatActivity {
 	String member;
 
 	EditText ed_fname,ed_lname,ed_phone,ed_email,ed_acc_name,ed_acc_number,ed_ifsc_code,ed_acc_email;
+	EditText ed_bankaccnumber_confirm;
 
 
 	LinearLayout save_ll;
@@ -67,6 +68,7 @@ public class MyProfileActivity extends AppCompatActivity {
 		ed_phone = (EditText) findViewById(R.id.ed_phone_myprofile);
 		ed_email = (EditText) findViewById(R.id.ed_email_myprofile);
 
+		ed_bankaccnumber_confirm = (EditText) findViewById(R.id.ed_bankaccnumber_confirm);
 
 		ed_acc_name = (EditText) findViewById(R.id.ed_bankaccname);
 		ed_acc_number = (EditText) findViewById(R.id.ed_bankaccnumber);
@@ -114,7 +116,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
 				}
 
-				else if(  ed_acc_email.getText().toString().equals("")  &&  (ed_acc_name.getText().toString().equals("") || ed_acc_number.getText().toString().equals("") || ed_ifsc_code.getText().toString().equals("")) ){
+				else if(  ed_acc_email.getText().toString().equals("")  &&  (ed_acc_name.getText().toString().equals("") || ed_acc_number.getText().toString().equals("")||!ed_acc_number.getText().toString().equals(ed_bankaccnumber_confirm.getText().toString()) || ed_ifsc_code.getText().toString().equals("")) ){
 
 					Snackbar.make(save_ll,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
 

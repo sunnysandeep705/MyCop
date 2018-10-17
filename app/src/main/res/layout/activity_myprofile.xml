@@ -106,6 +106,7 @@
                             android:background="@null"
                             android:hint="username"
                             android:padding="10dp"
+                            android:singleLine="true"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -126,6 +127,7 @@
                             android:background="@null"
                             android:hint="last name"
                             android:padding="10dp"
+                            android:singleLine="true"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -146,6 +148,7 @@
                             android:background="@null"
                             android:hint="phone number"
                             android:padding="10dp"
+                            android:singleLine="true"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -165,6 +168,7 @@
                             android:background="@null"
                             android:hint="email"
                             android:padding="10dp"
+                            android:singleLine="true"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -319,6 +323,7 @@
                                 android:background="@null"
                                 android:hint="Account name"
                                 android:padding="10dp"
+                                android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -339,6 +344,28 @@
                                 android:background="@null"
                                 android:hint="Account number"
                                 android:padding="10dp"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/rounded_white_transparent"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/ed_bankaccnumber_confirm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="Confirm Account number"
+                                android:padding="10dp"
+                                android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -359,6 +386,7 @@
                                 android:background="@null"
                                 android:hint="IFSC code"
                                 android:padding="10dp"
+                                android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
                         <TextView
@@ -385,6 +413,7 @@
                                 android:background="@null"
                                 android:hint="Upi id"
                                 android:padding="10dp"
+                                android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>

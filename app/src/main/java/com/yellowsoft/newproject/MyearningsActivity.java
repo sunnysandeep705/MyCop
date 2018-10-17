@@ -73,7 +73,7 @@ public class MyearningsActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
-				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(MyearningsActivity.this);
+				String shareBody = "Hi, I am "+Session.getUserName(MyearningsActivity.this)+", use my referral code: "+""+ Session.getMemberCode(MyearningsActivity.this);
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

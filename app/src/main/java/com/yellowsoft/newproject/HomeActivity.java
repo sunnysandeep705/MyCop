@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
 		membercode.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(HomeActivity.this);
+				String shareBody = "Hi, I am "+Session.getUserName(HomeActivity.this)+", use my referral code: "+""+ Session.getMemberCode(HomeActivity.this);
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
@@ -373,10 +373,29 @@ public class HomeActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				resetAllColors();
 				changebg(scheme_btn,scheme_img);
-				mViewPager.setCurrentItem(3);
-				page_title_two.setVisibility(View.VISIBLE);
-				page_title_one.setText("REFERRAL");
-				page_title_two.setText("SCHEME");
+				String memberid= Session.getUserid(HomeActivity.this);
+				if (memberid.equals("0")){
+
+					//((HomeActivity)getActivity()).schemeSelected();
+					mViewPager.setCurrentItem(3);
+					page_title_two.setVisibility(View.VISIBLE);
+					page_title_one.setText("REFERRAL");
+					page_title_two.setText("SCHEME");
+				}
+				else {
+					if (membercode.equals("")){
+						//((HomeActivity)getActivity()).schemeSelected();
+						mViewPager.setCurrentItem(3);
+						page_title_two.setVisibility(View.VISIBLE);
+						page_title_one.setText("REFERRAL");
+						page_title_two.setText("SCHEME");
+					} else {
+						Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
+						startActivity(intent);
+						//getActivity().finish();
+					}
+				}
+
 			}
 		});
 
@@ -653,7 +672,7 @@ int resume_count = 0;
 		if(resume_count>0){
 
 			if(mViewPager.getCurrentItem()==3)
-			home.performClick();
+			//home.performClick();
 
 			if(Session.getUserid(HomeActivity.this).equals("0")) {
 				showLoginLayout();

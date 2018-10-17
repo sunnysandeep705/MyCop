@@ -48,8 +48,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-		startActivity(intent);
+		/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+		startActivity(intent);*/
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 		tv_ref_code.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "My Referral Code: "+""+ Session.getMemberCode(MyreferalsActivity.this);
+				String shareBody = "Hi, I am "+Session.getUserName(MyreferalsActivity.this)+", use my referral code:"+ Session.getMemberCode(MyreferalsActivity.this);
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
@@ -114,8 +114,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-				startActivity(intent);
+				/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+				startActivity(intent);*/
 				finish();
 			}
 		});
