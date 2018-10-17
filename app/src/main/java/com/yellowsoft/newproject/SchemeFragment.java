@@ -45,7 +45,7 @@ public class SchemeFragment extends Fragment {
 			} else {
 			Intent intent = new Intent(getActivity(),MyreferalsActivity.class);
 			startActivity(intent);
-			getActivity().finish();
+			//getActivity().finish();
 			}
 		}
 

@@ -451,7 +451,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
@@ -460,7 +460,7 @@
                     android:id="@+id/tv_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:paddingTop="7dp"
                     android:text="About"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -469,8 +469,7 @@
                     android:id="@+id/tv_returns"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="@string/referals"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -479,8 +478,7 @@
                     android:id="@+id/tv_scheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="Scheme Details"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -489,8 +487,7 @@
                     android:id="@+id/tv_terms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="@string/terms"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -499,8 +496,7 @@
                     android:id="@+id/tv_faq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="FAQ's"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -509,8 +505,7 @@
                     android:id="@+id/tv_contactus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="Contact Us"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
@@ -519,8 +514,7 @@
                     android:id="@+id/tv_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
+                    android:paddingTop="7dp"
                     android:text="Logout"
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="16sp"

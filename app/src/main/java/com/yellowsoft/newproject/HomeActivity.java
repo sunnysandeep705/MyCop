@@ -144,8 +144,16 @@ public class HomeActivity extends AppCompatActivity {
 		tv_returns.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
+
+				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
+				intent.putExtra("title","Returns & Referrals");
+				try {
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("returns"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 				startActivity(intent);
+
 			}
 		});
 
@@ -166,7 +174,7 @@ public class HomeActivity extends AppCompatActivity {
 				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
 				intent.putExtra("title","Scheme Details");
 				try {
-					intent.putExtra("content",ApplicationController.getInstance().settings.getString("about"));
+					intent.putExtra("content",ApplicationController.getInstance().settings.getString("content_scheme_details"));
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

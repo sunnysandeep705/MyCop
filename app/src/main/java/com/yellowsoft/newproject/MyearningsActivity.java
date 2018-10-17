@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -135,7 +136,7 @@ public class MyearningsActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View view) {
 
-
+				//callRefundAPI();
 
 			}
 		});
@@ -277,9 +278,53 @@ public class MyearningsActivity extends AppCompatActivity {
 
 
 
+
+	//refund api
 	private void callRefundAPI(){
 
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/refund.php";
 
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONObject jsonObject=new JSONObject(response);
+					if(jsonObject.equals("Success")) {
+
+						Toast.makeText(MyearningsActivity.this,""+jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+					}
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+
+				parameters.put("member_id",Session.getUserid(MyearningsActivity.this));
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 
 	}
 

@@ -297,7 +297,6 @@
                     android:id="@+id/ll_buy_gps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corners"
                     android:gravity="center"
@@ -311,7 +310,7 @@
                         android:layout_marginTop="7dp"
                         android:text="Buy GPS Tracker"
                         android:textColor="@color/colorWhite"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -332,7 +331,7 @@
                         android:layout_marginTop="7dp"
                         android:text="Refund To Bank"
                         android:textColor="@color/colorWhite"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 <LinearLayout
@@ -346,12 +345,16 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corners_white"
+        android:divider="@drawable/divider_grey"
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/customTextView54"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:gravity="center_horizontal"
             android:text="Notes : "
             android:textColor="@android:color/black"
@@ -361,6 +364,7 @@
             android:id="@+id/notes_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="content"
             android:textColor="@android:color/black"
             android:textSize="12sp" />

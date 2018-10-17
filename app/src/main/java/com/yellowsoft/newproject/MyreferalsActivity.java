@@ -48,8 +48,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-		startActivity(intent);*/
+		Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

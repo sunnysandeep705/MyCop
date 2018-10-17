@@ -100,7 +100,14 @@ public class HomeFragment extends Fragment {
 		myaccount.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).accountfrg();
+				String memberid = Session.getUserid(getActivity());
+				if (memberid.equals("0")) {
+
+					Intent intent = new Intent(getActivity(), LoginActivity.class);
+					startActivity(intent);
+				} else {
+					((HomeActivity) getActivity()).accountfrg();
+				}
 			}
 		});
 
