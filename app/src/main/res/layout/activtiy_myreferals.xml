@@ -62,7 +62,7 @@
                         android:layout_weight="1"
                         android:background="#ededed"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
 
                         <LinearLayout

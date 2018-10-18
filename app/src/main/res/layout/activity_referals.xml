@@ -438,10 +438,11 @@
                     android:id="@+id/customTextView65"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
                     android:text="PAY NOW"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>

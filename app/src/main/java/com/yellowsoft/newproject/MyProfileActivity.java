@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -116,10 +117,15 @@ public class MyProfileActivity extends AppCompatActivity {
 
 				}
 
-				else if(  ed_acc_email.getText().toString().equals("")  &&  (ed_acc_name.getText().toString().equals("") || ed_acc_number.getText().toString().equals("")||!ed_acc_number.getText().toString().equals(ed_bankaccnumber_confirm.getText().toString()) || ed_ifsc_code.getText().toString().equals("")) ){
+				else if(  ed_acc_email.getText().toString().equals("")  &&  (ed_acc_name.getText().toString().equals("") || !ed_acc_number.getText().toString().equals((ed_bankaccnumber_confirm.getText().toString())) || ed_ifsc_code.getText().toString().equals("")) ){
 
-					Snackbar.make(save_ll,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+					if(!ed_acc_number.getText().toString().equals(ed_bankaccnumber_confirm.getText().toString())){
 
+						Snackbar.make(save_ll,"Enter same account number",Snackbar.LENGTH_SHORT).show();
+					}
+					else {
+						Snackbar.make(save_ll,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+					}
 				}else{
 
 
@@ -206,6 +212,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
 						ed_fname.setText(jsonObject.getString("fname"));
 						ed_lname.setText(jsonObject.getString("lname"));
+						Session.setUserid(MyProfileActivity.this,Session.getUserid(MyProfileActivity.this),jsonObject.getString("fname")+jsonObject.getString("lname"));
 						ed_phone.setText(jsonObject.getString("phone"));
 						ed_email.setText(jsonObject.getString("email"));
 
@@ -266,15 +273,24 @@ public class MyProfileActivity extends AppCompatActivity {
 					progressDialog.dismiss();
 				}
 				try {
-					JSONArray jsonArray = new JSONArray(response);
+					//JSONArray jsonArray = new JSONArray(response);
+					JSONObject jsonObject= new JSONObject(response);
+					String reply  = jsonObject.getString("status");
 
-					JSONObject jsonObject= jsonArray.getJSONObject(0);
+					if(reply.equals("Success")) {
 
-
+						Toast.makeText(MyProfileActivity.this, "You have successfully updated your account", Toast.LENGTH_SHORT).show();//You have successfully updated your account
+					}
+					else {
+						Toast.makeText(MyProfileActivity.this,""+jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+					}
 
 
 				} catch (JSONException e) {
 					e.printStackTrace();
+					Toast.makeText(MyProfileActivity.this,""+e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+
+
 				}
 			}
 		},
@@ -283,6 +299,8 @@ public class MyProfileActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
+						Toast.makeText(MyProfileActivity.this,"Something went wrong, try after sometime ",Toast.LENGTH_SHORT).show();
+
 						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){

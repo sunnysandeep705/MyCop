@@ -432,10 +432,11 @@
                         android:id="@+id/save_ttitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
                         android:text="SAVE"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20sp"
+                        android:textSize="14sp"
                         app:font_name="Gothammedium" />
                 </LinearLayout>
             </LinearLayout>

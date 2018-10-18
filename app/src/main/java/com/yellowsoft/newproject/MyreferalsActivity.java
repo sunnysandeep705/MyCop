@@ -45,11 +45,17 @@ public class MyreferalsActivity extends AppCompatActivity {
 	TextView tv_ref_code;
 
 	@Override
+	protected void onStart() {
+		super.onStart();
+
+	}
+
+	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-		startActivity(intent);*/
+		Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
@@ -90,7 +96,16 @@ public class MyreferalsActivity extends AppCompatActivity {
 			}
 		});
 
-		CallReferaldetails();
+		if (Session.getMemberCode(MyreferalsActivity.this).equals("")){
+			transaction_details_ll.setVisibility(View.GONE);
+			no_referals_ll.setVisibility(View.VISIBLE);
+
+		}
+		else {
+			CallReferaldetails();
+		}
+
+		//CallReferaldetails();
 
 
 	}
@@ -114,8 +129,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-				startActivity(intent);*/
+				Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+				startActivity(intent);
 				finish();
 			}
 		});

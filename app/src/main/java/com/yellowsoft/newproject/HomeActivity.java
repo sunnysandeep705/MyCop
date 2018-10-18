@@ -374,22 +374,26 @@ public class HomeActivity extends AppCompatActivity {
 				resetAllColors();
 				changebg(scheme_btn,scheme_img);
 				String memberid= Session.getUserid(HomeActivity.this);
+				Log.e("membercode",""+Session.getUserid(HomeActivity.this));
 				if (memberid.equals("0")){
 
 					//((HomeActivity)getActivity()).schemeSelected();
 					mViewPager.setCurrentItem(3);
 					page_title_two.setVisibility(View.VISIBLE);
 					page_title_one.setText("REFERRAL");
+
 					page_title_two.setText("SCHEME");
 				}
 				else {
-					if (membercode.equals("")){
+					if (Session.getMemberCode(HomeActivity.this).equals("")){
+						Log.e("memberCode",""+Session.getMemberCode(HomeActivity.this));
 						//((HomeActivity)getActivity()).schemeSelected();
 						mViewPager.setCurrentItem(3);
 						page_title_two.setVisibility(View.VISIBLE);
 						page_title_one.setText("REFERRAL");
 						page_title_two.setText("SCHEME");
 					} else {
+						Log.e("membercode",""+Session.getMemberCode(HomeActivity.this));
 						Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
 						startActivity(intent);
 						//getActivity().finish();
@@ -476,11 +480,16 @@ public class HomeActivity extends AppCompatActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_menu);
 
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
-		menuItems.add(new MenuItem("My Orders","",R.drawable.myorders));
-		menuItems.add(new MenuItem("My Profile","",R.drawable.myprofile));
-		menuItems.add(new MenuItem("My Referrals","",R.drawable.myreferals));
-		menuItems.add(new MenuItem("My Earnings","",R.drawable.myernings));
-
+		if(Session.getMemberCode(HomeActivity.this).equals("")) {
+			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
+			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
+		}
+		else {
+			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
+			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
+			menuItems.add(new MenuItem("My Referrals", "", R.drawable.myreferals));
+			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
+		}
 
 		MenuAdapter menuAdapter = new MenuAdapter(this,menuItems);
 		lv_one.setAdapter(menuAdapter);

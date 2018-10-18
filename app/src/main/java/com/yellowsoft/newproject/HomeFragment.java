@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
 					((HomeActivity)getActivity()).schemeSelected();
 				}
 				else {
-					if (membercode.equals("0")){
+					if (Session.getMemberCode(getContext()).equals("")){
 						((HomeActivity)getActivity()).schemeSelected();
 					}
 					else {

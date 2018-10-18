@@ -56,7 +56,7 @@ public class Products_Adapter extends RecyclerView.Adapter<Products_Adapter.MyVi
 				intent.putExtra("title",items.get(position).product_title);
 				intent.putExtra("product",items.get(position));
 				context.startActivity(intent);
-				Toast.makeText(context,"position"+position,Toast.LENGTH_LONG).show();
+				//Toast.makeText(context,"position"+position,Toast.LENGTH_LONG).show();
 
 
 

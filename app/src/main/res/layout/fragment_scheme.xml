@@ -91,7 +91,7 @@
             <RelativeLayout
                 android:id="@+id/joinnow_ll"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:background="@drawable/roundedconrners_tabtransparentcolor"
                 android:gravity="center_horizontal"
@@ -101,11 +101,12 @@
                     android:id="@+id/customTextView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
                     android:gravity="center"
                     android:text="JOIN NOW"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -118,7 +119,7 @@
         android:background="#C0000000"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"

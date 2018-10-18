@@ -96,17 +96,21 @@ public class SchemeFragment extends Fragment {
 					Snackbar.make(scheme_btn,"Please accept Terms & Conditions",Snackbar.LENGTH_SHORT).show();
 				}
 				else {
-					//Intent intent = new Intent(getActivity(),CartActivity.class);
 					String member_id = Session.getUserid(getActivity());
+
 					if (member_id.equals("0")) {
 						Intent intent = new Intent(getActivity(), LoginActivity.class);
 
 						startActivity(intent);
 					} else {
 
-					Intent intent = new Intent(getActivity(), ReferalsActivity.class);
-					//intent.putExtra("quantity","1");
-					startActivity(intent);
+						if (Session.getMemberCode(getContext()).equals("")){
+							Intent intent = new Intent(getActivity(), ReferalsActivity.class);
+							//intent.putExtra("quantity","1");
+							startActivity(intent);
+						}else {
+
+						}
 				}
 				}
 			}

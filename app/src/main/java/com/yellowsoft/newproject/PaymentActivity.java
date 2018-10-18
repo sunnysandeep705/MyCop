@@ -130,6 +130,9 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 		checkon_wallet = (ImageView)findViewById(R.id.checkon_wallet);
 		//changecolor(card_tv,cardimg);
 
+
+		collect_payment = true;
+
 		cod_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -287,7 +290,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("resCartActivity",response);
+				Log.e("resPlaceOrder",response);
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
 				}
@@ -503,7 +506,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 				@Override
 				public void onResponse(String response) {
-					Log.e("res",response);
+					Log.e("resOrdersSuccess",response);
 					if(progressDialog!=null) {
 						progressDialog.dismiss();
 					}
