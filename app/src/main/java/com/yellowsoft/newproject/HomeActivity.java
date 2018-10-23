@@ -371,8 +371,8 @@ public class HomeActivity extends AppCompatActivity {
 		scheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
-				changebg(scheme_btn,scheme_img);
+
+
 				String memberid= Session.getUserid(HomeActivity.this);
 				Log.e("membercode",""+Session.getUserid(HomeActivity.this));
 				if (memberid.equals("0")){
@@ -383,6 +383,9 @@ public class HomeActivity extends AppCompatActivity {
 					page_title_one.setText("REFERRAL");
 
 					page_title_two.setText("SCHEME");
+
+					resetAllColors();
+					changebg(scheme_btn,scheme_img);
 				}
 				else {
 					if (Session.getMemberCode(HomeActivity.this).equals("")){
@@ -392,7 +395,11 @@ public class HomeActivity extends AppCompatActivity {
 						page_title_two.setVisibility(View.VISIBLE);
 						page_title_one.setText("REFERRAL");
 						page_title_two.setText("SCHEME");
+
+						resetAllColors();
+						changebg(scheme_btn,scheme_img);
 					} else {
+
 						Log.e("membercode",""+Session.getMemberCode(HomeActivity.this));
 						Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
 						startActivity(intent);

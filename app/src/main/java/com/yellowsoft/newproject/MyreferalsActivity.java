@@ -54,8 +54,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-		startActivity(intent);
+	/*	Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+		startActivity(intent);*/
 	}
 
 	@Override
@@ -129,8 +129,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
-				startActivity(intent);
+				/*Intent intent = new Intent(MyreferalsActivity.this,HomeActivity.class);
+				startActivity(intent);*/
 				finish();
 			}
 		});

@@ -366,10 +366,11 @@
                 android:id="@+id/customTextView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="7dp"
                 android:text="ADD TO CART"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
 
