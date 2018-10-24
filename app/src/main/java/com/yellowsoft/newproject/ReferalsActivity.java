@@ -310,14 +310,15 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					Log.e("status",""+reply);
 					if(reply.equals("Success")) {
 						String message = jsonObject.getString("message");
-						Snackbar.make(apply_ll_btn_referal,""+message,Snackbar.LENGTH_SHORT).show();
+						Toast.makeText(ReferalsActivity.this,""+message,Toast.LENGTH_SHORT).show();
 						referal_code_global = referal_code;
 
 					}
 					else
 					{
 						String errorMessage =jsonObject.getString("message");
-						Snackbar.make(apply_ll_btn_referal,""+errorMessage,Snackbar.LENGTH_SHORT).show();
+						Toast.makeText(ReferalsActivity.this,""+errorMessage,Toast.LENGTH_SHORT).show();
+						//Snackbar.make(apply_ll_btn_referal,""+errorMessage,Snackbar.LENGTH_SHORT).show();
 					}
 
 				} catch (JSONException e) {

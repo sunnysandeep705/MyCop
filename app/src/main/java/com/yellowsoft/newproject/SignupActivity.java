@@ -43,6 +43,15 @@ public class SignupActivity extends AppCompatActivity {
 	EditText et_fname,et_lname,et_phnumber,et_password,et_email,et_confirm_password;
 
 	ProgressBar progressBar;
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Intent intent = new Intent(SignupActivity.this,HomeActivity.class);
+		Log.e("BackKeypressed","backbutton");
+		startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -140,6 +149,9 @@ public class SignupActivity extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent(SignupActivity.this,HomeActivity.class);
+				startActivity(intent);
+				Log.e("BackKeypressed","backbutton");
 				finish();
 			}
 		});

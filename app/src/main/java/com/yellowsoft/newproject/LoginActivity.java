@@ -98,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 
-//		Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-//		startActivity(intent);
+		Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+		startActivity(intent);
 		finish();
 	}
 
@@ -349,6 +349,7 @@ public class LoginActivity extends AppCompatActivity {
 			} catch (ApiException e) {
 				// Google Sign In failed, update UI appropriately
 				Log.e(TAG, "Google sign in failed", e);
+				Toast.makeText(LoginActivity.this,"Google sign in failed",Toast.LENGTH_SHORT).show();
 
 			}
 		}

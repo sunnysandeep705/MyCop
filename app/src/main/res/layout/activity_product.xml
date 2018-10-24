@@ -370,7 +370,7 @@
                 android:layout_marginTop="7dp"
                 android:text="ADD TO CART"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
 

@@ -3,7 +3,7 @@
     package="com.yellowsoft.newproject">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="false"
@@ -21,6 +21,7 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_YkLFs7bxxbMl9I"
             />
+
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 

@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class TrackFragment extends Fragment {
 	RelativeLayout publictab,personaltab;
 	LinearLayout tabone,tabtwo,tabindicator_one,tabindicator_two,submit,vehicle_details,transparent;
 	TextView tv_public,tv_personal,trackingtextone,trackingtexttwo,trackingtextthree,tracksolid_url;
+	TextView noresults_tv;
 	ImageView playstore,appstore;
 
 	WebView webView;
@@ -50,6 +52,8 @@ public class TrackFragment extends Fragment {
 	RecyclerView track_recycler;
 	ArrayList<TrackData> trackData = new ArrayList<TrackData>();
 	Track_Adapter track_adapter;
+
+
 
 	EditText vechinumber;
 	public static TrackFragment newInstance(int someInt) {
@@ -65,13 +69,18 @@ public class TrackFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_tracking, container, false);
+
+
+
 		Log.e("trackfragment","trackfragment");
 		mViewflipper = (ViewFlipper)view.findViewById(R.id.viewflipper);
 		vehicle_details = (LinearLayout)view.findViewById(R.id.vehicle_details_ll);
 		trackingtextone = (TextView)view.findViewById(R.id.tracking_text_one);
 		trackingtexttwo = (TextView)view.findViewById(R.id.tracking_text_two);
 		trackingtextthree = (TextView)view.findViewById(R.id.tracking_text_three);
+
 		tracksolid_url = (TextView)view.findViewById(R.id.tracksolid_url_btn);
+		noresults_tv = (TextView)view.findViewById(R.id.noresults_tv);
 
 		//track recycler view
 		track_recycler = (RecyclerView)view.findViewById(R.id.track_recycler);
@@ -146,7 +155,7 @@ public class TrackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (vechinumber.getText().toString().equals("")){
-					Snackbar.make(vechinumber,"Enter Vechile number",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(vechinumber,"Enter Vechile id or Username",Snackbar.LENGTH_SHORT).show();
 
 				}else {
 					vehicle_details.setVisibility(View.VISIBLE);
@@ -257,12 +266,12 @@ public class TrackFragment extends Fragment {
 					JSONArray jsonArray = new JSONArray(response);
 					Log.e("jsonArray",""+jsonArray.toString());
 					if (jsonArray.length()<1){
-						///no_orders_ll.setVisibility(View.VISIBLE);
-						//orders_rv.setVisibility(View.GONE);
+						noresults_tv.setVisibility(View.VISIBLE);
+
 					}
 					else {
-						//no_orders_ll.setVisibility(View.GONE);
-						//orders_rv.setVisibility(View.VISIBLE);
+						noresults_tv.setVisibility(View.GONE);
+
 					}
 
 

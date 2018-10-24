@@ -549,8 +549,8 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				@Override
 				protected Map<String,String> getParams(){
 					Map<String,String> parameters = new HashMap<String, String>();
-					parameters.put("invoice_id",paymentid);
-					parameters.put("payment_id",invoiceid);
+					parameters.put("invoice_id",invoiceid);
+					parameters.put("payment_id",paymentid);
 
 					Log.e("parameters",""+invoiceid+"payment id = "+paymentid);
 

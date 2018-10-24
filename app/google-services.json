@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "589763949955-2r8kvh0r2qd127colc3vmv1pq0mbua4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yellowsoft.newproject",
+            "certificate_hash": "edf456001ce7239600b56bc6683593fc669a2134"
+          }
+        },
+        {
           "client_id": "589763949955-hsdi6oehk8mbkbcgab9ee09d2li4ihcd.apps.googleusercontent.com",
           "client_type": 3
         }

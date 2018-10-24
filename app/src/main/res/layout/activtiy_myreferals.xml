@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_myreferals"
@@ -25,122 +25,117 @@
             android:layout_below="@+id/toolbar_myreferals"
             android:orientation="vertical">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/no_referrals_ll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You were not referred anyone yet , refer someone to get details."
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/transaction_details_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="#ededed"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
 
                     <LinearLayout
-                        android:id="@+id/no_referrals_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView25"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="You were not referred anyone yet , refer someone to get details."
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/transaction_details_ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="#ededed"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/customTextView22"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="REFERRAL ID"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp"
+                                    app:font_name="Gothammedium" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/customTextView34"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="STATUS"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp"
+                                    app:font_name="Gothammedium" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/customTextView23"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.yellowsoft.newproject.CustomTextView
-                                        android:id="@+id/customTextView22"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="REFERAL ID"
-                                        android:textColor="@color/colorBlack"
-                                        android:textSize="12sp"
-                                        app:font_name="Gothammedium" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.yellowsoft.newproject.CustomTextView
-                                        android:id="@+id/customTextView34"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="STATUS"
-                                        android:textColor="@color/colorBlack"
-                                        android:textSize="12sp"
-                                        app:font_name="Gothammedium" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.yellowsoft.newproject.CustomTextView
-                                        android:id="@+id/customTextView23"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="TRAN-DETAILS"
-                                        android:textColor="@color/colorBlack"
-                                        android:textSize="12sp"
-                                        app:font_name="Gothammedium" />
-                                </LinearLayout>
+                                    android:text="TRAN-DETAILS"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp"
+                                    app:font_name="Gothammedium" />
                             </LinearLayout>
                         </LinearLayout>
-
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/referals_recycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="400dp" />
-
                     </LinearLayout>
 
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/referals_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp" />
+
                 </LinearLayout>
-            </ScrollView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -151,31 +146,71 @@
             android:layout_alignTop="@+id/content"
             android:background="@drawable/shadow" />
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/referal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="false"
+        android:layout_margin="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:id="@+id/referal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="false"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <com.yellowsoft.newproject.CustomTextView
                 android:id="@+id/customTextView40"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="My Referal Code : " />
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="My Referral Code : " />
 
             <com.yellowsoft.newproject.CustomTextView
                 android:id="@+id/tv_myreferalcode"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 app:font_name="Gothambook" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/earnings_ll_myreferrals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="7dp"
+                android:text="MY EARNINGS"
+                android:textColor="@android:color/white"
+                app:font_name="Gothambook" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

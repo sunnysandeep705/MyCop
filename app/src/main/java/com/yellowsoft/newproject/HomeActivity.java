@@ -463,7 +463,7 @@ public class HomeActivity extends AppCompatActivity {
 				Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
 				startActivity(intent);
 
-				//finish();
+				finish();
 				hideLoginLayout();
 			}
 		});
@@ -475,7 +475,7 @@ public class HomeActivity extends AppCompatActivity {
 				Intent intent = new Intent(HomeActivity.this,SignupActivity.class);
 				startActivity(intent);
 
-				//finish();
+				finish();
 				hideLoginLayout();
 			}
 		});

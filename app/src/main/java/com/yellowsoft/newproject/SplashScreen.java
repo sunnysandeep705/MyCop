@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -47,8 +48,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                startActivity(i);
+
 
                 // close this activity
                 finish();
@@ -69,7 +69,8 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.e("res",response);
-
+                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                startActivity(i);
                /* if(progressDialog!=null) {
                     progressDialog.dismiss();
 
@@ -91,12 +92,18 @@ public class SplashScreen extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                    Log.e("errorOne",""+e.getMessage().toString());
+                    Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
+                    }
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.e("errorTwo",""+error.getMessage().toString());
+                        Toast.makeText(SplashScreen.this,"No Internet Connection",Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                        startActivity(i);
                       /*  if(progressDialog!=null)
                             progressDialog.dismiss();*/
                       //  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
@@ -105,12 +112,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> parameters = new HashMap<String, String>();
-               /* parameters.put("fname",fname);
-                parameters.put("lname",lname);
-                parameters.put("email",email);
-                parameters.put("phone","phone");
-                parameters.put("type","facebook");
-                parameters.put("user_id",userid);*/
+
                 return parameters;
             }
         };

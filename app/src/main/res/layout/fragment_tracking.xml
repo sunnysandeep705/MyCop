@@ -141,13 +141,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="125dp"
+                    android:layout_height="110dp"
                     android:orientation="vertical"></LinearLayout>
 
                 <com.yellowsoft.newproject.CustomTextView
@@ -156,17 +156,18 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:gravity="center"
-                    android:text="Please Enter Vehicle Number"
+                    android:text="Please Enter Vehicle Id or Username"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     app:font_name="Gothammedium" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/rounded_white_transparent"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <com.yellowsoft.newproject.CustomTextEdit
@@ -176,8 +177,9 @@
                         android:layout_centerInParent="false"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:background="@null"
-                        android:hint="XX XX XX XXXX    "
+                        android:hint="vehicleid or username"
                         android:imeOptions="actionDone"
                         android:singleLine="true"
                         android:textSize="14sp" />
@@ -185,10 +187,7 @@
                     <LinearLayout
                         android:id="@+id/ll_submit_track"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
+                        android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/rounded_corners"
                         android:gravity="center_vertical|center_horizontal"
@@ -203,7 +202,7 @@
                             android:textColor="@color/colorWhite"
                             android:textSize="14sp" />
                     </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/vehicle_details_ll"
@@ -218,7 +217,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:elevation="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -253,10 +253,20 @@
 
                         </LinearLayout>
 
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/noresults_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="No results found"
+                            android:visibility="gone" />
+
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/track_recycler"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:visibility="visible" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

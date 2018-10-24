@@ -144,13 +144,25 @@
                     android:textSize="18sp"
                     app:font_name="Gothambook" />
 
-                <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/popup_content_tv"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/SOMETHINGTEXT"
-                    android:textSize="12sp" />
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/popup_content_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/SOMETHINGTEXT"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </ScrollView>
+
             </LinearLayout>
 
             <ImageView

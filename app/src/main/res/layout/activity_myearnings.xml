@@ -390,7 +390,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="My Referal Code: "
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/membercode_myearnings"
@@ -398,7 +398,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    app:font_name="Gothambook" />
             </LinearLayout>
         </LinearLayout>
 

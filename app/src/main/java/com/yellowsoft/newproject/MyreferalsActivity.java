@@ -37,7 +37,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 	ArrayList<MyReferalsData> myOrdersData=new ArrayList<MyReferalsData>();
 
-	LinearLayout transaction_details_ll,no_referals_ll;
+	LinearLayout transaction_details_ll,no_referals_ll,myearnings_ll;
 
 	TextView page_title;
 	ImageView back;
@@ -65,6 +65,15 @@ public class MyreferalsActivity extends AppCompatActivity {
 		myreferals =(RecyclerView)findViewById(R.id.referals_recycler);
 
 		transaction_details_ll = (LinearLayout)findViewById(R.id.transaction_details_ll);
+		myearnings_ll = (LinearLayout)findViewById(R.id.earnings_ll_myreferrals);
+
+		myearnings_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyreferalsActivity.this,MyearningsActivity.class);
+				startActivity(intent);
+			}
+		});
 
 		no_referals_ll = (LinearLayout)findViewById(R.id.no_referrals_ll);
 

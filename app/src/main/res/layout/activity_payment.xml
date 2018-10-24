@@ -373,6 +373,6 @@
             android:paddingTop="10dp"
             android:text="PAYMENT CONFIRMATION"
             android:textColor="@color/colorWhite"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>
