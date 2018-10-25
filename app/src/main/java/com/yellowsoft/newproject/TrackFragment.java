@@ -99,7 +99,7 @@ public class TrackFragment extends Fragment {
 
 		vechinumber = (EditText)view.findViewById(R.id.ed_vechilenumber);
 
-		vechinumber.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+		/*vechinumber.setFilters(new InputFilter[] {new InputFilter.AllCaps()});*/
 
 
 		//app links

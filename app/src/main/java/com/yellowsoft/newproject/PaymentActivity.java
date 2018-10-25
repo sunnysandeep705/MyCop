@@ -519,6 +519,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 							Toast.makeText(PaymentActivity.this,""+reply.toString(),Toast.LENGTH_SHORT).show();
 							Intent intent = new Intent(PaymentActivity.this, ThankyouActivity.class);
 							intent.putExtra("id", paymentid);
+							intent.putExtra("invoiceId",invoiceid);
 							startActivity(intent);
 							finish();
 

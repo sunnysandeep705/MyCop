@@ -43,6 +43,7 @@ public class MyearningsActivity extends AppCompatActivity {
 	LinearLayout back_btn,menu_btn,notes_ll;
 
 	TextView notes_tv,schemeamt_myearnings;
+	String playstorelink;
 
 	TextView referal_sucess_tv_myer,referal_comm_tv_myer,inprogress_tv,deposited_amt_tv,tearnings_myer,tv_status,tv_status_des;
 	LinearLayout ll_buy_gps,ll_refund;
@@ -69,11 +70,18 @@ public class MyearningsActivity extends AppCompatActivity {
 		membercode_myearnings = (TextView)findViewById(R.id.membercode_myearnings);
 		membercode_myearnings.setText(Session.getMemberCode(MyearningsActivity.this));
 
+		try {
+			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		membercode_myearnings.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
-				String shareBody = "Hi, I am "+Session.getUserName(MyearningsActivity.this)+", use my referral code: "+""+ Session.getMemberCode(MyearningsActivity.this);
+				//String shareBody = "Hi, I am "+Session.getUserName(MyearningsActivity.this)+", use my referral code: "+""+ Session.getMemberCode(MyearningsActivity.this);
+				String shareBody = "Hi, I am "+Session.getUserName(MyearningsActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(MyearningsActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral." +playstorelink;
+
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
@@ -136,7 +144,7 @@ public class MyearningsActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View view) {
 
-				//callRefundAPI();
+				callRefundAPI();
 
 			}
 		});
@@ -302,9 +310,15 @@ public class MyearningsActivity extends AppCompatActivity {
 
 						Toast.makeText(MyearningsActivity.this,""+jsonObject.getString("message"),Toast.LENGTH_LONG).show();
 					}
+					else {
+						Toast.makeText(MyearningsActivity.this,""+jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+
+					}
 
 				} catch (JSONException e) {
 					e.printStackTrace();
+					Toast.makeText(MyearningsActivity.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
+
 				}
 			}
 		},
@@ -313,6 +327,8 @@ public class MyearningsActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
+						Toast.makeText(MyearningsActivity.this,"Internet error",Toast.LENGTH_LONG).show();
+
 					}
 				}){
 			@Override

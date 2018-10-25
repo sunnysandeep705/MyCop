@@ -49,7 +49,7 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 	EditText upi_id_et;
 
 	EditText ed_bank_name;
-	EditText ed_bank_ac;
+	EditText ed_bank_ac,ed_ac_number_confirm;
 	EditText ed_ifsc_code;
 
 
@@ -83,6 +83,7 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 		ed_bank_name = (EditText) findViewById(R.id.ed_bank_name);
 		ed_bank_ac = (EditText) findViewById(R.id.ed_ac_number);
 		ed_ifsc_code = (EditText) findViewById(R.id.ed_ifcs_code);
+		ed_ac_number_confirm = (EditText) findViewById(R.id.ed_ac_number_confirm);
 
 
 		popup = (LinearLayout)findViewById(R.id.popup_referal);
@@ -96,10 +97,18 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 
 					Snackbar.make(paynow_ll_referal,"Enter referal code",Snackbar.LENGTH_SHORT).show();
 
-				}  else if(  upi_id_et.getText().toString().equals("")  &&  (ed_bank_ac.getText().toString().equals("") || ed_bank_name.getText().toString().equals("") || ed_ifsc_code.getText().toString().equals("")) ){
+				}  else if(  upi_id_et.getText().toString().equals("")  &&  (ed_bank_ac.getText().toString().equals("") ||!ed_bank_ac.getText().toString().equals((ed_ac_number_confirm.getText().toString()))|| ed_bank_name.getText().toString().equals("") || ed_ifsc_code.getText().toString().equals("")) ){
 
-					Snackbar.make(paynow_ll_referal,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+					if(!ed_bank_ac.getText().toString().equals(ed_ac_number_confirm.getText().toString())){
 
+						Toast.makeText(ReferalsActivity.this,"Enter same account number",Toast.LENGTH_SHORT).show();
+					}
+					else {
+						Toast.makeText(ReferalsActivity.this,"Enter bank details or upi id",Toast.LENGTH_SHORT).show();
+						//Snackbar.make(save_ll,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+					}
+					//Snackbar.make(paynow_ll_referal,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
+					Toast.makeText(ReferalsActivity.this,"Enter bank details or upi id",Toast.LENGTH_SHORT).show();
 				} else {
 
 					popup.setVisibility(View.VISIBLE);
@@ -400,6 +409,7 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
+						Toast.makeText(ReferalsActivity.this,"Internet error",Toast.LENGTH_SHORT).show();
 						//  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){

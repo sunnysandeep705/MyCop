@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -23,6 +25,7 @@ public class MyAccountFragment extends Fragment {
 	ListView listView;
 	TextView tv_my_ref_code,tv_username_myaccount;
 
+	String playstorelink;
 	LinearLayout referralcode_ll;
 
 	@Nullable
@@ -31,11 +34,21 @@ public class MyAccountFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_myaccount, container, false);
 		listView = (ListView)view.findViewById(R.id.lv_myaccount);
 
+
+		try {
+			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+
 		tv_my_ref_code = (TextView) view.findViewById(R.id.myreferalcode_tv);
 		tv_my_ref_code.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
+				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(getActivity())+") before making the payment. You can earn Rs. 1000/- for every successful referral."+playstorelink;
+
+				//String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

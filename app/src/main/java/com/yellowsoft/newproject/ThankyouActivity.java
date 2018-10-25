@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ThankyouActivity extends AppCompatActivity {
 	LinearLayout backtohome_ll_btn;
-	TextView order_number_tv;
+	TextView order_number_tv,paymentid_tv_thankyou;
 
 	@Override
 	public void onBackPressed() {
@@ -30,8 +30,11 @@ public class ThankyouActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_thankyoupage);
 
 		order_number_tv = (TextView) findViewById(R.id.order_number_tv);
+		paymentid_tv_thankyou = (TextView)findViewById(R.id.paymentid_tv_thankyou);
 
-		order_number_tv.setText(getIntent().getStringExtra("id"));
+		order_number_tv.setText(getIntent().getStringExtra("invoiceId"));
+		paymentid_tv_thankyou.setText(getIntent().getStringExtra("id"));
+
 
 		backtohome_ll_btn = (LinearLayout)findViewById(R.id.backtohome_ll_btn);
 		backtohome_ll_btn.setOnClickListener(new View.OnClickListener() {

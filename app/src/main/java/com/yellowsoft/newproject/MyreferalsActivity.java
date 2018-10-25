@@ -44,6 +44,8 @@ public class MyreferalsActivity extends AppCompatActivity {
 	LinearLayout back_btn,menu_btn;
 	TextView tv_ref_code;
 
+	String playstorelink;
+
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -93,10 +95,17 @@ public class MyreferalsActivity extends AppCompatActivity {
 		tv_ref_code = (TextView) findViewById(R.id.tv_myreferalcode);
 		tv_ref_code.setText(Session.getMemberCode(this));
 
+		try {
+			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		tv_ref_code.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "Hi, I am "+Session.getUserName(MyreferalsActivity.this)+", use my referral code:"+ Session.getMemberCode(MyreferalsActivity.this);
+				//String shareBody = "Hi, I am "+Session.getUserName(MyreferalsActivity.this)+", use my referral code:"+ Session.getMemberCode(MyreferalsActivity.this);
+				String shareBody = "Hi, I am "+Session.getUserName(MyreferalsActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(MyreferalsActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral." +playstorelink;
+
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

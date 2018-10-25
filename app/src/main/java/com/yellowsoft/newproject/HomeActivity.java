@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
 	TextView contactus,tv_about,tv_returns,tv_scheme,tv_terms,tv_faq;
 
+	String playstorelink;
 	private GoogleSignInClient mGoogleSignInClient;
 	private FirebaseAuth mAuth;
 
@@ -84,10 +85,17 @@ public class HomeActivity extends AppCompatActivity {
 			membercode.setVisibility(View.VISIBLE);
 		}
 
+		try {
+			 playstorelink = ApplicationController.getInstance().settings.getString("playstore");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		membercode.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "Hi, I am "+Session.getUserName(HomeActivity.this)+", use my referral code: "+""+ Session.getMemberCode(HomeActivity.this);
+				Log.e("paystorelink",""+playstorelink);
+				/*Join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code (<Referral Code>) before making the payment. You can earn Rs. 1000/- for every successful referral.*/
+				String shareBody = "Hi, I am "+Session.getUserName(HomeActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(HomeActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral. "+playstorelink;
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

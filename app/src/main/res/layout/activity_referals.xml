@@ -67,7 +67,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:hint="Ex.MCR18100001"
+                        android:hint="Ex.MCR18100000"
                         android:imeOptions="actionDone"
                         android:maxLines="1"
                         android:padding="5dp"
@@ -159,7 +159,7 @@
                             android:layout_gravity="center_vertical|center|end"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
@@ -180,7 +180,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:background="#e9e9e9"
                             android:gravity="center_vertical|center_horizontal"
@@ -225,7 +225,7 @@
                             android:layout_gravity="center_vertical|center|end"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
@@ -246,7 +246,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:background="#e9e9e9"
                             android:gravity="center_vertical|center_horizontal"
@@ -276,7 +276,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -291,13 +290,77 @@
                             android:layout_gravity="center_vertical|center|end"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView18"
+                                android:id="@+id/confirmtitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="end"
+                                android:text="confirm A/C Number"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="#e9e9e9"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/ed_ac_number_confirm"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:hint="                       "
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:textSize="15sp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:visibility="gone"></LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/titleifsccode"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical|center|end"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/ifscc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -310,9 +373,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:background="#e9e9e9"
                             android:gravity="center_vertical|center_horizontal"
@@ -363,9 +425,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical|center|end"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
@@ -384,9 +446,9 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:background="#e9e9e9"
                             android:gravity="center_vertical|center_horizontal"

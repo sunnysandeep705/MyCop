@@ -92,8 +92,8 @@ public class SignupActivity extends AppCompatActivity {
 					//showAlert("Error","Please enter mobile");
 
 				}
-				else if(et_password.getText().toString().length()==0){
-					Snackbar.make(et_fname,"Please enter password",Snackbar.LENGTH_SHORT).show();
+				else if(et_password.getText().toString().length()!=6){
+					Snackbar.make(et_fname,"Please enter password of length 6 characters",Snackbar.LENGTH_SHORT).show();
 				//	showAlert("Error","Please enter password");
 
 				}

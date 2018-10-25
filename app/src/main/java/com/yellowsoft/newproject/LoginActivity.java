@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 		password = (EditText)findViewById(R.id.et_password);
-		loginButton = (LoginButton)findViewById(R.id.login_button);
+		//loginButton = (LoginButton)findViewById(R.id.login_button);
 		gmail_btn = (RelativeLayout)findViewById(R.id.rr_gm);
 		fb_btn = (RelativeLayout)findViewById(R.id.rr_fb);
 		submit_btn = (LinearLayout)findViewById(R.id.ll_submit_login);
