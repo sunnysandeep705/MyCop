@@ -38,6 +38,7 @@ import java.util.Map;
 public class ReferalsActivity extends AppCompatActivity implements PaymentResultListener {
 
 	TextView page_title,referedby_tv,schemeamt;
+	TextView referalResponse;
 	ImageView back;
 	LinearLayout back_btn,menu_btn,apply_ll_btn_referal,paynow_ll_referal;
 
@@ -68,6 +69,9 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 		referalcode_referal = (EditText)findViewById(R.id.referalcode_referal);
 		referalcode_referal.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 		referedby_tv = (TextView)findViewById(R.id.referedby_tv);
+
+		referalResponse = (TextView)findViewById(R.id.referalresponse_tv);
+		referalResponse.setVisibility(View.GONE);
 
 		upi_id_et = (EditText) findViewById(R.id.ed_upi_id);
 
@@ -148,7 +152,11 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 			}
 		});
 
-
+		try {
+			referalcode_referal.setText(ApplicationController.getInstance().settings.getString("referred_code"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		referalcode_referal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
@@ -319,15 +327,21 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					Log.e("status",""+reply);
 					if(reply.equals("Success")) {
 						String message = jsonObject.getString("message");
-						Toast.makeText(ReferalsActivity.this,""+message,Toast.LENGTH_SHORT).show();
+						//Toast.makeText(ReferalsActivity.this,""+message,Toast.LENGTH_SHORT).show();
 						referal_code_global = referal_code;
+						referalResponse.setVisibility(View.VISIBLE);
+						referalResponse.setText("You were referred by: "+jsonObject.getString("name"));
+						referalResponse.setTextColor(getResources().getColor(R.color.colorPrimary));
 
 					}
 					else
 					{
 						String errorMessage =jsonObject.getString("message");
-						Toast.makeText(ReferalsActivity.this,""+errorMessage,Toast.LENGTH_SHORT).show();
-						//Snackbar.make(apply_ll_btn_referal,""+errorMessage,Snackbar.LENGTH_SHORT).show();
+						referalResponse.setVisibility(View.VISIBLE);
+						referalResponse.setText(errorMessage.toString());
+						referalResponse.setTextColor(getResources().getColor(R.color.redColor));
+
+
 					}
 
 				} catch (JSONException e) {

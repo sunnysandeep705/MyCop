@@ -200,7 +200,8 @@
             android:background="@drawable/corners_grey"
             android:divider="@drawable/divider_grey"
             android:orientation="vertical"
-            android:showDividers="middle">
+            android:showDividers="middle"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -254,7 +255,8 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="15dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

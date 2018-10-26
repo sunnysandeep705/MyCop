@@ -53,8 +53,8 @@ public class CheckoutActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 
-		Intent intent = new Intent(CheckoutActivity.this,HomeActivity.class);
-		startActivity(intent);
+		//Intent intent = new Intent(CheckoutActivity.this,HomeActivity.class);
+		// startActivity(intent);
 		finish();
 	}
 	@Override
@@ -173,6 +173,7 @@ public class CheckoutActivity extends AppCompatActivity {
 					intent.putExtra("price",getIntent().getIntExtra("price",0));
 					intent.putExtra("delivery_charges",getIntent().getIntExtra("delivery_charges",0));
 					intent.putExtra("discount_amount",getIntent().getIntExtra("discount_amount",0));
+					intent.putExtra("scheme_Amt",getIntent().getStringExtra("schemeAmt_used"));
 
 					intent.putExtra("firstname",firstname.getText().toString());
 					intent.putExtra("lastname",lastname.getText().toString());
@@ -182,6 +183,7 @@ public class CheckoutActivity extends AppCompatActivity {
 					intent.putExtra("city",city.getText().toString());
 					intent.putExtra("pincode",pincode.getText().toString());
 					intent.putExtra("state",state.getText().toString());
+
 
 					startActivity(intent);
 					//finish();

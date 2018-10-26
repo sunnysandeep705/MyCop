@@ -34,77 +34,96 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
-                android:text="Please Enter Referal Code"
+                android:text="Please Enter Referral Code"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="19sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/colorWhite"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/corners_grey"
-                    android:gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <com.yellowsoft.newproject.CustomTextEdit
-                        android:id="@+id/referalcode_referal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="Ex.MCR18100000"
-                        android:imeOptions="actionDone"
-                        android:maxLines="1"
-                        android:padding="5dp"
-                        android:singleLine="true"
-                        android:textSize="15sp" />
+                        android:background="@drawable/corners_grey"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="horizontal">
+
+                        <com.yellowsoft.newproject.CustomTextEdit
+                            android:id="@+id/referalcode_referal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="Ex.MCR18100000"
+                            android:imeOptions="actionDone"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="gone"></LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/apply_ll_btn_referal"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical|center|end"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:visibility="gone"></LinearLayout>
+                        android:background="#e9e9e9"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView18"
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="APPLY"
+                            android:textSize="17sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/apply_ll_btn_referal"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|center|end"
-                    android:layout_marginBottom="15dp"
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/referalresponse_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:background="#e9e9e9"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView18"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center"
-                        android:text="APPLY"
-                        android:textSize="18sp" />
-                </LinearLayout>
+                    android:gravity="center_horizontal"
+                    android:text="com.yellowsoft.newproject.CustomTextView"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
 
             </LinearLayout>
 

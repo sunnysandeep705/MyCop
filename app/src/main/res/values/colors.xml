@@ -9,4 +9,5 @@
     <color name="colorlightGrey">#939393</color>
     <color name="tabtransparentcolor">#67a3a2</color>
     <color name="themeDarkColor">#00777d</color>
+    <color name="redColor">#ff6347</color>
 </resources>

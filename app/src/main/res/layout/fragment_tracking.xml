@@ -207,7 +207,7 @@
                 <LinearLayout
                     android:id="@+id/vehicle_details_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -382,6 +382,14 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/howto_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/howtousetracking"/>
             </LinearLayout>
         </LinearLayout>
 

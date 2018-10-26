@@ -20,6 +20,7 @@
     <string name="office_location"><u>Office Location</u></string>
     <string name="contact_details"><u>Contact Details</u></string>
     <string name="bank_a_c_details"><u>Bank A/C Details</u></string>
+    <string name="howtousetracking">Use the above username and password to login the Tracksolid app or website and start tracking the vehicle.</string>
     <string-array name="topicListItems">
         <item >My Orders</item>
         <item >My Profile</item>

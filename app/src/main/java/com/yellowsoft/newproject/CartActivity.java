@@ -14,6 +14,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,10 +38,14 @@ import java.util.Map;
 
 public class CartActivity extends AppCompatActivity {
 
-	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv,shippingcharge_tv;
+	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv;
 	TextView productTitle,productPrice,totalProductPrice;
+	TextView discount_tv_payment,shippingcharge_tv,referalmoney_payment;
+
 	LinearLayout prdcheckout_btn,apply_ll_btn;
-	LinearLayout menu_btn,back_btn,submit_btn;
+	LinearLayout menu_btn,back_btn,coupencode_ll;
+	LinearLayout usescheme_money_ll;
+
 
 	Integer cartquantity;
 	ProductsData product;
@@ -52,7 +58,10 @@ public class CartActivity extends AppCompatActivity {
 	int discount_int = 0;
 	int  shippingcharges_int;
 
+	CheckBox checkBox;
+
 	String coupon_code_str = "";
+	boolean schemeAmtUsed;
 
 	@Override
 	public void onBackPressed() {
@@ -72,11 +81,18 @@ public class CartActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cart);
 
-		productPrice = (TextView)findViewById(R.id.product_price_tv_item);
-		totalProductPrice = (TextView)findViewById(R.id.totalprice_tv_item);
-		productTitle = (TextView)findViewById(R.id.producttitle_tv_item);
-		quantity = (TextView)findViewById(R.id.quantity_tv_cart_item);
-		total_tv = (TextView)findViewById(R.id.total_tv);
+		callReferalMoney();
+
+		checkBox = (CheckBox) findViewById(R.id.checkBox);
+
+		coupencode_ll = (LinearLayout) findViewById(R.id.coupencode_ll);
+		usescheme_money_ll = (LinearLayout) findViewById(R.id.usescheme_money_ll);
+
+		productPrice = (TextView) findViewById(R.id.product_price_tv_item);
+		totalProductPrice = (TextView) findViewById(R.id.totalprice_tv_item);
+		productTitle = (TextView) findViewById(R.id.producttitle_tv_item);
+		quantity = (TextView) findViewById(R.id.quantity_tv_cart_item);
+		total_tv = (TextView) findViewById(R.id.total_tv);
 
 		product_image = (ImageView)findViewById(R.id.product_img_item);
 
@@ -84,6 +100,9 @@ public class CartActivity extends AppCompatActivity {
 		subtotal_tv = (TextView)findViewById(R.id.subtotal_tv);
 		discount_tv = (TextView)findViewById(R.id.discount_tv);
 		shippingcharge_tv = (TextView)findViewById(R.id.shippingcharge_tv);
+
+		discount_tv_payment = (TextView)findViewById(R.id.discount_tv_payment);
+		referalmoney_payment = (TextView)findViewById(R.id.referalmoney_payment);
 
 		product = (ProductsData)getIntent().getSerializableExtra("product");
 
@@ -131,7 +150,7 @@ public class CartActivity extends AppCompatActivity {
 
 
 		//item total
-		Integer itemTotal;
+		final Integer itemTotal;
 
 		itemTotal = cartquantity*Integer.parseInt(product.originalprice);
 		totalProductPrice.setText(""+itemTotal);
@@ -139,12 +158,41 @@ public class CartActivity extends AppCompatActivity {
 
 		subtotal = itemTotal;
 
+		discount_tv.setText("0");
+
+		//checkbox
+		checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked){
 
 
 
-        /*
-            getting shipping charges
-         */
+					schemeAmtUsed=true;
+					coupencode_ll.setVisibility(View.GONE);
+
+					callReferalMoney();
+					discount_tv.setText(""+discount_int);
+					totals=addShippingCharges-discount_int;
+
+					total_tv.setText(""+totals);
+
+				}
+				else {
+
+					coupencode_ll.setVisibility(View.VISIBLE);
+					discount_tv.setText("0");
+					total_tv.setText(""+addShippingCharges);
+					//schemeAmtUsed  = false;
+
+				}
+			}
+		});
+
+
+        //    getting shipping charges
+
+
 		final String shippingcharges;
 		try {
 
@@ -182,10 +230,18 @@ public class CartActivity extends AppCompatActivity {
 				intent1.putExtra("delivery_charges",shippingcharges_int);
 				intent1.putExtra("discount_amount",discount_int);
 				intent1.putExtra("coupon_code",coupon_code_str);
-
+				if (schemeAmtUsed==true) {
+					intent1.putExtra("schemeAmt_used", "1");
+				}
+				else {
+					intent1.putExtra("schemeAmt_used", "0");
+				}
 				startActivity(intent1);
 			}
 		});
+
+
+
 
 
 	}
@@ -256,7 +312,7 @@ public class CartActivity extends AppCompatActivity {
 						String discount = jsonObject.getString("discount_value");
 						Log.e("discount",""+discount);
 
-						discount_tv.setText("-"+discount);
+						discount_tv.setText(""+discount);
 
 						Log.e("totalss",""+totalss);
 
@@ -290,6 +346,7 @@ public class CartActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
+						Toast.makeText(CartActivity.this,"Internet error",Toast.LENGTH_SHORT).show();
 						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){
@@ -298,6 +355,78 @@ public class CartActivity extends AppCompatActivity {
 				Map<String,String> parameters = new HashMap<String, String>();
 				parameters.put("coupon",coupen);
 				parameters.put("cart_total",total);
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+	}
+
+	//referal amount check
+	public void callReferalMoney(){
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/scheme_amount_check.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("referalmoney",response);
+
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+					//scheme_amount
+				}
+				try {
+					JSONObject jsonObject=new JSONObject(response);
+					String reply=jsonObject.getString("scheme_amount");
+					Log.e("status",""+reply);
+
+					if (reply.equals("0")){
+						discount_tv_payment.setText("use my scheme amount");
+						usescheme_money_ll.setVisibility(View.GONE);
+
+					}
+					else {
+						discount_tv_payment.setText("use my scheme amount");
+
+						discount_int = Integer.parseInt(reply);
+						if (schemeAmtUsed==true){
+							discount_tv.setText(reply);
+						}
+
+						//subtotal_tv.setText(reply);
+					}
+
+
+					referalmoney_payment.setText(reply);
+
+
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+						Toast.makeText(CartActivity.this,"Internet error",Toast.LENGTH_SHORT).show();
+						// /Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+				parameters.put("member_id",Session.getUserid(CartActivity.this));
+				Log.e("memberid",Session.getUserid(CartActivity.this));
+
+
+
 				return parameters;
 			}
 		};

@@ -259,6 +259,10 @@ public class MyearningsActivity extends AppCompatActivity {
 								ll_refund.setVisibility(View.VISIBLE);
 							}
 						}
+						if (jsonObject.getString("scheme_amount_used").equals("1")){
+							tv_status.setText("Completed");
+							tv_status_des.setText("(You have used your investment fund)");
+						}
 
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -270,6 +274,7 @@ public class MyearningsActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
+						Toast.makeText(MyearningsActivity.this,"Network error",Toast.LENGTH_SHORT).show();
 					}
 				}){
 			@Override

@@ -43,8 +43,10 @@ public class TrackFragment extends Fragment {
 	ViewFlipper mViewflipper;
 	RelativeLayout publictab,personaltab;
 	LinearLayout tabone,tabtwo,tabindicator_one,tabindicator_two,submit,vehicle_details,transparent;
-	TextView tv_public,tv_personal,trackingtextone,trackingtexttwo,trackingtextthree,tracksolid_url;
-	TextView noresults_tv;
+
+	TextView tv_public,tv_personal,trackingtextthree,tracksolid_url;
+	TextView noresults_tv,howto_tv,trackingtextone,trackingtexttwo;
+
 	ImageView playstore,appstore;
 
 	WebView webView;
@@ -73,11 +75,13 @@ public class TrackFragment extends Fragment {
 
 
 		Log.e("trackfragment","trackfragment");
+
 		mViewflipper = (ViewFlipper)view.findViewById(R.id.viewflipper);
 		vehicle_details = (LinearLayout)view.findViewById(R.id.vehicle_details_ll);
 		trackingtextone = (TextView)view.findViewById(R.id.tracking_text_one);
 		trackingtexttwo = (TextView)view.findViewById(R.id.tracking_text_two);
 		trackingtextthree = (TextView)view.findViewById(R.id.tracking_text_three);
+		howto_tv = (TextView)view.findViewById(R.id.howto_tv);
 
 		tracksolid_url = (TextView)view.findViewById(R.id.tracksolid_url_btn);
 		noresults_tv = (TextView)view.findViewById(R.id.noresults_tv);
@@ -271,7 +275,7 @@ public class TrackFragment extends Fragment {
 					}
 					else {
 						noresults_tv.setVisibility(View.GONE);
-
+						howto_tv.setVisibility(View.VISIBLE);
 					}
 
 
@@ -284,6 +288,7 @@ public class TrackFragment extends Fragment {
 						Log.e("jsonobjectLength",""+jsonObject.length());
 						TrackData temp = new TrackData(jsonObject);
 						trackData.add(temp);
+
 
 					//	myOrdersData.add(temp);
 

@@ -40,6 +40,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 	TextView quantity,page_title,cod_tv,wallet_tv,card_tv,total_tv_payment;
 	TextView totalpayable_amt,referalmoney_payment;
 	TextView discount_tv_payment;
+
 	LinearLayout menu_btn,back_btn,submit_btn,payconfirm_ll_btn,cod_ll,card_ll,wallet_ll;
 	ImageView back,checkoff_cash,checkon_cash,checkoff_card,checkon_card,checkoff_wallet,checkon_wallet,cashimg,walletimg,cardimg;
 
@@ -62,16 +63,23 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_payment);
+
 		Toolbar toolbar = (Toolbar)findViewById(R.id.payment_toolBar);
+
 		payconfirm_ll_btn = (LinearLayout)findViewById(R.id.payconfirm_ll_btn);
 
-		discount_tv_payment = (TextView)findViewById(R.id.discount_tv_payment);
 
-		checkBox = (CheckBox)findViewById(R.id.checkBox);
 
-		callReferalMoney();
+		//callReferalMoney();
+		if (getIntent().getStringExtra("scheme_Amt").equals("1")){
 
-		referalmoney_payment = (TextView)findViewById(R.id.referalmoney_payment);
+			schemeAmtUsed=true;
+		}
+		else {
+			schemeAmtUsed=false;
+		}
+
+
 
 
 
@@ -81,30 +89,12 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 		final String totalprices =String.valueOf(getIntent().getIntExtra("total_price",0));
 		Log.e("totalprice",""+totalprices);
-		//final String total = String.valueOf(getIntent().getIntExtra("total_price",0));
+
 
 		total_tv_payment.setText(totalprices);
 
 		totalpayable_amt.setText(totalprices);
-		checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked){
 
-					int i = Integer.parseInt(totalprices)-Integer.parseInt(referalmoney_payment.getText().toString());
-					totalpayable_amt.setText(""+i);
-					schemeAmtUsed=true;
-
-				}
-				else {
-
-					//int j = Integer.parseInt(totalprices)-Integer.parseInt(referalmoney_payment.getText().toString());
-					totalpayable_amt.setText(""+totalprices);
-					schemeAmtUsed  = false;
-
-				}
-			}
-		});
 
 
 		cod_ll = (LinearLayout)findViewById(R.id.cod_ll);
@@ -170,35 +160,13 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			}
 		});
 
-		/*checkon_cash.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				check(checkon_cash,checkoff_cash,checkon_wallet,checkon_card);
-			}
-		});
 
-		checkon_wallet.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				check(checkon_wallet,checkoff_wallet,checkon_card,checkon_cash);
-			}
-		});
-
-		checkon_card.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				check(checkon_card,checkoff_card,checkon_cash,checkon_wallet);
-			}
-		});*/
 
 		payconfirm_ll_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 				callPlaceOrderService();
-
-//				if(collect_payment)
-//				startPayment();
 
 				}
 		});
@@ -305,6 +273,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 						if(collect_payment){
 							//intent.putExtra("id", jsonObject.getString("invoice_id"));
 							invoiceid = jsonObject.getString("invoice_id");
+
 
 							startPayment(invoiceid);
 
@@ -562,65 +531,6 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 			ApplicationController.getInstance().addToRequestQueue(stringRequest);
 
 		}
-	public void callReferalMoney(){
-		final ProgressDialog progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Please Wait....");
-		progressDialog.show();
-		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/scheme_amount_check.php";
 
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
-			@Override
-			public void onResponse(String response) {
-				Log.e("referalmoney",response);
-
-				if(progressDialog!=null) {
-					progressDialog.dismiss();
-					//scheme_amount
-				}
-				try {
-					JSONObject jsonObject=new JSONObject(response);
-					String reply=jsonObject.getString("scheme_amount");
-					Log.e("status",""+reply);
-
-					if (reply.equals("0")){
-						discount_tv_payment.setText("use my referal money");
-					}
-					else {
-						discount_tv_payment.setText("use my scheme amount");
-					}
-
-
-						referalmoney_payment.setText(reply);
-
-
-
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		},
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						if(progressDialog!=null)
-							progressDialog.dismiss();
-						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-					}
-				}){
-			@Override
-			protected Map<String,String> getParams(){
-				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("member_id",Session.getUserid(PaymentActivity.this));
-				Log.e("memberid",Session.getUserid(PaymentActivity.this));
-
-
-
-				return parameters;
-			}
-		};
-		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-	}
 
 }
