@@ -3,7 +3,191 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REFERRAL ID:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothammedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STATUS:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothammedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TRAN-DETAILS:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothammedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="REFERRED BY:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothammedium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/referalid_myreferals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="123456"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothambook" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/status_myreferals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothambook" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/trans_details_myreferals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothambook" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/referredbyname_myreferals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    app:font_name="Gothambook" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,71 +269,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"></LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/referalid_myreferals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:text="123456"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                app:font_name="Gothambook" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/status_myreferals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:text="123456"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                app:font_name="Gothambook" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/trans_details_myreferals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:text="123456"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                app:font_name="Gothambook" />
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

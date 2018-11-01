@@ -6,11 +6,13 @@ import org.json.JSONObject;
 public class MyReferalsData {
 
 String referalid,status,transdetails,date;
+String referredby;
 
-		public MyReferalsData(String referalid,String status,String transdetails){
+		public MyReferalsData(String referalid,String status,String transdetails,String referredby){
 				this.referalid = referalid;
 				this.status = status;
 				this.transdetails = transdetails;
+				this.referredby = referredby;
 				}
 
 
@@ -21,8 +23,9 @@ String referalid,status,transdetails,date;
 		try {
 			this.referalid = jsonObject.getString("id");
 			this.status = jsonObject.getString("status");
-			this.transdetails = jsonObject.getString("transaction");
+			this.transdetails = jsonObject.getString("transaction");//transaction
 			this.date = jsonObject.getString("date");
+			this.referredby = jsonObject.getString("name");
 
 
 		} catch (JSONException e) {

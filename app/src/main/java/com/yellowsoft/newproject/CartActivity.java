@@ -63,6 +63,8 @@ public class CartActivity extends AppCompatActivity {
 	String coupon_code_str = "";
 	boolean schemeAmtUsed;
 
+	String scheme_amt="0";
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -171,19 +173,27 @@ public class CartActivity extends AppCompatActivity {
 					schemeAmtUsed=true;
 					coupencode_ll.setVisibility(View.GONE);
 
-					callReferalMoney();
-					discount_tv.setText(""+discount_int);
-					totals=addShippingCharges-discount_int;
+					//callReferalMoney();
+					discount_tv.setText(""+scheme_amt);
+					totals=addShippingCharges-Integer.parseInt(scheme_amt);
+
+					coupon_code_str="";
+					coupon_code.setText("");
+
+					discount_int=0;
 
 					total_tv.setText(""+totals);
 
 				}
 				else {
+					schemeAmtUsed=false;
 
 					coupencode_ll.setVisibility(View.VISIBLE);
 					discount_tv.setText("0");
+
 					total_tv.setText(""+addShippingCharges);
-					//schemeAmtUsed  = false;
+					//schemeAmtUsed  = false;\
+					discount_int =0;
 
 				}
 			}
@@ -223,19 +233,39 @@ public class CartActivity extends AppCompatActivity {
 		prdcheckout_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				int total_to_send;
+				total_to_send = subtotal+shippingcharges_int;
 				Intent intent1  = new Intent(CartActivity.this,CheckoutActivity.class);
 				intent1.putExtra("product",product);
-				intent1.putExtra("total_price",totals);
+
 				intent1.putExtra("price",subtotal);
 				intent1.putExtra("delivery_charges",shippingcharges_int);
-				intent1.putExtra("discount_amount",discount_int);
-				intent1.putExtra("coupon_code",coupon_code_str);
+				if (coupon_code_str.equals("")) {
+					intent1.putExtra("discount_amount", "");
+					intent1.putExtra("coupon_code", "");
+
+				}
+				else {
+
+					intent1.putExtra("discount_amount", discount_int);
+					intent1.putExtra("coupon_code", coupon_code_str);
+					total_to_send =total_to_send-discount_int;
+				}
+
+
 				if (schemeAmtUsed==true) {
 					intent1.putExtra("schemeAmt_used", "1");
+					intent1.putExtra("scheme_amount",scheme_amt);
+					total_to_send =total_to_send-Integer.parseInt(scheme_amt);
 				}
 				else {
 					intent1.putExtra("schemeAmt_used", "0");
+
+					intent1.putExtra("scheme_amount","0");
 				}
+
+				intent1.putExtra("total_price",total_to_send);
+				Log.e("total_tosend",""+total_to_send);
 				startActivity(intent1);
 			}
 		});
@@ -328,7 +358,8 @@ public class CartActivity extends AppCompatActivity {
 						Session.setTotalPrice(CartActivity.this,""+totals);
 
 
-						coupon_code_str = coupen;
+						coupon_code_str = coupon_code.getText().toString();
+						Log.e("coupen_code",coupon_code_str);
 
 					}
 					else {
@@ -386,15 +417,25 @@ public class CartActivity extends AppCompatActivity {
 					if (reply.equals("0")){
 						discount_tv_payment.setText("use my scheme amount");
 						usescheme_money_ll.setVisibility(View.GONE);
+						scheme_amt="0";
 
 					}
 					else {
 						discount_tv_payment.setText("use my scheme amount");
 
-						discount_int = Integer.parseInt(reply);
-						if (schemeAmtUsed==true){
-							discount_tv.setText(reply);
-						}
+						//discount_tv.setText(reply);
+						//discount_int = Integer.parseInt(reply);
+						scheme_amt = String.valueOf(reply);
+
+
+						/*if (schemeAmtUsed==true){
+
+
+						}*/
+					/*	else {
+							discount_tv.setText("0");
+							discount_int = 0;
+						}*/
 
 						//subtotal_tv.setText(reply);
 					}

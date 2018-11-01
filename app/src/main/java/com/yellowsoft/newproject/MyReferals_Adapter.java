@@ -34,9 +34,10 @@ public class MyReferals_Adapter extends RecyclerView.Adapter<MyReferals_Adapter.
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
-		holder.referalids.setText(items.get(position).date+" "+items.get(position).referalid);
+		holder.referalids.setText(items.get(position).date);
 		holder.status.setText(items.get(position).status);
 		holder.transdetails.setText(items.get(position).transdetails);
+		holder.name.setText(items.get(position).referredby+" "+items.get(position).referalid);
 
 		holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -59,7 +60,7 @@ public class MyReferals_Adapter extends RecyclerView.Adapter<MyReferals_Adapter.
 	public  class MyViewHolder extends RecyclerView.ViewHolder
 	{
 
-		TextView referalids,status,transdetails;
+		TextView referalids,status,transdetails,name;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
@@ -67,6 +68,7 @@ public class MyReferals_Adapter extends RecyclerView.Adapter<MyReferals_Adapter.
 			referalids = (TextView)itemView.findViewById(R.id.referalid_myreferals);
 			status = (TextView)itemView.findViewById(R.id.status_myreferals);
 			transdetails = (TextView)itemView.findViewById(R.id.trans_details_myreferals);
+			name = (TextView)itemView.findViewById(R.id.referredbyname_myreferals);
 		}
 	}
 }

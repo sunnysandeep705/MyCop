@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.android.volley.Request;
@@ -159,7 +160,8 @@ public class TrackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (vechinumber.getText().toString().equals("")){
-					Snackbar.make(vechinumber,"Enter Vechile id or Username",Snackbar.LENGTH_SHORT).show();
+					Toast.makeText(getContext(),"Enter Vechile id or Username",Toast.LENGTH_SHORT).show();
+					/*Snackbar.make(vechinumber,"Enter Vechile id or Username",Snackbar.LENGTH_SHORT).show();*/
 
 				}else {
 					vehicle_details.setVisibility(View.VISIBLE);
@@ -271,7 +273,7 @@ public class TrackFragment extends Fragment {
 					Log.e("jsonArray",""+jsonArray.toString());
 					if (jsonArray.length()<1){
 						noresults_tv.setVisibility(View.VISIBLE);
-
+						howto_tv.setVisibility(View.GONE);
 					}
 					else {
 						noresults_tv.setVisibility(View.GONE);
@@ -333,6 +335,7 @@ public class TrackFragment extends Fragment {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
 						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+						Toast.makeText(getContext(),"Network error",Toast.LENGTH_SHORT).show();
 					}
 				}){
 			@Override

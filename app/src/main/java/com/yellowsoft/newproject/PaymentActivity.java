@@ -68,7 +68,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 		payconfirm_ll_btn = (LinearLayout)findViewById(R.id.payconfirm_ll_btn);
 
-
+		Log.e("validCoupen",""+getIntent().getStringExtra("coupon_code"));
 
 		//callReferalMoney();
 		if (getIntent().getStringExtra("scheme_Amt").equals("1")){
@@ -333,6 +333,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				jsonObject_to_send.put("products",getProductasJson((ProductsData) getIntent().getSerializableExtra("product")));
 				jsonObject_to_send.put("total_price",String.valueOf(getIntent().getIntExtra("total_price",0)));
 				jsonObject_to_send.put("coupon_code",getIntent().getStringExtra("coupon_code"));
+				Log.e("ValidCoupenCodes",""+getIntent().getStringExtra("coupon_code"));
 
 				if(collect_payment) {
 
@@ -347,9 +348,12 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 				jsonObject_to_send.put("member_id",Session.getUserid(PaymentActivity.this));
 				if (schemeAmtUsed==true){
 						jsonObject_to_send.put("scheme_amount_use","1");
+						jsonObject_to_send.put("scheme_amount",getIntent().getStringExtra("scheme_amount"));
 				}
 				else {
 						jsonObject_to_send.put("scheme_amount_use","0");
+					jsonObject_to_send.put("scheme_amount",getIntent().getStringExtra("scheme_amount"));
+					jsonObject_to_send.put("discount_amount",String.valueOf(getIntent().getIntExtra("discount_amount",0)));
 				}
 
 

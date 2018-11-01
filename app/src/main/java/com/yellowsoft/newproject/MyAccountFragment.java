@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,11 +29,28 @@ public class MyAccountFragment extends Fragment {
 	String playstorelink;
 	LinearLayout referralcode_ll;
 
+	ImageView share_img;
+
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_myaccount, container, false);
+
 		listView = (ListView)view.findViewById(R.id.lv_myaccount);
+		share_img = (ImageView)view.findViewById(R.id.share_img);
+		share_img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(getActivity())+") before making the payment. You can earn Rs. 1000/- for every successful referral."+playstorelink;
+
+				//String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+			}
+		});
 
 
 		try {
@@ -79,6 +97,7 @@ public class MyAccountFragment extends Fragment {
 			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
 			menuItems.add(new MenuItem("My Referals", "", R.drawable.myreferals));
 			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
+			menuItems.add(new MenuItem("My Noitifications","",R.drawable.notification));
 		}
 
 		MenuAdapter_MyAccount menuAdapter_myAccount = new MenuAdapter_MyAccount(getContext(),menuItems);
@@ -89,7 +108,7 @@ public class MyAccountFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				if (position==0){
 					Intent intent = new Intent(getContext(),MyOrdersActivity.class);
-					startActivity(intent);
+					startActivityForResult(intent,888);
 				}
 				else if (position==1){
 					Intent intent = new Intent(getContext(),MyProfileActivity.class);
@@ -99,10 +118,14 @@ public class MyAccountFragment extends Fragment {
 					Intent intent = new Intent(getContext(),MyreferalsActivity.class);
 					startActivity(intent);
 				}
-				else
+				else if (position==3)
 				{
 					Intent intent = new Intent(getContext(),MyearningsActivity.class);
 					startActivityForResult(intent,888);
+				}
+				else {
+					Intent intent = new Intent(getContext(),NotificationsActivity.class);
+					startActivity(intent);
 				}
 
 			}
@@ -140,6 +163,7 @@ public class MyAccountFragment extends Fragment {
 				}
 
             }
+
         }
 
     }

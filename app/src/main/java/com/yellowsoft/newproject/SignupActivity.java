@@ -82,13 +82,13 @@ public class SignupActivity extends AppCompatActivity {
 					//showAlert("Error","Please enter lastname");
 
 				}
-				else if(et_email.getText().toString().length()==0){
-					Snackbar.make(et_fname,"Please enter email",Snackbar.LENGTH_SHORT).show();
+				else if(et_email.getText().toString().length()==0||!et_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
+					Snackbar.make(et_fname,"Please enter valid email",Snackbar.LENGTH_SHORT).show();
 					//showAlert("Error","Please enter email");
 
 				}
-				else if(et_phnumber.getText().toString().length()==0){
-					Snackbar.make(et_fname,"Please enter phonenumber",Snackbar.LENGTH_SHORT).show();
+				else if(et_phnumber.getText().toString().length()!=10){
+					Snackbar.make(et_fname,"Please enter valid mobile number",Snackbar.LENGTH_SHORT).show();
 					//showAlert("Error","Please enter mobile");
 
 				}

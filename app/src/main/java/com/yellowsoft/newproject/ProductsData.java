@@ -39,7 +39,7 @@ public class ProductsData  implements Serializable{
 
 				for (int i=0;i<jsonObject.getJSONArray("images").length();i++){
 					String image  = jsonObject.getJSONArray("images").getString(i);
-					Log.e("images",""+image);
+				//	Log.e("images",""+image);
 					images.add(new RequestImages(image));
 				}
 

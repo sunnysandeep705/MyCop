@@ -34,6 +34,7 @@ import java.util.Map;
 public class MyProfileActivity extends AppCompatActivity {
 	TextView page_title,tv_username_myprofile;
 	TextView dojoining_tv,referedby_tv;
+	TextView referredbyname_tv_myprofile;
 	LinearLayout back_btn,menu_btn,changepassword_btn;
 	ImageView back;
 	CardView edit_btn;
@@ -60,6 +61,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
 		referedby_tv = (TextView)findViewById(R.id.referedby_tv);
 		dojoining_tv = (TextView)findViewById(R.id.dojoining_tv);
+		referredbyname_tv_myprofile = (TextView)findViewById(R.id.referredbyname_tv_myprofile);
 
 		edit_btn = (CardView)findViewById(R.id.edit_cardview);
 
@@ -107,13 +109,13 @@ public class MyProfileActivity extends AppCompatActivity {
 
 					Snackbar.make(save_ll,"Enter Last Name",Snackbar.LENGTH_SHORT).show();
 
-				}else if(ed_phone.getText().toString().equals("")){
+				}else if(ed_phone.getText().toString().length()!=10){
 
 					Snackbar.make(save_ll,"Enter Phone Number",Snackbar.LENGTH_SHORT).show();
 
-				}else if(ed_email.getText().toString().equals("")){
+				}else if(ed_email.getText().toString().equals("")||!ed_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
 
-					Snackbar.make(save_ll,"Enter Email Address",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(save_ll,"Enter Valid Email Address",Snackbar.LENGTH_SHORT).show();
 
 				}
 
@@ -218,9 +220,12 @@ public class MyProfileActivity extends AppCompatActivity {
 
 						dojoining_tv.setText(jsonObject.getString("scheme_amount_date"));
 						referedby_tv.setText(jsonObject.getString("referred_code"));
+					referredbyname_tv_myprofile.setText(jsonObject.getString("referred_name"));
+						//+"-"+jsonObject.getString("referred_name")
 
 						ed_acc_name.setText(jsonObject.getString("bank"));
 						ed_acc_number.setText(jsonObject.getString("acno"));
+					ed_bankaccnumber_confirm.setText(jsonObject.getString("acno"));
 						ed_ifsc_code.setText(jsonObject.getString("ifsc"));
 						ed_acc_email.setText(jsonObject.getString("upid"));
 

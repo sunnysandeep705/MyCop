@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,7 +137,7 @@ public class SchemeFragment extends Fragment {
 				//ShowpopupWindow("Scheme details","schemedeatils");
 
 				try {
-					String scheme = ApplicationController.getInstance().settings.getString("scheme_details");
+					String scheme = ApplicationController.getInstance().settings.getString("content_scheme_details");
 					ShowpopupWindow("Scheme details",scheme);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -188,6 +189,7 @@ public void ShowpopupWindow(String title,String content){
 		popup_title.setText(title);
 		popup.setVisibility(View.VISIBLE);
 		popup_content.setText(Html.fromHtml("<p>"+content+"</p>"));
+	popup_content.setMovementMethod(LinkMovementMethod.getInstance());
 }
 public void ClosePop(){
 	popup.setVisibility(View.GONE);

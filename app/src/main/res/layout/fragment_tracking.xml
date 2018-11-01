@@ -148,7 +148,8 @@
                     android:id="@+id/ll_transparent"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical"
+                    android:visibility="visible"></LinearLayout>
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/textView7"
@@ -209,6 +210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -382,14 +384,16 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/howto_tv"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/howtousetracking"/>
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="@string/howtousetracking"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
 

@@ -146,8 +146,8 @@ public class CheckoutActivity extends AppCompatActivity {
 				else if(address.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter address",Snackbar.LENGTH_SHORT).show();
 				}
-				else if(email.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter email",Snackbar.LENGTH_SHORT).show();
+				else if(email.getText().toString().equals("")||!email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
+					Snackbar.make(firstname,"please enter valid email",Snackbar.LENGTH_SHORT).show();
 				}
 				else if(phone.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter phonenumber",Snackbar.LENGTH_SHORT).show();
@@ -155,8 +155,8 @@ public class CheckoutActivity extends AppCompatActivity {
 				else if(city.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter city",Snackbar.LENGTH_SHORT).show();
 				}
-				else if(pincode.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter pincode",Snackbar.LENGTH_SHORT).show();
+				else if(pincode.getText().toString().equals("")||pincode.getText().toString().length()>6){
+					Snackbar.make(firstname,"please enter valid pincode",Snackbar.LENGTH_SHORT).show();
 				}
 				/*else if(country.getText().toString().equals("")){
 					Snackbar.make(firstname,"please enter countryname",Snackbar.LENGTH_SHORT).show();
@@ -174,6 +174,8 @@ public class CheckoutActivity extends AppCompatActivity {
 					intent.putExtra("delivery_charges",getIntent().getIntExtra("delivery_charges",0));
 					intent.putExtra("discount_amount",getIntent().getIntExtra("discount_amount",0));
 					intent.putExtra("scheme_Amt",getIntent().getStringExtra("schemeAmt_used"));
+					intent.putExtra("coupon_code",getIntent().getStringExtra("coupon_code"));
+					intent.putExtra("scheme_amount",getIntent().getStringExtra("scheme_amount"));
 
 					intent.putExtra("firstname",firstname.getText().toString());
 					intent.putExtra("lastname",lastname.getText().toString());

@@ -53,6 +53,7 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 	EditText ed_bank_ac,ed_ac_number_confirm;
 	EditText ed_ifsc_code;
 
+	boolean validReferralCode=false;
 
 	@Override
 	public void onBackPressed() {
@@ -113,7 +114,9 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					}
 					//Snackbar.make(paynow_ll_referal,"Enter bank details or upi id",Snackbar.LENGTH_SHORT).show();
 					Toast.makeText(ReferalsActivity.this,"Enter bank details or upi id",Toast.LENGTH_SHORT).show();
-				} else {
+
+				}
+				else {
 
 					popup.setVisibility(View.VISIBLE);
 					referedby_tv.setText(referalcode_referal.getText().toString());
@@ -327,6 +330,10 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					Log.e("status",""+reply);
 					if(reply.equals("Success")) {
 						String message = jsonObject.getString("message");
+
+						validReferralCode=true;
+						referalcode_referal.setEnabled(false);
+
 						//Toast.makeText(ReferalsActivity.this,""+message,Toast.LENGTH_SHORT).show();
 						referal_code_global = referal_code;
 						referalResponse.setVisibility(View.VISIBLE);
@@ -336,6 +343,9 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 					}
 					else
 					{
+						validReferralCode=false;
+						referalcode_referal.setEnabled(true);
+
 						String errorMessage =jsonObject.getString("message");
 						referalResponse.setVisibility(View.VISIBLE);
 						referalResponse.setText(errorMessage.toString());

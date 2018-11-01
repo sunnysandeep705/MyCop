@@ -38,9 +38,11 @@ public class MyreferalsActivity extends AppCompatActivity {
 	ArrayList<MyReferalsData> myOrdersData=new ArrayList<MyReferalsData>();
 
 	LinearLayout transaction_details_ll,no_referals_ll,myearnings_ll;
+	LinearLayout schemedetails_ll_myreferrals;
 
 	TextView page_title;
 	ImageView back;
+	ImageView share_img_myreferral;
 	LinearLayout back_btn,menu_btn;
 	TextView tv_ref_code;
 
@@ -64,10 +66,20 @@ public class MyreferalsActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activtiy_myreferals);
+
 		myreferals =(RecyclerView)findViewById(R.id.referals_recycler);
 
 		transaction_details_ll = (LinearLayout)findViewById(R.id.transaction_details_ll);
 		myearnings_ll = (LinearLayout)findViewById(R.id.earnings_ll_myreferrals);
+
+		schemedetails_ll_myreferrals = (LinearLayout)findViewById(R.id.schemedetails_ll_myreferrals);
+		schemedetails_ll_myreferrals.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent  = new Intent(MyreferalsActivity.this,SchemeDetails_Activity.class);
+				startActivity(intent);
+			}
+		});
 
 		myearnings_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -78,6 +90,11 @@ public class MyreferalsActivity extends AppCompatActivity {
 		});
 
 		no_referals_ll = (LinearLayout)findViewById(R.id.no_referrals_ll);
+		try {
+			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		myReferals_adapter = new MyReferals_Adapter(MyreferalsActivity.this,myOrdersData);
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MyreferalsActivity.this);
@@ -85,6 +102,20 @@ public class MyreferalsActivity extends AppCompatActivity {
 
 		myreferals.setLayoutManager(linearLayoutManager);
 		myreferals.setAdapter(myReferals_adapter);
+
+		share_img_myreferral = (ImageView)findViewById(R.id.share_img_myreferral);
+		share_img_myreferral.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "Hi, I am "+Session.getUserName(MyreferalsActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(MyreferalsActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral." +playstorelink;
+
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
+			}
+		});
 
 		Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_myreferals);
 		setSupportActionBar(toolbar);
@@ -95,11 +126,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 		tv_ref_code = (TextView) findViewById(R.id.tv_myreferalcode);
 		tv_ref_code.setText(Session.getMemberCode(this));
 
-		try {
-			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+
 		tv_ref_code.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

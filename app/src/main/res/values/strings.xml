@@ -21,6 +21,8 @@
     <string name="contact_details"><u>Contact Details</u></string>
     <string name="bank_a_c_details"><u>Bank A/C Details</u></string>
     <string name="howtousetracking">Use the above username and password to login the Tracksolid app or website and start tracking the vehicle.</string>
+    <string name="shareText">Click on your Referral ID to share with your friends</string>
+    <string name="schemeSuccess_text">You have successfully joined our Purchase Advance Scheme. Your referral code is shown below. Now share it with your friends and earn Rs. 1000/- for every successful referral.</string>
     <string-array name="topicListItems">
         <item >My Orders</item>
         <item >My Profile</item>

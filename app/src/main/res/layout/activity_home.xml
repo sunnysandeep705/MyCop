@@ -545,7 +545,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="40dp"
                         android:text="Follow us @"
                         app:font_name="Gothambook" />
 
@@ -598,6 +597,15 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:src="@drawable/gmail_icon" />
+
+                    <ImageView
+                        android:id="@+id/youtube_img_btn"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/youtube" />
                 </LinearLayout>
 
                 <LinearLayout

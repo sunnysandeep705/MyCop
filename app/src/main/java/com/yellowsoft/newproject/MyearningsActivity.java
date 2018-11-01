@@ -39,9 +39,13 @@ public class MyearningsActivity extends AppCompatActivity {
 	ImageView close;
 	LinearLayout popup;
 	TextView page_title,membercode_myearnings;
-	ImageView back;
-	LinearLayout back_btn,menu_btn,notes_ll;
+	TextView schemedetails_myearnings;
 
+	ImageView back,shop_img_toolbar;
+	ImageView share_img;
+
+	LinearLayout ll_myreferrals_myearnings;
+	LinearLayout back_btn,menu_btn,notes_ll;
 	TextView notes_tv,schemeamt_myearnings;
 	String playstorelink;
 
@@ -54,7 +58,26 @@ public class MyearningsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myearnings);
 
+		ll_myreferrals_myearnings = (LinearLayout)findViewById(R.id.ll_myreferrals_myearnings);
+		ll_myreferrals_myearnings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyearningsActivity.this,MyreferalsActivity.class);
+				startActivity(intent);
+			}
+		});
+
+
+		schemedetails_myearnings = (TextView)findViewById(R.id.schemeedetails_myearnings);
+		schemedetails_myearnings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyearningsActivity.this,SchemeDetails_Activity.class);
+				startActivity(intent);
+			}
+		});
 		schemeamt_myearnings = (TextView)findViewById(R.id.schemeamt_myearnings);
+
 		try {
 			schemeamt_myearnings.setText(ApplicationController.getInstance().settings.getString("scheme_amount"));
 		} catch (JSONException e) {
@@ -88,6 +111,20 @@ public class MyearningsActivity extends AppCompatActivity {
 				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
 				startActivity(sharingIntent);
 
+			}
+		});
+
+		share_img = (ImageView)findViewById(R.id.share_img_myearinigs);
+		share_img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String shareBody = "Hi, I am "+Session.getUserName(MyearningsActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(MyearningsActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral." +playstorelink;
+
+				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
+				startActivity(sharingIntent);
 			}
 		});
 
@@ -168,6 +205,18 @@ public class MyearningsActivity extends AppCompatActivity {
 		page_title = (TextView) v.findViewById(R.id.page_title);
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
 
+		shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
+		shop_img_toolbar.setVisibility(View.VISIBLE);
+		shop_img_toolbar.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyearningsActivity.this,HomeActivity.class);
+				//startActivity(intent);
+				setResult(RESULT_OK,intent);
+				finish();
+			}
+		});
+
 		back = (ImageView)v.findViewById(R.id.btn_back);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -225,27 +274,33 @@ public class MyearningsActivity extends AppCompatActivity {
 
 						int total_ref = Integer.parseInt(jsonObject.getString("total_referrals"));
 						if(total_ref==0){
-
+							referal_sucess_tv_myer.setTextColor(getResources().getColor(R.color.redColor));
 							tv_status.setText("Pending");
-							tv_status_des.setText("(You are almost done! Refer two more member and get cash directly to your account or Buy GPS Tracker.)");
+							tv_status_des.setText("(You are almost done! Refer two more friends and get cash directly to your bank account or\n" +
+									"Buy any product from our Shop by paying the balance amount.)");
 							ll_buy_gps.setVisibility(View.GONE);
 							ll_refund.setVisibility(View.GONE);
 
 						}else if(total_ref==1){
-							tv_status.setText("Pending");
-							tv_status_des.setText("(You are almost done! Refer one more member and get cash directly to your account or Buy GPS Tracker.)");
+							referal_sucess_tv_myer.setTextColor(getResources().getColor(R.color.redColor));
+							tv_status.setText("Refund processing");
+							tv_status_des.setText("(Hi! Customer, you have successfully referred one of your friends in our Purchase Advance\n" +
+									"Scheme. Your investment refund for Rs. 2000/- will be deposited in your account if you do not\n" +
+									"buy any product from our website within next 24 hours)");
 							ll_buy_gps.setVisibility(View.GONE);
 							ll_refund.setVisibility(View.GONE);
 
 						}else {
+							referal_sucess_tv_myer.setTextColor(getResources().getColor(R.color.colorPrimary));
 							if (jsonObject.getString("scheme_amount_used").equals("1")) {
 								ll_buy_gps.setVisibility(View.GONE);
 								ll_refund.setVisibility(View.GONE);
 								//note2
 								notes_ll.setVisibility(View.VISIBLE);
 								notes_tv.setText(jsonObject.getString("note2"));
-								tv_status.setText("Completed");
-								tv_status_des.setText("(You have used your investment fund)");
+								tv_status.setText("Order Placed");
+								tv_status_des.setText("(You have used your money paid for Purchase Advance Scheme to buy products from our Shop.\n" +
+										"Thanks for Shopping with us!)");
 
 							} else {
 
@@ -260,8 +315,9 @@ public class MyearningsActivity extends AppCompatActivity {
 							}
 						}
 						if (jsonObject.getString("scheme_amount_used").equals("1")){
-							tv_status.setText("Completed");
-							tv_status_des.setText("(You have used your investment fund)");
+							tv_status.setText("Order Placed");
+							tv_status_des.setText("(You have used your money paid for Purchase Advance Scheme to buy products from our Shop.\\n\" +\n" +
+									"\t\t\t\t\t\t\t\t\t\t\"Thanks for Shopping with us!)");
 						}
 
 				} catch (JSONException e) {

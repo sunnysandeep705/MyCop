@@ -1,13 +1,17 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -53,13 +57,19 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		if(!items.get(position).images.equals(""))
 		Picasso.get().load(items.get(position).images).into(holder.order_img);
 
+
+
 		holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-			/*	Intent intent;
-				intent =  new Intent(context, Order_type.class);
-				intent.putExtra("service",items.get(position));
-				context.startActivity(intent);*/
+				Intent intent;
+				intent =  new Intent(context, OrderDetailsActivity.class);
+				intent.putExtra("details",items.get(position));
+				intent.putExtra("order_no",items.get(position).order_id);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				context.startActivity(intent);
+				//Toast.makeText(context,""+items.get(position).messageData,Toast.LENGTH_LONG).show();
+				//showAlert(items.get(position).messageData);
 
 			}
 
@@ -91,6 +101,22 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 
 			order_img=(ImageView)itemView.findViewById(R.id.order_img);
 		}
+	}
+
+	public void showAlert(ArrayList<MessageData> messageData){
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
+
+		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_selectable_list_item);
+		arrayAdapter.add("Hardik");
+		arrayAdapter.add("Archit");
+		arrayAdapter.add("Jignesh");
+		arrayAdapter.add("Umang");
+		arrayAdapter.add("Gatti");
+
+
+
+		builderSingle.setAdapter(arrayAdapter,null);
+		builderSingle.show();
 	}
 
 }

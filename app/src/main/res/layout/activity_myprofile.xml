@@ -147,6 +147,7 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:hint="phone number"
+                            android:inputType="phone"
                             android:padding="10dp"
                             android:singleLine="true"
                             android:textSize="14sp" />
@@ -279,13 +280,18 @@
                                     android:id="@+id/referedby_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="10dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="10dp"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="center"
                                     android:text="someone"
                                     android:textColor="@color/colorBlack"
                                     app:font_name="Gothambook" />
+
+                                <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/referredbyname_tv_myprofile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -343,6 +349,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:hint="Account number"
+                                android:inputType="number"
                                 android:padding="10dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
@@ -364,6 +371,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:hint="Confirm Account number"
+                                android:inputType="number"
                                 android:padding="10dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />

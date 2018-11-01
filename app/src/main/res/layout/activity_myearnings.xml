@@ -23,6 +23,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <com.yellowsoft.newproject.CustomTextView
@@ -80,10 +83,17 @@
                         android:textSize="14sp" />
 
                     <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView75"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee_symbol"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="22sp" />
+
+                    <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/referal_comm_tv_myer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
                         android:text="0"
                         android:textColor="@color/colorPrimary"
@@ -123,11 +133,24 @@
                         android:text="In process"
                         android:textColor="@color/colorBlack" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee_symbol"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/inprogress_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
                         android:text="0"
                         android:textColor="@color/colorBlack" />
@@ -154,11 +177,24 @@
                         android:text="Deposited in Account"
                         android:textColor="@color/colorBlack" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView77"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee_symbol"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/deposited_amt_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
                         android:text="0"
                         android:textColor="@color/colorBlack" />
@@ -168,10 +204,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -205,6 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <com.yellowsoft.newproject.CustomTextView
@@ -217,6 +254,16 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/schemeedetails_myearnings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="Click here to know Scheme Details"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -228,8 +275,16 @@
                         android:id="@+id/schemeamttitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Scheme amount:"
+                        android:text="My Investment: "
                         android:textColor="@android:color/black" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView78"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee_symbol"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/schemeamt_myearnings"
@@ -275,9 +330,9 @@
                         android:id="@+id/tv_status_desc"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textColor="@color/colorBlack"
@@ -297,6 +352,9 @@
                     android:id="@+id/ll_buy_gps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corners"
                     android:gravity="center"
@@ -317,7 +375,9 @@
                     android:id="@+id/ll_refund"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corners"
                     android:gravity="center"
@@ -334,43 +394,45 @@
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/notes_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/rounded_corners_white"
-        android:divider="@drawable/divider_grey"
-        android:orientation="vertical"
-        android:showDividers="middle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView54"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center_horizontal"
-            android:text="Notes : "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
+                <LinearLayout
+                    android:id="@+id/notes_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rounded_corners_white"
+                    android:divider="@drawable/divider_grey"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
 
-        <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/notes_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="content"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-    </LinearLayout>
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="Notes : "
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
 
-</LinearLayout>
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/notes_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="content"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -380,14 +442,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.yellowsoft.newproject.CustomTextView
                     android:id="@+id/customTextView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="end"
                     android:text="My Referal Code: "
                     android:textSize="14sp" />
@@ -396,9 +457,47 @@
                     android:id="@+id/membercode_myearnings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"
+                    app:font_name="Gothambook" />
+
+                <ImageView
+                    android:id="@+id/share_img_myearinigs"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/sharre" />
+            </LinearLayout>
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="3dp"
+                android:gravity="center_horizontal"
+                android:text="@string/shareText"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_myreferrals_myearnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/rounded_corners"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
+                    android:text="MY REFERRALS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
                     app:font_name="Gothambook" />
             </LinearLayout>
         </LinearLayout>

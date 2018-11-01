@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class ContentActivity extends AppCompatActivity {
 		String s = ""+Html.fromHtml(getIntent().getStringExtra("content"));
 		Log.e("content",""+s);
 		content.setText(s);
+		content.setMovementMethod(LinkMovementMethod.getInstance());
 
 		//tootlbar
 		Toolbar toolbar = (Toolbar) findViewById(R.id.content_toolbar);

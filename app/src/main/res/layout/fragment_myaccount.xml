@@ -82,24 +82,50 @@
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Referal Code: "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/myreferalcode_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MYCOP5499"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    app:font_name="Gothambook" />
+
+                <ImageView
+                    android:id="@+id/share_img"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/sharre" />
+            </LinearLayout>
 
             <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/customTextView12"
+                android:id="@+id/customTextView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Referal Code: "
-                android:textColor="@color/colorBlack"
-                android:textSize="15sp" />
+                android:layout_marginBottom="5dp"
+                android:text="@string/shareText"
+                android:textSize="12sp" />
 
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/myreferalcode_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MYCOP5499"
-                android:textColor="@color/colorPrimary"
-                android:textSize="17sp"
-                app:font_name="Gothambook" />
+
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

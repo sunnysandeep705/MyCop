@@ -54,7 +54,10 @@ public class HomeActivity extends AppCompatActivity {
 	LinearLayout ll_login_,ll_details_,login_btn,signup_btn;;
 	TabsAdapter tabsAdapter;
 	CustomViewPager mViewPager;
-	ImageView home_img,track_img,shop_img,scheme_img,account_img,fbbtn,gmbtn,twbtn,btn_cart;
+
+	ImageView home_img,track_img,shop_img,scheme_img;
+	ImageView account_img,fbbtn,gmbtn,twbtn,btn_cart;
+	ImageView youtube_btn;
 
 	@Override
 	public void onBackPressed() {
@@ -93,6 +96,7 @@ public class HomeActivity extends AppCompatActivity {
 		membercode.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 				Log.e("paystorelink",""+playstorelink);
 				/*Join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code (<Referral Code>) before making the payment. You can earn Rs. 1000/- for every successful referral.*/
 				String shareBody = "Hi, I am "+Session.getUserName(HomeActivity.this)+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(HomeActivity.this)+") before making the payment. You can earn Rs. 1000/- for every successful referral. "+playstorelink;
@@ -124,12 +128,14 @@ public class HomeActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
 				startActivity(intent);
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 			}
 		});
 
 		tv_about.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
 				intent.putExtra("title","About us");
 				try {
@@ -152,6 +158,7 @@ public class HomeActivity extends AppCompatActivity {
 		tv_returns.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 
 				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
 				intent.putExtra("title","Returns & Referrals");
@@ -169,6 +176,7 @@ public class HomeActivity extends AppCompatActivity {
 		tv_scheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 				/*resetAllColors();
 				changebg(scheme_btn,scheme_img);
 				mViewPager.setCurrentItem(3);
@@ -201,6 +209,7 @@ public class HomeActivity extends AppCompatActivity {
 		tv_terms.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
 				intent.putExtra("title","Terms & Conditions");
 				try {
@@ -228,6 +237,7 @@ public class HomeActivity extends AppCompatActivity {
 		tv_faq.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDrawerLayout.closeDrawer(GravityCompat.START);
 				Intent intent = new Intent(HomeActivity.this,ContentActivity.class);
 				intent.putExtra("title","FAQ's");
 				try {
@@ -284,28 +294,69 @@ public class HomeActivity extends AppCompatActivity {
 		fbbtn = (ImageView)findViewById(R.id.fb_btn);
 		gmbtn = (ImageView)findViewById(R.id.gm_btn);
 		twbtn = (ImageView)findViewById(R.id.tw_btn);
+		youtube_btn = (ImageView)findViewById(R.id.youtube_img_btn);
 
 		fbbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.facebook.com")));
+				try {
+					String fb= ApplicationController.getInstance().settings.getString("facebook");
+					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				mDrawerLayout.closeDrawer(GravityCompat.START);
+
 			}
 		});
 
 		gmbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.googleplus.com")));
+
+				try {
+					String fb= ApplicationController.getInstance().settings.getString("google");
+					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				mDrawerLayout.closeDrawer(GravityCompat.START);
+
+				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.googleplus.com")));
+				//google,twitter,youtube
 			}
 		});
 
 		twbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.twitter.com")));
+
+				try {
+					String fb= ApplicationController.getInstance().settings.getString("twitter");
+					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				mDrawerLayout.closeDrawer(GravityCompat.START);
+
+				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.twitter.com")));
 			}
 		});
 
+		youtube_btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				try {
+					String fb= ApplicationController.getInstance().settings.getString("youtube");
+					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				mDrawerLayout.closeDrawer(GravityCompat.START);
+				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.youtube.com")));
+			}
+		});
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -334,6 +385,7 @@ public class HomeActivity extends AppCompatActivity {
 				mViewPager.setCurrentItem(0);
 				page_title_two.setVisibility(View.GONE);
 				page_title_one.setText("HOME");
+				btn_cart.setVisibility(View.INVISIBLE);
 
 
 			}
@@ -343,6 +395,7 @@ public class HomeActivity extends AppCompatActivity {
 			changebg(home_btn,home_img);
 			page_title_one.setText("HOME");
 			page_title_two.setVisibility(View.GONE);
+			btn_cart.setVisibility(View.INVISIBLE);
 		}
 
 		track_btn = (LinearLayout)findViewById(R.id.ll_track);
@@ -357,6 +410,7 @@ public class HomeActivity extends AppCompatActivity {
 				page_title_two.setVisibility(View.VISIBLE);
 				page_title_one.setText("VEHICLE");
 				page_title_two.setText("TRACKING");
+				btn_cart.setVisibility(View.INVISIBLE);
 			}
 		});
 
@@ -371,6 +425,8 @@ public class HomeActivity extends AppCompatActivity {
 				page_title_two.setVisibility(View.VISIBLE);
 				page_title_one.setText("BUY GPS");
 				page_title_two.setText("TRACKER");
+
+				btn_cart.setVisibility(View.VISIBLE);
 			}
 		});
 
@@ -379,7 +435,7 @@ public class HomeActivity extends AppCompatActivity {
 		scheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				btn_cart.setVisibility(View.INVISIBLE);
 
 				String memberid= Session.getUserid(HomeActivity.this);
 				Log.e("membercode",""+Session.getUserid(HomeActivity.this));
@@ -423,6 +479,7 @@ public class HomeActivity extends AppCompatActivity {
 		account.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				btn_cart.setVisibility(View.INVISIBLE);
 
 				if(Session.getUserid(HomeActivity.this).equals("0")){
 
@@ -437,6 +494,7 @@ public class HomeActivity extends AppCompatActivity {
 					page_title_two.setVisibility(View.VISIBLE);
 					page_title_one.setText("MY");
 					page_title_two.setText("ACCOUNT");
+
 				}
 
 
@@ -453,7 +511,7 @@ public class HomeActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
-				showLoginLayout();
+				//showLoginLayout();
 				finish();
 				startActivity(getIntent());
 				signout();
@@ -472,7 +530,7 @@ public class HomeActivity extends AppCompatActivity {
 				startActivity(intent);
 
 				finish();
-				hideLoginLayout();
+				//hideLoginLayout();
 			}
 		});
 		signup_btn = (LinearLayout)findViewById(R.id.ll_signup);
@@ -484,7 +542,7 @@ public class HomeActivity extends AppCompatActivity {
 				startActivity(intent);
 
 				finish();
-				hideLoginLayout();
+			//	hideLoginLayout();
 			}
 		});
 
@@ -504,6 +562,9 @@ public class HomeActivity extends AppCompatActivity {
 			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
 			menuItems.add(new MenuItem("My Referrals", "", R.drawable.myreferals));
 			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
+			menuItems.add(new MenuItem("My Noitifications","",R.drawable.notification));
+
+
 		}
 
 		MenuAdapter menuAdapter = new MenuAdapter(this,menuItems);
@@ -514,21 +575,29 @@ public class HomeActivity extends AppCompatActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				if (position==0){
+					mDrawerLayout.closeDrawer(GravityCompat.START);
+
 					Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
 					startActivity(intent);
 				}
 				else if (position==1){
+					mDrawerLayout.closeDrawer(GravityCompat.START);
 					Intent intent = new Intent(HomeActivity.this,MyProfileActivity.class);
 					startActivity(intent);
 				}
-				else if (position==2){
+				else if (position==2){mDrawerLayout.closeDrawer(GravityCompat.START);
 					Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
 					startActivity(intent);
 				}
-				else
-				{
+				else if (position==3)
+				{mDrawerLayout.closeDrawer(GravityCompat.START);
 					Intent intent = new Intent(HomeActivity.this,MyearningsActivity.class);
 					startActivity(intent);
+				}
+				else {mDrawerLayout.closeDrawer(GravityCompat.START);
+					Intent intent = new Intent(HomeActivity.this,NotificationsActivity.class);
+					startActivity(intent);
+
 				}
 			}
 		});
@@ -553,12 +622,8 @@ public class HomeActivity extends AppCompatActivity {
 		btn_cart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetAllColors();
-				changebg(shop_btn,shop_img);
-				mViewPager.setCurrentItem(2);
-				page_title_two.setVisibility(View.VISIBLE);
-				page_title_one.setText("BUY GPS");
-				page_title_two.setText("TRACKER");
+				Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
+				startActivity(intent);
 			}
 		});
 
@@ -651,6 +716,7 @@ public class HomeActivity extends AppCompatActivity {
 		changebg(track_btn,track_img);
 		page_title_one.setText("VEHICLE");
 		page_title_two.setText("TRACKING");
+		btn_cart.setVisibility(View.INVISIBLE);
 	}
 	public void buyGPStracker(){
 		resetAllColors();
@@ -659,6 +725,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("BUY GPS");
 		page_title_two.setText("TRACKER");
+		btn_cart.setVisibility(View.VISIBLE);
 	}
 
 	public void schemeSelected(){
@@ -668,6 +735,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("REFERRAL");
 		page_title_two.setText("SCHEME");
+		btn_cart.setVisibility(View.INVISIBLE);
 	}
 	public void accountfrg(){
 		resetAllColors();
@@ -676,6 +744,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("MY");
 		page_title_two.setText("ACCOUNT");
+		btn_cart.setVisibility(View.INVISIBLE);
 	}
 
 

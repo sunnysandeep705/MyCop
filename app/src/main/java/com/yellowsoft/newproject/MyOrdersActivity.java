@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -33,17 +36,36 @@ import java.util.Map;
 public class MyOrdersActivity extends AppCompatActivity {
 	RecyclerView orders_rv;
 	MyOrders_Adapter recycler_adapter;
+
+
 	ArrayList<MyOrdersData> myOrdersData=new ArrayList<MyOrdersData>();
+	/*OrderHistory_Adapter orderHistory_adapter ;
+	ArrayList<MessageData> messageData;
+	ListView messages_lv;*/
+
 	TextView page_title;
 	LinearLayout menu_btn,back_btn,no_orders_ll,shopnow_ll;
-	ImageView back;
+	LinearLayout popup;
+
+	ImageView back,shop_img_toolbar;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myorders);
+
 		orders_rv = (RecyclerView)findViewById(R.id.myorders_recycler);
 
+
+		/*messages_lv = (ListView)findViewById(R.id.order_history_lv);
+
+		//orderHistory_adapter = new OrderHistory_Adapter(MyOrdersActivity.this,messageData);
+
+		messages_lv.setAdapter(orderHistory_adapter);
+		//orderHistory_adapter.notifyDataSetChanged();*/
+
+
+		popup = (LinearLayout)findViewById(R.id.popup_myorders);
 		no_orders_ll = (LinearLayout)findViewById(R.id.no_orders_ll);
 		shopnow_ll = (LinearLayout)findViewById(R.id.shopnow_ll);
 		shopnow_ll.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +90,20 @@ public class MyOrdersActivity extends AppCompatActivity {
 		orders_rv.setLayoutManager(linearLayoutManager);
 		orders_rv.setAdapter(recycler_adapter);
 
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(MyOrdersActivity.this);
+
+
+		orders_rv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//showPopup();
+				Intent intent = new Intent(MyOrdersActivity.this,OrderDetailsActivity.class);
+				intent.putExtra("details",myOrdersData);
+				startActivity(intent);
+			}
+		});
+
+
 		Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_myorders);
 		setSupportActionBar(toolbar);
 		setupActionBar();
@@ -90,6 +126,17 @@ public class MyOrdersActivity extends AppCompatActivity {
 		page_title = (TextView) v.findViewById(R.id.page_title);
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
 
+		shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
+		shop_img_toolbar.setVisibility(View.VISIBLE);
+		shop_img_toolbar.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyOrdersActivity.this,HomeActivity.class);
+				//startActivity(intent);
+				setResult(RESULT_OK,intent);
+				finish();
+			}
+		});
 		back = (ImageView)v.findViewById(R.id.btn_back);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -129,7 +176,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("res",response);
+				Log.e("resOrderHistory",response);
 				if(progressDialog!=null&& progressDialog.isShowing()) {
 					progressDialog.dismiss();
 				}
@@ -211,6 +258,9 @@ public class MyOrdersActivity extends AppCompatActivity {
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 //		slidingPageAdapter.notifyDataSetChanged();
+	}
+	public void showPopup(){
+		popup.setVisibility(View.VISIBLE);
 	}
 
 }
