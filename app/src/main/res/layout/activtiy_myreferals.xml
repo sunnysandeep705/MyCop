@@ -155,7 +155,7 @@
                     android:orientation="vertical">
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView58"
+                        android:id="@+id/schemetitles"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"

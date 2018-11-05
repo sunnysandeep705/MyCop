@@ -46,6 +46,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 	TextView page_title;
 	LinearLayout menu_btn,back_btn,no_orders_ll,shopnow_ll;
 	LinearLayout popup;
+	LinearLayout shop_ll_toolbar;
 
 	ImageView back,shop_img_toolbar;
 
@@ -127,8 +128,11 @@ public class MyOrdersActivity extends AppCompatActivity {
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
 
 		shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
+		//shop_img_toolbar.setVisibility(View.VISIBLE);
+		shop_ll_toolbar = (LinearLayout)v.findViewById(R.id.shop_ll_toolbar);
 		shop_img_toolbar.setVisibility(View.VISIBLE);
-		shop_img_toolbar.setOnClickListener(new View.OnClickListener() {
+		shop_ll_toolbar.setVisibility(View.VISIBLE);
+		shop_ll_toolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MyOrdersActivity.this,HomeActivity.class);

@@ -49,7 +49,8 @@ public class HomeActivity extends AppCompatActivity {
 	private FirebaseAuth mAuth;
 
 	LinearLayout menu_btn,home_btn,home,track_btn,track,shop_btn,shop,scheme_btn,scheme,account_btn,account;
-	LinearLayout ll_userdetails;
+	LinearLayout ll_userdetails,orders_ll_toolbar;
+
 	private DrawerLayout mDrawerLayout;
 	LinearLayout ll_login_,ll_details_,login_btn,signup_btn;;
 	TabsAdapter tabsAdapter;
@@ -385,7 +386,7 @@ public class HomeActivity extends AppCompatActivity {
 				mViewPager.setCurrentItem(0);
 				page_title_two.setVisibility(View.GONE);
 				page_title_one.setText("HOME");
-				btn_cart.setVisibility(View.INVISIBLE);
+				orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
 
 			}
@@ -395,7 +396,7 @@ public class HomeActivity extends AppCompatActivity {
 			changebg(home_btn,home_img);
 			page_title_one.setText("HOME");
 			page_title_two.setVisibility(View.GONE);
-			btn_cart.setVisibility(View.INVISIBLE);
+			orders_ll_toolbar.setVisibility(View.INVISIBLE);
 		}
 
 		track_btn = (LinearLayout)findViewById(R.id.ll_track);
@@ -410,7 +411,7 @@ public class HomeActivity extends AppCompatActivity {
 				page_title_two.setVisibility(View.VISIBLE);
 				page_title_one.setText("VEHICLE");
 				page_title_two.setText("TRACKING");
-				btn_cart.setVisibility(View.INVISIBLE);
+				orders_ll_toolbar.setVisibility(View.INVISIBLE);
 			}
 		});
 
@@ -426,7 +427,7 @@ public class HomeActivity extends AppCompatActivity {
 				page_title_one.setText("BUY GPS");
 				page_title_two.setText("TRACKER");
 
-				btn_cart.setVisibility(View.VISIBLE);
+				orders_ll_toolbar.setVisibility(View.VISIBLE);
 			}
 		});
 
@@ -435,7 +436,7 @@ public class HomeActivity extends AppCompatActivity {
 		scheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				btn_cart.setVisibility(View.INVISIBLE);
+				orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
 				String memberid= Session.getUserid(HomeActivity.this);
 				Log.e("membercode",""+Session.getUserid(HomeActivity.this));
@@ -466,6 +467,7 @@ public class HomeActivity extends AppCompatActivity {
 
 						Log.e("membercode",""+Session.getMemberCode(HomeActivity.this));
 						Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
+
 						startActivity(intent);
 						//getActivity().finish();
 					}
@@ -479,7 +481,7 @@ public class HomeActivity extends AppCompatActivity {
 		account.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				btn_cart.setVisibility(View.INVISIBLE);
+				orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
 				if(Session.getUserid(HomeActivity.this).equals("0")){
 
@@ -617,15 +619,24 @@ public class HomeActivity extends AppCompatActivity {
 		LayoutInflater inflater = getLayoutInflater();
 		View v = inflater.inflate(R.layout.action_bar_title,null);
 
-		//cart button on click
-		btn_cart = (ImageView)v.findViewById(R.id.btn_cart);
-		btn_cart.setOnClickListener(new View.OnClickListener() {
+
+		orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
+		orders_ll_toolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
 				startActivity(intent);
 			}
 		});
+		//cart button on click
+		btn_cart = (ImageView)v.findViewById(R.id.btn_cart);
+		/*btn_cart.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
+				startActivity(intent);
+			}
+		});*/
 
 
 		page_title_one = (TextView) v.findViewById(R.id.page_title_one);
@@ -716,7 +727,7 @@ public class HomeActivity extends AppCompatActivity {
 		changebg(track_btn,track_img);
 		page_title_one.setText("VEHICLE");
 		page_title_two.setText("TRACKING");
-		btn_cart.setVisibility(View.INVISIBLE);
+		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 	public void buyGPStracker(){
 		resetAllColors();
@@ -725,7 +736,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("BUY GPS");
 		page_title_two.setText("TRACKER");
-		btn_cart.setVisibility(View.VISIBLE);
+		orders_ll_toolbar.setVisibility(View.VISIBLE);
 	}
 
 	public void schemeSelected(){
@@ -735,7 +746,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("REFERRAL");
 		page_title_two.setText("SCHEME");
-		btn_cart.setVisibility(View.INVISIBLE);
+		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 	public void accountfrg(){
 		resetAllColors();
@@ -744,7 +755,7 @@ public class HomeActivity extends AppCompatActivity {
 		page_title_two.setVisibility(View.VISIBLE);
 		page_title_one.setText("MY");
 		page_title_two.setText("ACCOUNT");
-		btn_cart.setVisibility(View.INVISIBLE);
+		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 
 

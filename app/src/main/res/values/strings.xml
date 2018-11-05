@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MY COP</string>
-    <string name="referals"><![CDATA[Returns & Referals]]></string>
+    <string name="referals"><![CDATA[Returns & Referrals]]></string>
     <string name="terms"><![CDATA[Terms & Conditions]]></string>
     <string name="tracksolidmainframestring"><u>http://tracksolid.com/mainFrame</u></string>
     <string name="www_tracksolid_com"><u>www.tracksolid.com</u></string>

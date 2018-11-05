@@ -94,6 +94,8 @@ public class SplashScreen extends AppCompatActivity {
                     e.printStackTrace();
                     Log.e("errorOne",""+e.getMessage().toString());
                     Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
+                    Intent j = new Intent(SplashScreen.this, HomeActivity.class);
+                    startActivity(j);
                     }
             }
         },
